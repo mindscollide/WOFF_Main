@@ -58,13 +58,14 @@ const findCustomerAccountDetailsFromMysis = (
         if (res.data.responseCode === 417) {
           await dispatch(refreshToken());
           dispatch(
-            (findCustomerAccountDetailsFromMysis =
-              (Anum,
+            findCustomerAccountDetailsFromMysis(
+              Anum,
               Mcode,
               setAccountDetails,
               AccountDetails,
               setRecoveryWriteOffSection,
-              recoveryWriteOffSection))
+              recoveryWriteOffSection
+            )
           );
         } else if (res.data.responseCode === 200) {
           if (res.data.responseResult.recordFound === true) {

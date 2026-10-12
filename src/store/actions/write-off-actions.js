@@ -29,7 +29,7 @@ const addWriteOffFail = (response) => {
     reponse: response,
   };
 };
-const addWriteOff = (object, history, setwofcode, setOpen, open) => {
+const addWriteOff = (object, navigate, setwofcode, setOpen, open) => {
   let token = JSON.parse(localStorage.getItem("token"));
   console.log("new request", JSON.stringify(object));
   return (dispatch) => {
@@ -49,7 +49,7 @@ const addWriteOff = (object, history, setwofcode, setOpen, open) => {
       .then(async (response) => {
         if (response.data.responseCode === 417) {
           await dispatch(refreshToken());
-          dispatch(addWriteOff(object, history, setwofcode, setOpen, open));
+          dispatch(addWriteOff(object, navigate, setwofcode, setOpen, open));
         } else if (response.data.responseCode === 200) {
           console.log("response1 after", response.data);
           if (response.data.responseResult.recordFound === true) {
@@ -62,7 +62,7 @@ const addWriteOff = (object, history, setwofcode, setOpen, open) => {
             window.location.reload();
             dispatch(addWriteOffSuccess(response.data.responseResult));
 
-            // history.replace("/Wof/DataEntryUser/AddWriteOff");
+            // navigate("/Wof/DataEntryUser/AddWriteOff", { replace: true });
 
             // localStorage .setItem("parent", "sub1");
             // localStorage .setItem("child", "1");
@@ -100,7 +100,7 @@ const EditOffWriteOffFail = (message) => {
     message: message,
   };
 };
-const EditWriteOff = (object, history, setOpen) => {
+const EditWriteOff = (object, navigate, setOpen) => {
   let token = JSON.parse(localStorage.getItem("token"));
   return (dispatch) => {
     dispatch(EditWriteOffInit());
@@ -122,13 +122,13 @@ const EditWriteOff = (object, history, setOpen) => {
 
         if (response.data.responseCode === 417) {
           await dispatch(refreshToken());
-          dispatch(EditWriteOff(object, history, setOpen));
+          dispatch(EditWriteOff(object, navigate, setOpen));
         } else if (response.data.responseCode === 200) {
           console.log("huzeifa edit", response);
           if (response.data.responseResult.recordFound === true) {
             console.log("EditWriteOff", response);
             dispatch(EditOffWriteOffSuccess(response.data.responseResult));
-            history.replace("/Wof/DataEntryUser/ListWriteOff");
+            navigate("/Wof/DataEntryUser/ListWriteOff", { replace: true });
             localStorage.setItem("parent", "sub1");
             localStorage.setItem("child", "1");
             // window.location.reload();
@@ -162,7 +162,7 @@ const EditWriteOff = (object, history, setOpen) => {
       });
   };
 };
-const EditApprovedWriteOff = (object, history, setOpen, routeCheck) => {
+const EditApprovedWriteOff = (object, navigate, setOpen, routeCheck) => {
   let token = JSON.parse(localStorage.getItem("token"));
   return (dispatch) => {
     dispatch(EditWriteOffInit());
@@ -184,7 +184,7 @@ const EditApprovedWriteOff = (object, history, setOpen, routeCheck) => {
 
         if (response.data.responseCode === 417) {
           await dispatch(refreshToken());
-          dispatch(EditApprovedWriteOff(object, history, setOpen));
+          dispatch(EditApprovedWriteOff(object, navigate, setOpen));
         } else if (response.data.responseCode === 200) {
           console.log(response);
           if (response.data.responseResult.recordFound === true) {
@@ -195,7 +195,7 @@ const EditApprovedWriteOff = (object, history, setOpen, routeCheck) => {
 
             await localStorage.setItem("parent", "sub2");
             await localStorage.setItem("child", "10");
-            history.replace("/Wof/Admin/SystemAdminApprovedCases");
+            navigate("/Wof/Admin/SystemAdminApprovedCases", { replace: true });
             // window.location.reload();
           } else {
             console.log(response);

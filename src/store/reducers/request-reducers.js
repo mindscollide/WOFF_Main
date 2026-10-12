@@ -72,7 +72,7 @@ const requestReducer = (state = initialState, action) => {
     case actions.MAKE_TAB_ACTIVE_INIT:
       return { ...state, activateTabs: 15 };
     default:
-      return { ...state };
+      return state;
   }
 };
 

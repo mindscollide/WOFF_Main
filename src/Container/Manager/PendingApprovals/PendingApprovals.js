@@ -1,8 +1,7 @@
 import React, { useEffect, useState } from "react";
-import { Grid, Box } from "@material-ui/core";
 import { useDispatch, useSelector } from "react-redux";
 import Highlighter from "react-highlight-words";
-import { SearchOutlined } from "@ant-design/icons";
+import { SearchOutlined, UndoOutlined as Restore, SearchOutlined as Search } from "@ant-design/icons";
 import {
   getApprovals,
   saveApprovals,
@@ -15,7 +14,7 @@ import {
   GetApprovalReason,
   GetRejectionReason,
 } from "../../../store/actions/setup-forms-actions";
-import { Typography, Tooltip, Input, Space } from "antd";
+import { Typography, Tooltip, Input, Space, Row, Col } from "antd";
 import {
   TextField,
   InputWithBtn,
@@ -27,20 +26,18 @@ import {
   FilterBar,
   Notification,
 } from "../../../Components/Elements";
-import { Link, useHistory } from "react-router-dom";
+import { Link, useNavigate } from "react-router";
 import {
   DateDisplayFormat,
   CommaFormter,
 } from "../../../Common/Functions/date-formatter";
 import { GetAdvanceClassification } from "../../../store/actions/setup-forms-actions";
-import Restore from "@material-ui/icons/Restore";
-import Search from "@material-ui/icons/Search";
 const PendingApprovals = () => {
-  const history = useHistory();
+  const navigate = useNavigate();
   const [SearchTerm, setSearchTerm] = useState("");
   const Details = JSON.parse(localStorage.getItem("UserDetails"));
-  const state = useSelector((state) => state);
-  const { wofApprovals, setupForms } = state;
+  const wofApprovals = useSelector((state) => state.wofApprovals);
+  const setupForms = useSelector((state) => state.setupForms);
   const [filter, setfilter] = useState(5);
   const approvalHistoryFromStore = wofApprovals.viewApprovalHistory;
   const [ApprovalHistory, setviewApprovalHistory] = useState([]);
@@ -156,7 +153,7 @@ const PendingApprovals = () => {
   const View = (e, value) => {
     localStorage.setItem("wofCustomerMasterID", JSON.stringify(value));
     dispatch(enableGoBack());
-    history.push("/Wof/Manager/ViewWriteOff");
+    navigate("/Wof/Manager/ViewWriteOff");
   };
   const buttonProps = {
     primaryButton: {
@@ -517,17 +514,17 @@ const PendingApprovals = () => {
       {/* >>>>>>>>>>>>>>>>>>>Row 01<<<<<<<<<<<<<<<<<<<<< */}
       <Notification setOpen={setOpen} open={open.open} message={open.message} />
       <Title level={2}>Pending Approvals</Title>
-      <Grid container spacing={2}>
+      <Row gutter={16}>
         {/* 1.1 */}
-        <Grid item lg={3} md={3} sm={12} xs={12}>
+        <Col lg={6} md={6} sm={24} xs={24}>
           <FilterBar
             Options={options}
             change={handleFilter}
             placeholder={"Filter by Duration"}
             defaultValue={options[4].title}
           />
-        </Grid>
-        <Grid item lg={5} md={5} sm={12} xs={12}>
+        </Col>
+        <Col lg={10} md={10} sm={24} xs={24}>
           <TextField
             fullWidth
             label="Search"
@@ -535,8 +532,8 @@ const PendingApprovals = () => {
             value={SearchTerm}
             change={(e) => setSearchTerm(e.target.value)}
           />
-        </Grid>
-        <Grid item lg={2} md={2} sm={12}>
+        </Col>
+        <Col lg={4} md={4} sm={24}>
           <Button
             text="Search"
             icon={<Search />}
@@ -544,8 +541,8 @@ const PendingApprovals = () => {
             size="small"
             click={() => globalSearch(1)}
           />
-        </Grid>
-        <Grid item lg={2} md={2} sm={12}>
+        </Col>
+        <Col lg={4} md={4} sm={24}>
           <Button
             text="Reset"
             icon={<Restore />}
@@ -553,18 +550,18 @@ const PendingApprovals = () => {
             size="small"
             click={() => globalSearch(2)}
           />
-        </Grid>
+        </Col>
         <div style={{ marginTop: "5%" }} />
         {/* Row 04 */}
-        <Grid item style={{ marginTop: "2%" }} lg={12} md={12} sm={12}>
+        <Col style={{ marginTop: "2%" }} lg={24} md={24} sm={24}>
           <Table
             id={"table-to-xls"}
             rows={rows}
             columns={columns}
             scroll={{ x: "max-content" }}
           />
-        </Grid>
-      </Grid>
+        </Col>
+      </Row>
 
       <Modal
         closeModal={handleCancel}
@@ -572,16 +569,15 @@ const PendingApprovals = () => {
         width={700}
         modalTitle={<Title level={3}>Accept/Reject</Title>}
       >
-        <Box
-          display="flex"
-          justifyContent="center"
+        <div
           style={{
+            display: "flex",
+            justifyContent: "center",
             paddingBottom: "40px",
             paddingLeft: "20px",
-            paddingRight: "20px",
-          }}
-        >
-          <Grid item lg={12} md={12} sm={12} xs={12}>
+            paddingRight: "20px"
+          }}>
+          <Col lg={24} md={24} sm={24} xs={24}>
             <SelectBox
               option={reason}
               propertyName={"title"}
@@ -591,18 +587,17 @@ const PendingApprovals = () => {
               value={selectedReason.Reason}
               name="Select Reason"
             />
-          </Grid>
-        </Box>
-        <Box
-          display="flex"
-          justifyContent="center"
+          </Col>
+        </div>
+        <div
           style={{
+            display: "flex",
+            justifyContent: "center",
             paddingBottom: "80px",
             paddingLeft: "20px",
-            paddingRight: "20px",
-          }}
-        >
-          <Grid item lg={12} md={12} sm={12} xs={12}>
+            paddingRight: "20px"
+          }}>
+          <Col lg={24} md={24} sm={24} xs={24}>
             <TextField
               multiline
               rows={6}
@@ -612,8 +607,8 @@ const PendingApprovals = () => {
               fullWidth
               required
             />
-          </Grid>
-        </Box>
+          </Col>
+        </div>
         <GroupedButtons data={buttonProps} />
       </Modal>
 

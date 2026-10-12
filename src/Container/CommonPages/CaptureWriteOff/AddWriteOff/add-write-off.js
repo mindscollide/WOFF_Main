@@ -1,8 +1,5 @@
 import React, { useEffect, useState, useRef } from "react";
-import { Grid, Box } from "@material-ui/core";
-import AddIcon from "@material-ui/icons/Add";
-import { Typography, Radio, Tooltip } from "antd";
-import moment from "moment";
+import { Typography, Radio, Tooltip, Row, Col } from "antd";
 import {
   Paper,
   InputWithBtn,
@@ -17,7 +14,6 @@ import {
   Message,
   Loader,
   Table,
-  NumberFormatCustom,
   FormattedInputs,
 } from "../../../../Components/Elements";
 import SaveRecord from "../../../../Components/CommonComponents/CaptureWriteOff/save-record";
@@ -48,7 +44,7 @@ import {
   NumberFormater,
   CommaFormter,
 } from "../../../../Common/Functions/date-formatter";
-import { SignalCellularNullSharp } from "@material-ui/icons";
+import { PlusOutlined as AddIcon } from "@ant-design/icons";
 const AddWriteOff = () => {
   const { Title } = Typography;
   const dispatch = useDispatch();
@@ -61,12 +57,9 @@ const AddWriteOff = () => {
     open: false,
     message: "",
   });
-  const state = useSelector((state) => state);
-  const {
-    findCustomerFromMisys,
-    findCustomerAccountDetailsFromMisys,
-    setupForms,
-  } = state;
+  const findCustomerFromMisys = useSelector((state) => state.findCustomerFromMisys);
+  const findCustomerAccountDetailsFromMisys = useSelector((state) => state.findCustomerAccountDetailsFromMisys);
+  const setupForms = useSelector((state) => state.setupForms);
   const [wofcode, setwofcode] = useState("");
   const [accountNumbersFromStore, setAccountNumbersFromStore] = useState(null);
   const [goToSave, setGoToSave] = useState(false);
@@ -491,7 +484,7 @@ const AddWriteOff = () => {
     console.log("lrDate 45", Number.isNaN(NaN));
 
     if (
-      (lrAmount != SignalCellularNullSharp && lrAmount != undefined) ||
+      (lrAmount != null && lrAmount != undefined) ||
       (lrDate != "" && lrDate != undefined)
     ) {
       let tem = [];
@@ -1571,8 +1564,8 @@ const AddWriteOff = () => {
       <form onSubmit={(e) => goToSaveHandler(e)}>
         <Title level={2}>Capture Write Off</Title>
         <Paper padding="1">
-          <Grid container spacing={2}>
-            <Grid item lg={3} md={3} sm={12} xs={12}>
+          <Row gutter={16}>
+            <Col lg={6} md={6} sm={24} xs={24}>
               <div
                 onClick={() => {
                   dispatch(ResetState());
@@ -1597,9 +1590,9 @@ const AddWriteOff = () => {
                   click={misysSearchHandler}
                 />
               </div>
-            </Grid>
+            </Col>
 
-            <Grid item lg={2} md={2} sm={12} xs={12}>
+            <Col lg={4} md={4} sm={24} xs={24}>
               <TextField
                 name=""
                 size="small"
@@ -1609,9 +1602,9 @@ const AddWriteOff = () => {
                 label={"WOF Code"}
                 fullWidth
               />
-            </Grid>
+            </Col>
 
-            <Grid item lg={2} md={2} sm={12} xs={12}>
+            <Col lg={4} md={4} sm={24} xs={24}>
               <TextField
                 change={misysSectionHandler}
                 value={misysSection.NPLCode}
@@ -1621,8 +1614,8 @@ const AddWriteOff = () => {
                 textLength={7}
                 name="NPLCode"
               />
-            </Grid>
-            <Grid item lg={5} md={5} sm={12} xs={12}>
+            </Col>
+            <Col lg={10} md={10} sm={24} xs={24}>
               <TextField
                 value={misysSection.BorrowerName}
                 change={misysSectionHandler}
@@ -1633,8 +1626,8 @@ const AddWriteOff = () => {
                 required
                 name="BorrowerName"
               />
-            </Grid>
-            <Grid item lg={6} md={6} sm={12} xs={12}>
+            </Col>
+            <Col lg={12} md={12} sm={24} xs={24}>
               <TextField
                 value={misysSection.AddressOfBorrower}
                 change={misysSectionHandler}
@@ -1645,8 +1638,8 @@ const AddWriteOff = () => {
                 textLength={300}
                 required
               />
-            </Grid>
-            <Grid item lg={3} md={3} sm={12} xs={12}>
+            </Col>
+            <Col lg={6} md={6} sm={24} xs={24}>
               <TextField
                 value={misysSection.NTNNumber}
                 change={NTNnumberHandler}
@@ -1658,8 +1651,8 @@ const AddWriteOff = () => {
                 minLength={1}
                 maxLength={8}
               />
-            </Grid>
-            <Grid item lg={3} md={3} sm={12} xs={12}>
+            </Col>
+            <Col lg={6} md={6} sm={24} xs={24}>
               <SelectBox
                 change={misysSectionHandler}
                 name="ManagementUnitID"
@@ -1669,9 +1662,9 @@ const AddWriteOff = () => {
                 value={misysSection.ManagementUnitID}
                 required
               />
-            </Grid>
+            </Col>
             <div style={{ marginTop: "10px" }} />
-            <Grid item lg={4} md={4} sm={12} xs={12}>
+            <Col lg={8} md={8} sm={24} xs={24}>
               {/* <div style={{ marginTop: "35px" }} /> */}
               <SelectBox
                 change={misysSectionHandler}
@@ -1682,8 +1675,8 @@ const AddWriteOff = () => {
                 required
                 value={misysSection.BorrowerTypeID}
               />
-            </Grid>
-            <Grid item lg={2} md={2} sm={12} xs={12}>
+            </Col>
+            <Col lg={4} md={4} sm={24} xs={24}>
               {/* <div style={{ marginTop: "35px" }} /> */}
               <TextField
                 label={"IParty ID"}
@@ -1694,7 +1687,7 @@ const AddWriteOff = () => {
                 value={misysSection.iParty}
                 fullWidth
               />
-            </Grid>
+            </Col>
             {/* <Grid item lg={4} md={4} sm={12} xs={12}>
               <div style={{ marginTop: "35px" }} />
               <SelectBox
@@ -1719,12 +1712,12 @@ const AddWriteOff = () => {
                 fullWidth
               />
             </Grid> */}
-          </Grid>
+          </Row>
         </Paper>
         <div style={{ marginTop: "20px" }} />
         <Paper padding="1">
-          <Grid container spacing={2}>
-            <Grid item lg={3} md={3} sm={12} xs={12}>
+          <Row gutter={16}>
+            <Col lg={6} md={6} sm={24} xs={24}>
               <SelectBox
                 option={accountNumbersFromStore && accountNumbersFromStore}
                 change={AcountSelection}
@@ -1733,8 +1726,8 @@ const AddWriteOff = () => {
                 required={true}
                 name="AccountNumber"
               />
-            </Grid>
-            <Grid item lg={2} md={2} sm={12} xs={12}>
+            </Col>
+            <Col lg={4} md={4} sm={24} xs={24}>
               <TextField
                 change={CodeHandler}
                 value={AccountDetails.BranchCode}
@@ -1746,8 +1739,8 @@ const AddWriteOff = () => {
                 required
                 name="BranchCode"
               />
-            </Grid>
-            <Grid item lg={3} md={3} sm={12} xs={12}>
+            </Col>
+            <Col lg={6} md={6} sm={24} xs={24}>
               <TextField
                 change={AccountDetailsHandler}
                 value={AccountDetails.BranchName}
@@ -1758,8 +1751,8 @@ const AddWriteOff = () => {
                 textLength={300}
                 required
               />
-            </Grid>
-            <Grid item lg={2} md={2} sm={12} xs={12}>
+            </Col>
+            <Col lg={4} md={4} sm={24} xs={24}>
               <TextField
                 change={CodeHandler}
                 name="RegionCode"
@@ -1771,8 +1764,8 @@ const AddWriteOff = () => {
                 minLength={2}
                 required
               />
-            </Grid>
-            <Grid item lg={2} md={2} sm={12} xs={12}>
+            </Col>
+            <Col lg={4} md={4} sm={24} xs={24}>
               <TextField
                 change={AccountDetailsHandler}
                 name="RegionName"
@@ -1783,11 +1776,11 @@ const AddWriteOff = () => {
                 textLength={40}
                 required
               />
-            </Grid>
-            <Grid item lg={12} md={12} sm={12} xs={12}>
+            </Col>
+            <Col lg={24} md={24} sm={24} xs={24}>
               <b style={{ fontSize: "1rem" }}>Sundry Analysis</b>
-            </Grid>
-            <Grid item lg={2} md={2} sm={12} xs={12}>
+            </Col>
+            <Col lg={4} md={4} sm={24} xs={24}>
               <TextField
                 value={AccountDetails.SCode}
                 change={AccountDetailsHandler}
@@ -1798,8 +1791,8 @@ const AddWriteOff = () => {
                 name="SCode"
                 minLength={2}
               />
-            </Grid>
-            <Grid item lg={4} md={4} sm={12} xs={12}>
+            </Col>
+            <Col lg={8} md={8} sm={24} xs={24}>
               <TextField
                 change={AccountDetailsHandler}
                 value={AccountDetails.SDescription}
@@ -1810,8 +1803,8 @@ const AddWriteOff = () => {
                 width="90%"
                 name="SDescription"
               />
-            </Grid>
-            <Grid item lg={3} md={3} sm={12} xs={12}>
+            </Col>
+            <Col lg={6} md={6} sm={24} xs={24}>
               {/* <div style={{ marginTop: 22 }} /> */}
               <TextField
                 change={AccountDetailsHandler}
@@ -1824,8 +1817,8 @@ const AddWriteOff = () => {
                 required
                 value={AccountDetails.FacCode}
               />
-            </Grid>
-            <Grid item lg={3} md={3} sm={12} xs={12}>
+            </Col>
+            <Col lg={6} md={6} sm={24} xs={24}>
               {/* <div style={{ marginTop: 22 }} /> */}
               <TextField
                 change={AccountDetailsHandler}
@@ -1837,8 +1830,8 @@ const AddWriteOff = () => {
                 required
                 value={AccountDetails.FacName}
               />
-            </Grid>
-          </Grid>
+            </Col>
+          </Row>
           <div style={{ marginTop: "20px" }} />
           {console.log("FRATotal", SectionDetails)}
           <FancyBoxSection
@@ -1852,12 +1845,8 @@ const AddWriteOff = () => {
             DateDisplayFormat={DateDisplayFormat}
             calculatorBoxhandler={calculatorBoxhandlerdata}
           />
-          <Grid
-            container
-            spacing={2}
-            style={{ backgroundColor: "#e7f5f4", padding: "1%" }}
-          >
-            <Grid item lg={12} md={12} sm={12} xs={12} align="center">
+          <Row gutter={16} style={{ backgroundColor: "#e7f5f4", padding: "1%" }}>
+            <Col lg={24} md={24} sm={24} xs={24} align="center">
               <Button
                 text={"Add Record"}
                 icon={<AddIcon />}
@@ -1865,12 +1854,12 @@ const AddWriteOff = () => {
                 size="large"
                 click={AddSectionDetails}
               />
-            </Grid>
-          </Grid>
+            </Col>
+          </Row>
           <div style={{ marginTop: "20px" }} />
           <Title level={4}>Collateral Details</Title>
-          <Grid container spacing={2}>
-            <Grid item lg={3} md={3} sm={12} xs={12}>
+          <Row gutter={16}>
+            <Col lg={6} md={6} sm={24} xs={24}>
               <div style={{ marginTop: "20px" }} />
               <SelectBox
                 // required
@@ -1881,8 +1870,8 @@ const AddWriteOff = () => {
                 value={accountCollateralSection.natureOfSecurity}
                 change={collateralSectionHandlerNew}
               />
-            </Grid>
-            <Grid item lg={3} md={3} sm={12} xs={12}>
+            </Col>
+            <Col lg={6} md={6} sm={24} xs={24}>
               <div style={{ marginTop: "20px" }} />
               <SelectBox
                 // required
@@ -1893,8 +1882,8 @@ const AddWriteOff = () => {
                 value={accountCollateralSection.natureOfCharge}
                 change={collateralSectionHandlerNew}
               />
-            </Grid>
-            <Grid item lg={3} md={3} sm={12} xs={12}>
+            </Col>
+            <Col lg={6} md={6} sm={24} xs={24}>
               <FormattedInputs
                 fullWidth
                 label="FS Value of Security"
@@ -1909,8 +1898,8 @@ const AddWriteOff = () => {
                 }
                 change={AccountColleteralNumberField}
               />
-            </Grid>
-            <Grid item lg={3} md={3} sm={12} xs={12}>
+            </Col>
+            <Col lg={6} md={6} sm={24} xs={24}>
               <div style={{ marginTop: "20px" }} />
               <DatePicker
                 size="large"
@@ -1927,18 +1916,16 @@ const AddWriteOff = () => {
                 DateRange
                 change={collateralSectionHandlerNew}
               />
-            </Grid>
-            <Grid
-              item
+            </Col>
+            <Col
               style={{
                 backgroundColor: "#e7f5f4",
                 padding: "1%",
                 marginTop: "2%",
               }}
-              lg={12}
-              md={12}
-              sm={12}
-            >
+              lg={24}
+              md={24}
+              sm={24}>
               <div style={{ marginTop: "2%" }} />
               <Table
                 rows={AccountCollateralValue}
@@ -1947,7 +1934,7 @@ const AddWriteOff = () => {
                 pagination={true}
               />
               <div style={{ marginTop: "2%" }} />
-              <Grid item lg={12} md={12} sm={12} xs={12} align="center">
+              <Col lg={24} md={24} sm={24} xs={24} align="center">
                 <Button
                   text={"Add Record"}
                   icon={<AddIcon />}
@@ -1955,9 +1942,9 @@ const AddWriteOff = () => {
                   size="large"
                   click={AddMultipleCollateralDetails}
                 />
-              </Grid>
-            </Grid>
-          </Grid>
+              </Col>
+            </Col>
+          </Row>
           <div style={{ marginTop: "20px" }} />
           <FancyBox
             state={AccountDetails}
@@ -1969,14 +1956,10 @@ const AddWriteOff = () => {
             setallinput={setallinput}
             allinput={allinput}
           />
-          <Grid
-            container
-            spacing={2}
-            style={{ backgroundColor: "#e7f5f4", padding: "1%" }}
-          >
-            <Grid item lg={12} md={12} sm={12} xs={12} align="center">
+          <Row gutter={16} style={{ backgroundColor: "#e7f5f4", padding: "1%" }}>
+            <Col lg={24} md={24} sm={24} xs={24} align="center">
               <Title level={4}>Consolidated</Title>
-            </Grid>
+            </Col>
             <ConsolidateBox
               state={consolidateCalculatorBox}
               FRATotal={consolidateCalculatorBox.FRATotal}
@@ -1984,7 +1967,7 @@ const AddWriteOff = () => {
               APBSTotal={consolidateCalculatorBox.APBSTotal}
               disable={true}
             />
-            <Grid item lg={12} md={12} sm={12} xs={12} align="center">
+            <Col lg={24} md={24} sm={24} xs={24} align="center">
               <Button
                 text={ButtonText}
                 icon={<AddIcon />}
@@ -1992,14 +1975,14 @@ const AddWriteOff = () => {
                 size="large"
                 click={AddRecordHandler}
               />
-            </Grid>
-          </Grid>
+            </Col>
+          </Row>
         </Paper>
         <div style={{ marginTop: "20px" }} />
         <Paper padding="1">
           <Title level={4}>Additional Detail</Title>
-          <Grid container spacing={1}>
-            <Grid item lg={3} md={3} sm={12}>
+          <Row gutter={8}>
+            <Col lg={6} md={6} sm={24}>
               <SelectBox
                 label="Classification of Advances"
                 option={setupForms.ClassificationOfAdvances}
@@ -2009,8 +1992,8 @@ const AddWriteOff = () => {
                 required
                 value={additionalDetailsSection.AdvanceClassificationID}
               />
-            </Grid>
-            <Grid item lg={4} md={4} sm={12}>
+            </Col>
+            <Col lg={8} md={8} sm={24}>
               <label>
                 {" "}
                 <b>Charge Off</b>{" "}
@@ -2029,8 +2012,8 @@ const AddWriteOff = () => {
                   Old Charge-Off
                 </Radio>
               </Radio.Group>
-            </Grid>
-            <Grid item lg={2} md={2} sm={12}>
+            </Col>
+            <Col lg={4} md={4} sm={24}>
               <TextField
                 fullWidth
                 label="Approval Number"
@@ -2040,8 +2023,8 @@ const AddWriteOff = () => {
                 change={addDetailsSectionHandler}
                 value={additionalDetailsSection.ApprovalNumber}
               />
-            </Grid>
-            <Grid item lg={3} md={3} sm={12}>
+            </Col>
+            <Col lg={6} md={6} sm={24}>
               <DatePicker
                 size="large"
                 width="100%"
@@ -2055,8 +2038,8 @@ const AddWriteOff = () => {
                     : null
                 }
               />
-            </Grid>
-            <Grid item lg={5} md={5} sm={12}>
+            </Col>
+            <Col lg={10} md={10} sm={24}>
               <DatePicker
                 size="large"
                 width="100%"
@@ -2070,8 +2053,8 @@ const AddWriteOff = () => {
                     : null
                 }
               />
-            </Grid>
-            <Grid item lg={4} md={4} sm={12}>
+            </Col>
+            <Col lg={8} md={8} sm={24}>
               <SelectBox
                 label="Reason of Write off"
                 option={setupForms.WOFReasons}
@@ -2081,8 +2064,8 @@ const AddWriteOff = () => {
                 change={addDetailsSectionHandler}
                 value={additionalDetailsSection.WriteOffReason}
               />
-            </Grid>
-            <Grid item lg={3} md={3} sm={12} align="left">
+            </Col>
+            <Col lg={6} md={6} sm={24} align="left">
               <label>
                 {" "}
                 <b>
@@ -2103,8 +2086,8 @@ const AddWriteOff = () => {
                   Book Cleaning
                 </Radio>
               </Radio.Group>
-            </Grid>
-            <Grid item lg={6} md={6} sm={12} xs={12}>
+            </Col>
+            <Col lg={12} md={12} sm={24} xs={24}>
               <FormattedInputs
                 fullWidth
                 label="Sale of Security"
@@ -2115,8 +2098,8 @@ const AddWriteOff = () => {
                 value={collateralSection.SaleOfSecurity}
                 change={ColleteralNumberField}
               />
-            </Grid>
-            <Grid item lg={6} md={6} sm={12} xs={12}>
+            </Col>
+            <Col lg={12} md={12} sm={24} xs={24}>
               <div style={{ marginTop: "20px" }} />
               <TextField
                 fullWidth
@@ -2129,8 +2112,8 @@ const AddWriteOff = () => {
                 value={collateralSection.DetailsOfSecurity}
                 change={collateralSectionHandler}
               />
-            </Grid>
-            <Grid item lg={6} md={6} sm={12} xs={12}>
+            </Col>
+            <Col lg={12} md={12} sm={24} xs={24}>
               <TextField
                 fullWidth
                 label="Change in Securities held by the bank during the loan period"
@@ -2142,8 +2125,8 @@ const AddWriteOff = () => {
                 // minLength={100}
                 maxLength={3000}
               />
-            </Grid>
-            <Grid item lg={6} md={6} sm={12} xs={12}>
+            </Col>
+            <Col lg={12} md={12} sm={24} xs={24}>
               <TextField
                 fullWidth
                 // label="Details security by the bank at approving W-off"
@@ -2156,8 +2139,8 @@ const AddWriteOff = () => {
                 // minLength={100}
                 maxLength={3000}
               />
-            </Grid>
-            <Grid item lg={6} md={6} sm={12} xs={12}>
+            </Col>
+            <Col lg={12} md={12} sm={24} xs={24}>
               <div style={{ marginTop: "20px" }} />
               <label>
                 <b>
@@ -2174,8 +2157,8 @@ const AddWriteOff = () => {
                 <Radio value={1}>Yes</Radio>
                 <Radio value={2}>No</Radio>
               </Radio.Group>
-            </Grid>
-            <Grid item lg={6} md={6} sm={12} xs={12}>
+            </Col>
+            <Col lg={12} md={12} sm={24} xs={24}>
               <div style={{ marginTop: "20px" }} />
               <label>
                 <b>
@@ -2192,8 +2175,8 @@ const AddWriteOff = () => {
                 <Radio value={1}>Yes</Radio>
                 <Radio value={2}>No</Radio>
               </Radio.Group>
-            </Grid>
-            <Grid item lg={6} md={6} sm={12} xs={12}>
+            </Col>
+            <Col lg={12} md={12} sm={24} xs={24}>
               <div style={{ marginTop: "20px" }} />
               <label>
                 {" "}
@@ -2209,8 +2192,8 @@ const AddWriteOff = () => {
                 <Radio value={1}>Yes</Radio>
                 <Radio value={2}>No</Radio>
               </Radio.Group>
-            </Grid>
-            <Grid item lg={6} md={6} sm={12} xs={12}>
+            </Col>
+            <Col lg={12} md={12} sm={24} xs={24}>
               <div style={{ marginTop: "20px" }} />
               <label>
                 <b>
@@ -2228,14 +2211,14 @@ const AddWriteOff = () => {
                 <Radio value={1}>Yes</Radio>
                 <Radio value={2}>No</Radio>
               </Radio.Group>
-            </Grid>
-          </Grid>
+            </Col>
+          </Row>
         </Paper>
         <div style={{ marginTop: "20px" }} />
         <Paper padding="1">
           <Title level={4}>Recovery After Write-off</Title>
-          <Grid container spacing={1}>
-            <Grid item lg={3} md={3} sm={12} xs={12}>
+          <Row gutter={8}>
+            <Col lg={6} md={6} sm={24} xs={24}>
               <b style={{ fontSize: "0.7rem" }}>{"Date of Recovery"}</b>
               <DatePicker
                 change={recoveryWriteOffSectionHandler}
@@ -2250,8 +2233,8 @@ const AddWriteOff = () => {
                 }
                 placeholder={"Date of Recovery"}
               />
-            </Grid>
-            <Grid item lg={3} md={3} sm={12} xs={12}>
+            </Col>
+            <Col lg={6} md={6} sm={24} xs={24}>
               <FormattedInputs
                 fullWidth
                 label="Principal"
@@ -2261,8 +2244,8 @@ const AddWriteOff = () => {
                 value={recoveryWriteOffSection.Principal}
                 change={recoveryNumberField}
               />
-            </Grid>
-            <Grid item lg={3} md={3} sm={12} xs={12}>
+            </Col>
+            <Col lg={6} md={6} sm={24} xs={24}>
               <FormattedInputs
                 fullWidth
                 label="Nominated (Debited Mark-up)"
@@ -2272,8 +2255,8 @@ const AddWriteOff = () => {
                 value={recoveryWriteOffSection.Nominated}
                 change={recoveryNumberField}
               />
-            </Grid>
-            <Grid item lg={3} md={3} sm={12} xs={12}>
+            </Col>
+            <Col lg={6} md={6} sm={24} xs={24}>
               <FormattedInputs
                 fullWidth
                 label="Non-Accrual (Un-Debited Mark-up)"
@@ -2283,10 +2266,10 @@ const AddWriteOff = () => {
                 value={recoveryWriteOffSection.Nonaccural}
                 change={recoveryNumberField}
               />
-            </Grid>
+            </Col>
             <div style={{ marginTop: "10px" }} />
-            <Grid container spacing={1}>
-              <Grid item lg={5} md={5} sm={12} xs={12}>
+            <Row gutter={8}>
+              <Col lg={10} md={10} sm={24} xs={24}>
                 <FormattedInputs
                   fullWidth
                   label="Other Charges"
@@ -2296,8 +2279,8 @@ const AddWriteOff = () => {
                   value={recoveryWriteOffSection.OtherCharges}
                   change={recoveryNumberField}
                 />
-              </Grid>
-              <Grid item lg={5} md={5} sm={12} xs={12}>
+              </Col>
+              <Col lg={10} md={10} sm={24} xs={24}>
                 <FormattedInputs
                   fullWidth
                   label="Penal Interest"
@@ -2307,8 +2290,8 @@ const AddWriteOff = () => {
                   value={recoveryWriteOffSection.PenalInterest}
                   change={recoveryNumberField}
                 />
-              </Grid>
-              <Grid item lg={2} md={2} sm={12} xs={12}>
+              </Col>
+              <Col lg={4} md={4} sm={24} xs={24}>
                 <FormattedInputs
                   disable
                   fullWidth
@@ -2319,21 +2302,21 @@ const AddWriteOff = () => {
                   value={recoveryWriteOffSection.Total}
                   change={recoveryNumberField}
                 />
-              </Grid>
-            </Grid>
-          </Grid>
+              </Col>
+            </Row>
+          </Row>
         </Paper>
         <div style={{ marginTop: "20px" }} />
-        <Grid container spacing={2}>
-          <Grid item lg={12} md={12} sm={12} xs={12} align="center">
+        <Row gutter={16}>
+          <Col lg={24} md={24} sm={24} xs={24} align="center">
             <Button
               type="submit"
               applyClass="btnBorderStyledBeach"
               text="Next"
               endIcon={<i className="icon-arrow-right icon-size-one"></i>}
             />
-          </Grid>
-        </Grid>
+          </Col>
+        </Row>
       </form>
       <Notification setOpen={setOpen} open={open.open} message={open.message} />
       <Notification

@@ -208,7 +208,7 @@ const reducer = (state = initialState, action) => {
       return { ...state, roelList: action.response };
 
     default:
-      return { ...state };
+      return state;
   }
 };
 

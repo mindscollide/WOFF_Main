@@ -15,7 +15,6 @@ import SelectWithSearch from './InputFields/SelectWithSearch/select-with-search'
 import TextField from './InputFields/TextField/text-field';
 import InputWithBtn from './InputWithBtn/input-with-btn';
 import Modal from './Modal/modal';
-import MultiStep from './MultiStep/multi-step';
 import Paper from './Paper/paper';
 import Radio from './Radio/radio';
 import StartToEndDate from './StartToEndDate/start-to-end-date';
@@ -24,8 +23,8 @@ import Table from './Table/table';
 import Upload from './Upload/upload';
 import Loader from './Loader/Loader'
 import {Notification,Message} from './Notifications'
-import {FormattedInputs,NumberFormatCustom} from './FormatedInput/FormatedInput'
-import MDatePicker from './MaterialUiDatePicker/DatePicker.js'
+import {FormattedInputs} from './FormatedInput/FormatedInput'
+import MaxWidthContainer from './MaxWidthContainer/max-width-container'
 export {
     ADate,
     ADayMonthCount,
@@ -43,7 +42,6 @@ export {
     TextField,
     InputWithBtn,
     Modal,
-    MultiStep,
     Paper,
     Radio,
     StartToEndDate,
@@ -55,7 +53,6 @@ export {
     Message,
     ConsolidateBox,
     FormattedInputs,
-    NumberFormatCustom,
-    MDatePicker
+    MaxWidthContainer
 }
 

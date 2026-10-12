@@ -1,9 +1,7 @@
 import React, { useState } from "react";
 import styles from "./upload.module.css";
-import { Input } from "antd";
-import Button from "@material-ui/core/Button";
-import ArrowUpwardIcon from "@material-ui/icons/ArrowUpward";
-import { Box } from "@material-ui/core";
+import { Input, Button } from "antd";
+import { ArrowUpOutlined } from "@ant-design/icons";
 
 const CustomUpload = () => {
   const [uploadedFile, setUploadedFile] = useState(null);
@@ -14,7 +12,7 @@ const CustomUpload = () => {
   };
 
   return (
-    <Box display="flex">
+    <div className="u-display-flex">
       <Input value={uploadedFile} disabled={uploadedFile ? false : true} />
       <input
         className={styles.uploadText}
@@ -23,17 +21,11 @@ const CustomUpload = () => {
         onChange={uploadHandler}
       />
       <label htmlFor="contained-button-file">
-        <Button
-          variant="contained"
-          color="primary"
-          component="span"
-          className={styles.uploadButton}
-          disabled
-        >
-          <ArrowUpwardIcon />
+        <Button type="primary" className={styles.uploadButton} disabled>
+          <ArrowUpOutlined />
         </Button>
       </label>
-    </Box>
+    </div>
   );
 };
 

@@ -60,7 +60,7 @@ const reducer = (state = initialState, action) => {
     case actions.NULL_STATE:
         return { ...state,WriteOffData:{}};    
     default:
-      return { ...state };
+      return state;
   }
 };
 

@@ -1,7 +1,6 @@
-import React, { useState } from "react";
+import React from "react";
+import { Button } from "antd";
 import styles from "./styles.module.css";
-import Button from "@material-ui/core/Button";
-import { Box } from "@material-ui/core";
 import TextField from "../InputFields/TextField/text-field";
 
 const InputWithBtn = ({
@@ -14,10 +13,8 @@ const InputWithBtn = ({
   applyClass,
   helperText,
   textFieldSize,
-  btnSize,
   fullWidth,
   error,
-  endIcon,
   textLength,
   required,
   onchange,
@@ -26,47 +23,48 @@ const InputWithBtn = ({
   disable,
   isUpperCase,
   type,
-  size,
   autoComplete,
   classpas,
 }) => {
   return (
-    <Box display="flex">
-      <TextField
-        autoComplete={autoComplete}
-        placeholder={placeholder ? placeholder : null}
-        size={size}
-        type={type ? type : null}
-        isUpperCase={isUpperCase}
-        disable={disable ? true : false}
-        ref={ref}
-        name={name}
-        value={value}
-        change={onchange}
-        helper={helperText}
-        size={textFieldSize}
-        label={label}
-        fullWidth={fullWidth}
-        error={error && error}
-        textLength={textLength}
-        required={required}
-        InputLabelProps={{
-          shrink: true,
-        }}
-        classpass={classpas}
-      />
+    <div className="u-display-flex">
+      {/* flex:1 so the input fills all space the Button doesn't need */}
+      <div style={{ flex: 1 }}>
+        <TextField
+          autoComplete={autoComplete}
+          placeholder={placeholder ? placeholder : null}
+          type={type ? type : null}
+          isUpperCase={isUpperCase}
+          disable={disable ? true : false}
+          ref={ref}
+          name={name}
+          value={value}
+          change={onchange}
+          helper={helperText}
+          size={textFieldSize}
+          label={label}
+          fullWidth={fullWidth}
+          error={error && error}
+          textLength={textLength}
+          required={required}
+          classpass={classpas}
+        />
+      </div>
       <Button
         onClick={click}
-        size={btnSize}
+        size="large"
         disabled={disable ? true : false}
-        variant="contained"
-        color="primary"
+        type="primary"
         className={styles[`${applyClass}`]}
-        startIcon={icon && icon}
       >
-        {text}
+        {/* See Button/button.js — a flex row with a fixed gap spaces both
+            antd icons and the plain <i className="icon-..."> font icons. */}
+        <span style={{ display: "inline-flex", alignItems: "center", gap: 8 }}>
+          {icon ? icon : null}
+          {text ? <span>{text}</span> : null}
+        </span>
       </Button>
-    </Box>
+    </div>
   );
 };
 

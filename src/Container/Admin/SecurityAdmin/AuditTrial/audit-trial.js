@@ -1,6 +1,5 @@
 import React, { useState } from "react";
-import { Grid, Box } from "@material-ui/core";
-import { Typography, Space } from "antd";
+import { Typography, Space, Row, Col } from "antd";
 import {TextField,
         SelectBox,
         Button,
@@ -224,52 +223,58 @@ const AuditTrial = () => {
   return (
     <>
       <Title level={3}>Audit Trial</Title>
-      <Grid container spacing={1}>
-        <Grid item lg={2} md={2} sm={12}>
+      <Row gutter={8}>
+        <Col lg={4} md={4} sm={24}>
           <TextField fullWidth label="WOF Code" size="small" />
-        </Grid>
-        <Grid item lg={2} md={2} sm={12}>
+        </Col>
+        <Col lg={4} md={4} sm={24}>
           <TextField fullWidth label="MISYS Customer Code" size="small" />
-        </Grid>
-        <Grid item lg={2} md={2} sm={12}>
+        </Col>
+        <Col lg={4} md={4} sm={24}>
           <TextField fullWidth label="Borrower NPL Code" size="small" />
-        </Grid>
-        <Grid item lg={4} md={4} sm={12}>
+        </Col>
+        <Col lg={8} md={8} sm={24}>
           <TextField fullWidth label="Action By" size="small" />
-        </Grid>
-        <Grid item lg={2} md={2} sm={12}>
+        </Col>
+        <Col lg={4} md={4} sm={24}>
           <SelectBox label="Select Action" size="small" height="10px!important" />
-        </Grid>
+        </Col>
         <div style={{ marginTop: "5%" }} />
-        <Grid item md={5} lg={5} sm={12}>
+        <Col md={10} lg={10} sm={24}>
           <StartToEndDate label="Action on" width="400px" size="large" />
-        </Grid>
+        </Col>
 
-        <Grid item md={7} lg={7} sm={12} >
-          <Box display="flex">
-            <Box width={1.5 / 8}>
+        <Col md={14} lg={14} sm={24}>
+          <div style={{
+            display: "flex"
+          }}>
+            <div style={{
+              width: "18.75%"
+            }}>
               <Button
                 applyClass="btnDarkSolid"
                 text="Search"
                 icon={<i className="icon-search icon-size-one"></i>}
               />
-            </Box>
+            </div>
             <div style={{ margin: "0 5px 0 5px" }} />
-            <Box width={1 / 8}>
+            <div style={{
+              width: "12.5%"
+            }}>
               <Button
                 applyClass="btnSecondarySolid"
                 text="Reset"
                 icon={<i className="icon-reset icon-size-one"></i>}
               />
-            </Box>
-          </Box>
-        </Grid>
+            </div>
+          </div>
+        </Col>
 
         <div style={{ marginTop: "10%" }} />
-        <Grid item md={12} lg={12} sm={12}>
+        <Col md={24} lg={24} sm={24}>
           <Table rows={rows} columns={columns} pagination={false}  scroll={{ x: "max-content" }} />
-        </Grid>
-      </Grid>
+        </Col>
+      </Row>
 
       <Modal
         closeModal={handleCancel}
@@ -279,11 +284,11 @@ const AuditTrial = () => {
       >
         <GridDataView />
 
-        <Grid container>
-          <Grid item md={12} lg={12} sm={12}>
+        <Row>
+          <Col md={24} lg={24} sm={24}>
             <Table rows={modalRows} columns={modalColumns} pagination={false} />
-          </Grid>
-        </Grid>
+          </Col>
+        </Row>
       </Modal>
     </>
   );

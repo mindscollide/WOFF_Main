@@ -6,21 +6,18 @@ import { UserSelection } from "../../Routes/routingData";
 import { Loader } from "../../Components/Elements";
 import { useSelector, useDispatch } from "react-redux";
 import { SomeThingWentWrongRemove } from "../../store/actions/ui-actions";
-import { useHistory } from "react-router-dom";
+import { useNavigate } from "react-router";
 import Helper from "../../Common/Functions/history_logout";
 const Dashboard = () => {
-  const state = useSelector((state) => state);
-  const history = useHistory();
-  Helper.history = history;
-  const {
-    reports,
-    wofApprovals,
-    writeOffCases,
-    findCustomerAccountDetailsFromMisys,
-    findCustomerFromMisys,
-    auth,
-    ui,
-  } = state;
+  const reports = useSelector((state) => state.reports);
+  const wofApprovals = useSelector((state) => state.wofApprovals);
+  const writeOffCases = useSelector((state) => state.writeOffCases);
+  const findCustomerAccountDetailsFromMisys = useSelector((state) => state.findCustomerAccountDetailsFromMisys);
+  const findCustomerFromMisys = useSelector((state) => state.findCustomerFromMisys);
+  const auth = useSelector((state) => state.auth);
+  const ui = useSelector((state) => state.ui);
+  const navigate = useNavigate();
+  Helper.navigate = navigate;
   const dispatch = useDispatch();
   const { Content } = Layout;
   const [load, setLoad] = useState(false);

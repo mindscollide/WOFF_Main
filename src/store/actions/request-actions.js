@@ -71,7 +71,7 @@ const saveUserRequestFail = (response, message) => {
 };
 // Request List for Sysytem Admin
 const newRequestList = (UserData) => {
-  let history = Helper.history;
+  let navigate = Helper.navigate;
   let Data = {
     UserID: UserData,
   };

@@ -30,7 +30,7 @@ const reducer = (state = initialState, action) => {
         errorMessage: action.response,
       };
     default:
-      return { ...state };
+      return state;
   }
 };
 

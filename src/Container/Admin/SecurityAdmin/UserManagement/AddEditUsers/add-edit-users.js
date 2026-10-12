@@ -1,7 +1,5 @@
 import React, { useState } from "react";
-import { Grid, Box } from "@material-ui/core";
-import { Typography } from "antd";
-import AddIcon from "@material-ui/icons/Add";
+import { Typography, Row, Col } from "antd";
 import {roles} from "../../../../../Common/SelectFieldOption/select-field-option"
 import {Paper,
   FilterBar,
@@ -15,6 +13,7 @@ import {Paper,
   Modal,
   Checkbox,
   FancyBox} from "../../../../../Components/Elements"
+import { PlusOutlined as AddIcon } from "@ant-design/icons";
 const AddEditUsers = () => {
   const { Title } = Typography;
   const [isModalVisible, setIsModalVisible] = useState(false);
@@ -169,14 +168,14 @@ const AddEditUsers = () => {
   return (
     <>
       <Title level={3}>Add / Edit User</Title>
-      <Grid container spacing={2}>
-        <Grid item md={4} lg={4} sm={12}>
+      <Row gutter={16}>
+        <Col md={8} lg={8} sm={24}>
           <SelectBox label="Select User Name" />
-        </Grid>
-        <Grid item md={4} lg={4} sm={12}>
+        </Col>
+        <Col md={8} lg={8} sm={24}>
           <SelectBox label="Select Role" option={roles} />
-        </Grid>
-        <Grid item md={1} lg={1} sm={12} align="left">
+        </Col>
+        <Col md={2} lg={2} sm={24} align="left">
           <Button
             text="Add"
             icon={<AddIcon />}
@@ -184,11 +183,11 @@ const AddEditUsers = () => {
             size="large"
             click={add}
           />
-        </Grid>
-        <Grid item md={12} lg={12} sm={12}>
+        </Col>
+        <Col md={24} lg={24} sm={24}>
           <Table rows={rows} columns={columns} scroll={{ x: 'max-content' }}/>
-        </Grid>
-      </Grid>
+        </Col>
+      </Row>
 
       {/* modal starts here */}
       <Modal
@@ -205,33 +204,35 @@ const AddEditUsers = () => {
       >
         {actions.add && (
           <>
-            <Box
-              display="flex"
-              justifyContent="center"
-              style={{ padding: "40px" }}
-            >
+            <div
+              style={{
+                display: "flex",
+                justifyContent: "center",
+                padding: "40px"
+              }}>
               <div className="icon-add-user icon-size-two"></div>
               <Title level={3} align="center">
                 Are you sure you want add to user?
               </Title>
-            </Box>
-            <Box align="center">
+            </div>
+            <div align="center">
               <Button
                 click={handleCancel}
                 applyClass="btnBorderStyledBeach"
                 text="Proceed"
                 endIcon={<i className="icon-proceed icon-size-one"></i>}
               />
-            </Box>
+            </div>
           </>
         )}
         {actions.edit && (
-          <Box
-            display="flex"
-            justifyContent="center"
-            flexDirection="column"
-            style={{ padding: "40px" }}
-          >
+          <div
+            style={{
+              display: "flex",
+              justifyContent: "center",
+              flexDirection: "column",
+              padding: "40px"
+            }}>
             <TextField
               focus
               disable
@@ -240,19 +241,19 @@ const AddEditUsers = () => {
               value="Shahroz Ahmed"
             />
             <div style={{ marginTop: "3%" }} />
-            <Grid container spacing={2}>
-              <Grid item md={6} lg={6} sm={6}>
+            <Row gutter={16}>
+              <Col md={12} lg={12} sm={12}>
                 <SelectBox label="Select Role" option={roles}/>
-              </Grid>
+              </Col>
 
-              <Grid item md={6} lg={6} sm={6}>
+              <Col md={12} lg={12} sm={12}>
                 <div style={{ marginTop: "10px" }} />
                 <Checkbox label="is Active" />
-              </Grid>
-            </Grid>
+              </Col>
+            </Row>
             <div style={{ marginTop: "7%" }} />
             <GroupedButtons data={editButtonProps} />
-          </Box>
+          </div>
         )}
       </Modal>
       {/* a separate modal fo edit user prompt */}
@@ -263,24 +264,25 @@ const AddEditUsers = () => {
             modalState={isModalVisible}
             width={700}
           >
-            <Box
-              display="flex"
-              justifyContent="center"
-              style={{ padding: "40px" }}
-            >
+            <div
+              style={{
+                display: "flex",
+                justifyContent: "center",
+                padding: "40px"
+              }}>
               <div className="icon-update-user icon-size-two"></div>
               <Title level={3} align="center">
                 Are you sure you want update to user?
               </Title>
-            </Box>
-            <Box align="center">
+            </div>
+            <div align="center">
               <Button
                 click={handleCancel}
                 applyClass="btnBorderStyledBeach"
                 text="Proceed"
                 endIcon={<i className="icon-proceed icon-size-one"></i>}
               />
-            </Box>
+            </div>
           </Modal>
         </>
       )}

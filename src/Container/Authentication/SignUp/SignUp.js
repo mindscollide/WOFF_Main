@@ -1,15 +1,9 @@
 import React, { useEffect, useState } from "react";
-import { Container, Box, Grid, Fade } from "@material-ui/core";
 import styles from "./style.module.css";
-import { Input, Typography } from "antd";
+import { Input, Typography, Row, Col } from "antd";
 import { UserOutlined } from "@ant-design/icons";
-import {
-  Button,
-  InputWithBtn,
-  Loader,
-  Notification,
-} from "../../../Components/Elements";
-import { useHistory, useRouteMatch, Link } from "react-router-dom";
+import { Button, InputWithBtn, Loader, Notification, MaxWidthContainer } from "../../../Components/Elements";
+import { useNavigate, Link } from "react-router";
 import { useDispatch, useSelector } from "react-redux";
 import ErrorBar from "./ErrorBar/error-bar";
 import {
@@ -34,16 +28,16 @@ import { validateemail } from "../../../Common/Api/apis-config";
 
 const SignUp = () => {
   // to be use when get the api
-  const state = useSelector((state) => state);
+  const auth = useSelector((state) => state.auth);
+  const ui = useSelector((state) => state.ui);
   const [finishStatus, setfinishStatus] = useState(false);
   const dispatch = useDispatch();
-  const { auth, ui } = state;
   const [fields, setFields] = useState(false);
   const { Title } = Typography;
   const [btnDisable, setbtnDisable] = useState(false);
   const [emailAfterVerify, setEmailAfterVerify] = useState();
   const [emailAfterVerifyError, setEmailAfterVerifyError] = useState("");
-  const history = useHistory();
+  const navigate = useNavigate();
   const [open, setOpen] = useState({
     open: false,
     message: "",
@@ -178,16 +172,15 @@ const SignUp = () => {
       },
     });
     if (btnDisable === true) {
-      history.push();
       gobackHandler();
     } else {
-      history.push("/");
-      dispatch(clearestate(history));
+      navigate("/");
+      dispatch(clearestate(navigate));
     }
   };
   const gobackHandler = () => {
-    history.push("/");
-    dispatch(clearestate(history));
+    navigate("/");
+    dispatch(clearestate(navigate));
   };
   useEffect(() => {
     console.log(auth.ResponseMessage);
@@ -345,7 +338,7 @@ const SignUp = () => {
         isSuccess: false,
       },
     });
-    dispatch(clearestateBackbutton(history));
+    dispatch(clearestateBackbutton(navigate));
   };
   useEffect(() => {
     // console.log("auth.roelList", auth.roelList);
@@ -493,7 +486,7 @@ const SignUp = () => {
           }
         });
         setBio({ ...copyState });
-        dispatch(signUp(copyState, history));
+        dispatch(signUp(copyState, navigate));
         break;
       default:
         break;
@@ -610,12 +603,18 @@ const SignUp = () => {
   };
   useEffect(() => {}, [auth.isFail, auth.isError]);
   return (
-    <Container maxWidth="lg">
-      <Box display="flex" style={{ height: "100vh" }}>
-        <Grid container spacing={5}>
-          <Grid item lg={6} md={6} sm={12}></Grid>
-          <Grid item lg={6} md={6} sm={12} align="right">
-            <Box className={styles.loginBody}>
+    <MaxWidthContainer>
+      <div
+        style={{
+          display: "flex",
+          height: "100vh"
+        }}>
+        <Row gutter={40} style={{
+          width: "calc(100% + 40px)"
+        }}>
+          <Col lg={12} md={12} sm={24}></Col>
+          <Col lg={12} md={12} sm={24} align="right">
+            <div className={styles.loginBody}>
               <Title
                 level={3}
                 style={{ color: "white", textAlign: "center", marginTop: 10 }}
@@ -674,7 +673,7 @@ const SignUp = () => {
                   {credentials.emailAddress.isFail && (
                     <ErrorBar errorText={emailAfterVerifyError} />
                   )}
-                  <Grid align="center" item md={12} lg={12}>
+                  <Col align="center" md={24} lg={24}>
                     <div style={{ marginTop: "30px" }} />
                     <Button
                       text="Go Back"
@@ -684,11 +683,15 @@ const SignUp = () => {
                       disable={false}
                       click={goback}
                     />
-                  </Grid>
+                  </Col>
                 </>
               ) : (
-                <Grid container align="left" spacing={5}>
-                  <Grid item md={6} lg={6}>
+                <Row
+                  gutter={40}
+                  style={{
+                    textAlign: "left"
+                  }}>
+                  <Col md={12} lg={12}>
                     <label className={styles.lable}>Email</label>
                     <TextField
                       size="small"
@@ -698,8 +701,8 @@ const SignUp = () => {
                       // value={auth.responseData.email}
                     />
                     {/* <ErrorBar errorText="" /> */}
-                  </Grid>
-                  <Grid item md={6} lg={6}>
+                  </Col>
+                  <Col md={12} lg={12}>
                     <label className={styles.lable}>Username</label>
                     <TextField
                       size="small"
@@ -718,9 +721,9 @@ const SignUp = () => {
                       // value={auth.responseData.userName}
                     />
                     {/* <ErrorBar errorText="" /> */}
-                  </Grid>
+                  </Col>
                   <div style={{ marginTop: "30px" }} />
-                  <Grid item md={6} lg={6}>
+                  <Col md={12} lg={12}>
                     <label className={styles.lable}>First Name</label>
                     <TextField
                       size="small"
@@ -735,8 +738,8 @@ const SignUp = () => {
                     {bio.firstName.isError && (
                       <ErrorBar errorText={bio.firstName.errorMessage} />
                     )}
-                  </Grid>
-                  <Grid item md={6} lg={6}>
+                  </Col>
+                  <Col md={12} lg={12}>
                     <label className={styles.lable}>Last Name</label>
                     <TextField
                       size="small"
@@ -750,7 +753,7 @@ const SignUp = () => {
                     {bio.lastName.isError && (
                       <ErrorBar errorText={bio.lastName.errorMessage} />
                     )}
-                  </Grid>
+                  </Col>
                   <div style={{ marginTop: "30px" }} />
                   {/* <Grid item md={12} lg={12}>
                     <label className={styles.lable}>Personal Number</label>
@@ -767,7 +770,7 @@ const SignUp = () => {
                       <ErrorBar errorText={bio.personalNumber.errorMessage} />
                     )}
                   </Grid> */}
-                  <Grid item md={12} lg={12}>
+                  <Col md={24} lg={24}>
                     <label className={styles.lable}>Role</label>
                     <Select
                       value={roleValue}
@@ -783,25 +786,25 @@ const SignUp = () => {
                     {auth.pendingError ? (
                       <ErrorBar errorText={auth.ResponseMessage} />
                     ) : null}
-                  </Grid>
-                  <Grid align="center" item md={12} lg={12}>
+                  </Col>
+                  <Col align="center" md={24} lg={24}>
                     <div style={{ marginTop: "30px" }} />
                     <GroupedButtons data={buttonProps} />
-                  </Grid>
-                </Grid>
+                  </Col>
+                </Row>
               )}
               {/* second step component  */}
               {/* {!credentials.emailAddress.isError &&
               !credentials.password.isError ? ( */}
 
               {/* ) : null} */}
-            </Box>
-          </Grid>
-        </Grid>
-      </Box>
+            </div>
+          </Col>
+        </Row>
+      </div>
       <Notification setOpen={setOpen} open={open.open} message={open.message} />
       {auth.Loading ? <Loader /> : null}
-    </Container>
+    </MaxWidthContainer>
   );
 };
 

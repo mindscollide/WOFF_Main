@@ -1,6 +1,5 @@
 import React, { useState, useEffect } from "react";
-import { Grid, Box, Container } from "@material-ui/core";
-import { Typography } from "antd";
+import { Typography, Row, Col } from "antd";
 import {
   saveUserRequest,
   newRequestList,
@@ -19,8 +18,7 @@ import { ControlOutlined } from "@ant-design/icons";
 const RequestListTemplate = ({ data }) => {
   const { item, index } = data;
   const dispatch = useDispatch();
-  const state = useSelector((state) => state);
-  const { requestReducer } = state;
+  const requestReducer = useSelector((state) => state.requestReducer);
   const [userRequestDetails, setUserRequestDetails] = useState(
     requestReducer.UserRequestDetails
   );
@@ -68,25 +66,25 @@ const RequestListTemplate = ({ data }) => {
   return (
     <>
       <Paper padding="1" index={index}>
-        <Grid container spacing={1}>
-          <Grid item lg={3} md={3} sm={6} xs={6}>
+        <Row gutter={8}>
+          <Col lg={6} md={6} sm={12} xs={12}>
             <p className="m-0" style={{ color: "#b27706" }}>
               First Name
             </p>
-          </Grid>
-          <Grid item lg={3} md={3} sm={6} xs={6}>
+          </Col>
+          <Col lg={6} md={6} sm={12} xs={12}>
             <span className="mr-1">{item.firstName}</span>
-          </Grid>
-          <Grid item lg={3} md={3} sm={6} xs={6}>
+          </Col>
+          <Col lg={6} md={6} sm={12} xs={12}>
             <p className="m-0" style={{ color: "#b27706" }}>
               Last Name
             </p>
-          </Grid>
-          <Grid item lg={3} md={3} sm={6} xs={6}>
+          </Col>
+          <Col lg={6} md={6} sm={12} xs={12}>
             <span className="mr-1">{item.lastName}</span>
-          </Grid>
-        </Grid>
-        <Grid container spacing={1}>
+          </Col>
+        </Row>
+        <Row gutter={8}>
           {/* <Grid item lg={3} md={3} sm={6} xs={6}>
             <p className="m-0" style={{ color: "#b27706" }}>
               Employee Number
@@ -95,30 +93,30 @@ const RequestListTemplate = ({ data }) => {
           <Grid item lg={3} md={3} sm={6} xs={6}>
             <span className="mr-1">{item.personalNumber}</span>
           </Grid> */}
-          <Grid item lg={3} md={3} sm={6} xs={6}>
+          <Col lg={6} md={6} sm={12} xs={12}>
             <p className="m-0" style={{ color: "#b27706" }}>
               Email
             </p>
-          </Grid>
-          <Grid item lg={3} md={3} sm={6} xs={6}>
+          </Col>
+          <Col lg={6} md={6} sm={12} xs={12}>
             <span className="mr-1">{item.email}</span>
-          </Grid>
-          <Grid item lg={3} md={3} sm={6} xs={6}>
+          </Col>
+          <Col lg={6} md={6} sm={12} xs={12}>
             <p className="m-0" style={{ color: "#b27706" }}>
               User Name
             </p>
-          </Grid>
-          <Grid item lg={3} md={3} sm={6} xs={6}>
+          </Col>
+          <Col lg={6} md={6} sm={12} xs={12}>
             <span className="mr-1">{item.loginID}</span>
-          </Grid>
-        </Grid>
-        <Grid container spacing={1}>
-          <Grid item lg={3} md={3} sm={6} xs={6}>
+          </Col>
+        </Row>
+        <Row gutter={8}>
+          <Col lg={6} md={6} sm={12} xs={12}>
             <p className="m-0" style={{ color: "#b27706" }}>
               Role
             </p>
-          </Grid>
-          <Grid item lg={3} md={3} sm={6} xs={6}>
+          </Col>
+          <Col lg={6} md={6} sm={12} xs={12}>
             <span className="mr-1">
               {item.roleID === 4
                 ? "Data Entry"
@@ -128,15 +126,15 @@ const RequestListTemplate = ({ data }) => {
                 ? "Adutior"
                 : null}
             </span>
-          </Grid>
-        </Grid>
-        <Grid container spacing={1}>
-          <Grid item lg={3} md={3} sm={2} xs={2}>
+          </Col>
+        </Row>
+        <Row gutter={8}>
+          <Col lg={6} md={6} sm={4} xs={4}>
             <p className="m-0" style={{ color: "#b27706" }}>
               Type your Comments<span style={{ color: "#ce0000" }}>*</span>
             </p>
-          </Grid>
-          <Grid item lg={9} md={9} sm={10} xs={10}>
+          </Col>
+          <Col lg={18} md={18} sm={20} xs={20}>
             <TextField
               multiline
               rows={4}
@@ -147,14 +145,18 @@ const RequestListTemplate = ({ data }) => {
               name="Comments"
               required={true}
             />
-          </Grid>
-        </Grid>
+          </Col>
+        </Row>
         <div style={{ marginTop: "20px" }} />
-        <Grid container spacing={1}>
-          <Grid item md={4} lg={4} sm={12}></Grid>
-          <Grid item md={8} lg={8} sm={12}>
-            <Box display="flex">
-              <Box width={0.8 / 4}>
+        <Row gutter={8}>
+          <Col md={8} lg={8} sm={24}></Col>
+          <Col md={16} lg={16} sm={24}>
+            <div style={{
+              display: "flex"
+            }}>
+              <div style={{
+                width: "20%"
+              }}>
                 <Button
                   applyClass="buttonPrimary3"
                   text="Approve"
@@ -162,9 +164,11 @@ const RequestListTemplate = ({ data }) => {
                   click={() => goToSaveHandler(item, Approved)}
                   disableBtn={btndisplay}
                 />
-              </Box>
+              </div>
               <div style={{ margin: "0 5px 0 5px" }} />
-              <Box width={1 / 4}>
+              <div style={{
+                width: "25%"
+              }}>
                 <Button
                   applyClass="btnBorderStyledRed"
                   text="Reject"
@@ -172,10 +176,10 @@ const RequestListTemplate = ({ data }) => {
                   click={() => goToSaveHandler(item, Rejected)}
                   disableBtn={btndisplay}
                 />
-              </Box>
-            </Box>
-          </Grid>
-        </Grid>
+              </div>
+            </div>
+          </Col>
+        </Row>
       </Paper>
       <div style={{ marginTop: "20px" }} />
       <Notification setOpen={setOpen} open={open.flag} message={open.message} />

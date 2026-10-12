@@ -1,6 +1,5 @@
 import React, { useState } from "react";
-import { Input, Typography, Space } from "antd";
-import { Grid, Box } from "@material-ui/core";
+import { Input, Typography, Space, Row, Col } from "antd";
 import CheckBoxesList from "../../../../../Components/Admin/SecurityAdmin/UserManagement/checkbox-list";
 import {Paper,
   FilterBar,
@@ -119,8 +118,8 @@ const CreateEditRoles = () => {
   return (
     <>
       <Title level={3}>Create / Edit Role</Title>
-      <Grid container spacing={2}>
-        <Grid item md={4} lg={4} sm={12}>
+      <Row gutter={16}>
+        <Col md={8} lg={8} sm={24}>
           <InputWithBtn
             label="Enter Role Name"
             fullWidth
@@ -135,21 +134,26 @@ const CreateEditRoles = () => {
           <Paper variant height="450px" padding="4" mt="3">
             <CheckBoxesList />
           </Paper>
-        </Grid>
-        <Grid item md={8} lg={8} sm={12}>
+        </Col>
+        <Col md={16} lg={16} sm={24}>
           <Paper variant height="500px" padding="3">
             <Title level={5}>Edit Role</Title>
             <Table columns={columns} rows={rows} />
           </Paper>
-        </Grid>
-      </Grid>
+        </Col>
+      </Row>
       <Modal closeModal={handleCancel} modalState={isModalVisible} width={700}>
-        <Box display="flex" justifyContent="center" style={{ padding: "40px" }}>
+        <div
+          style={{
+            display: "flex",
+            justifyContent: "center",
+            padding: "40px"
+          }}>
           <div className="icon-trash icon-size-two"></div>
           <Title level={3} align="center">
             Are you sure you want to delete this?
           </Title>
-        </Box>
+        </div>
         <GroupedButtons data={buttonProps} />
       </Modal>
     </>

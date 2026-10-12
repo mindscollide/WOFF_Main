@@ -8,7 +8,6 @@ import {
   CreditPolicy,
   BalanceSheetFormat,
   ApprovalFlow,
-  UserAudit,
   ApprovalReasons,
   BorrowerType,
   ClassificationOfAdvances,

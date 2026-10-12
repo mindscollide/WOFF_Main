@@ -1,6 +1,5 @@
 import React, { useEffect, useState } from "react";
-import { Grid, Box } from "@material-ui/core";
-import { Typography, Tooltip } from "antd";
+import { Typography, Tooltip, Row, Col } from "antd";
 import {
   FilterBar,
   InputWithBtn,
@@ -18,7 +17,7 @@ import {
 } from "../../../../store/actions/write-off-actions";
 import { GetAdvanceClassification } from "../../../../store/actions/setup-forms-actions";
 import { useDispatch, useSelector } from "react-redux";
-import { Link, useHistory } from "react-router-dom";
+import { Link, useNavigate } from "react-router";
 import { enableGoBack } from "../../../../store/actions/ui-actions";
 import { viewApprovalHistory } from "../../../../store/actions/wof-approvals-actions";
 import {
@@ -29,13 +28,13 @@ import {
   GetApprovalReason,
   GetRejectionReason,
 } from "../../../../store/actions/setup-forms-actions";
-import Restore from "@material-ui/icons/Restore";
-import Search from "@material-ui/icons/Search";
+import { UndoOutlined as Restore, SearchOutlined as Search } from "@ant-design/icons";
 const ListOffWriteOff = () => {
-  const history = useHistory();
+  const navigate = useNavigate();
   const { Title } = Typography;
-  const state = useSelector((state) => state);
-  const { writeOffCases, setupForms, wofApprovals } = state;
+  const writeOffCases = useSelector((state) => state.writeOffCases);
+  const setupForms = useSelector((state) => state.setupForms);
+  const wofApprovals = useSelector((state) => state.wofApprovals);
   const [ApprovalHistory, setviewApprovalHistory] = useState([]);
   const [open, setOpen] = useState({
     flag: false,
@@ -51,7 +50,7 @@ const ListOffWriteOff = () => {
   const View = (e, value) => {
     localStorage.setItem("wofCustomerMasterID", JSON.stringify(value));
     dispatch(enableGoBack());
-    history.push("/Wof/DataEntryUser/ViewWriteOff");
+    navigate("/Wof/DataEntryUser/ViewWriteOff");
   };
   const GenrateRows = () => {
     if (ListOFPendingAndApprovedCases !== undefined) {
@@ -339,16 +338,16 @@ const ListOffWriteOff = () => {
   return (
     <>
       <Title level={2}>Pending Cases</Title>
-      <Grid container spacing={2}>
-        <Grid item lg={3} md={3} sm={12} xs={12}>
+      <Row gutter={16}>
+        <Col lg={6} md={6} sm={24} xs={24}>
           <FilterBar
             Options={options}
             change={handleFilter}
             placeholder={"Filter by Duration"}
             defaultValue={options[4].title}
           />
-        </Grid>
-        <Grid item lg={5} md={5} sm={12} xs={12}>
+        </Col>
+        <Col lg={10} md={10} sm={24} xs={24}>
           <TextField
             fullWidth
             label="Search"
@@ -356,8 +355,8 @@ const ListOffWriteOff = () => {
             value={SearchTerm}
             change={(e) => setSearchTerm(e.target.value)}
           />
-        </Grid>
-        <Grid item lg={2} md={2} sm={12}>
+        </Col>
+        <Col lg={4} md={4} sm={24}>
           <Button
             text="Search"
             icon={<Search />}
@@ -365,8 +364,8 @@ const ListOffWriteOff = () => {
             size="small"
             click={() => globalSearch(1)}
           />
-        </Grid>
-        <Grid item lg={2} md={2} sm={12}>
+        </Col>
+        <Col lg={4} md={4} sm={24}>
           <Button
             text="Reset"
             icon={<Restore />}
@@ -374,12 +373,12 @@ const ListOffWriteOff = () => {
             size="small"
             click={() => globalSearch(2)}
           />
-        </Grid>
+        </Col>
         <div style={{ marginTop: "5%" }} />
-        <Grid item style={{ marginTop: "2%" }} lg={12} md={12} sm={12}>
+        <Col style={{ marginTop: "2%" }} lg={24} md={24} sm={24}>
           <Table rows={rows} columns={columns} scroll={{ x: "max-content" }} />
-        </Grid>
-      </Grid>
+        </Col>
+      </Row>
       {/* modal for approvals history */}
       <Modal
         closeModal={handleCancel1}

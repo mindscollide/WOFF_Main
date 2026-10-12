@@ -1,7 +1,11 @@
 import React from "react";
-import { DatePicker, Typography } from "antd";
-import { Box } from "@material-ui/core";
-import moment from "moment"
+import { DatePicker } from "antd";
+import dayjs from "dayjs";
+import customParseFormat from "dayjs/plugin/customParseFormat";
+import styles from "../floating-label.module.css";
+
+// lets dayjs parse "DD-MM-YYYY"-style strings with an explicit format
+dayjs.extend(customParseFormat);
 const CustomDatePicker = ({
   label,
   width,
@@ -11,31 +15,35 @@ const CustomDatePicker = ({
   name,
   disable,
   value,
-  DateRange
+  DateRange,
+  required,
 }) => {
-  const { Text } = Typography;
-  let dateFormat = "DD-MM-YYYY"
+  let dateFormat = "DD-MM-YYYY";
   function onChange(date, dateString) {
     change({ target: { name: name, value: dateString } });
   }
 
   const disabledDate = (value) => {
-    return value && value > moment().endOf('day');
-  }
+    return value && value > dayjs().endOf("day");
+  };
   return (
-    <Box display="flex" alignItems="center">
-      <Text>{label}</Text>
-      <DatePicker
-        disabledDate={DateRange?disabledDate:false}
-        disabled={disable}
-        format={dateFormat}
-        value={value?moment(value, dateFormat):null}
-        placeholder={placeholder}
-        onChange={onChange}
-        size={size}
-        style={{ width: `${width}`, marginLeft: "5px" }}
-      />
-    </Box>
+    <>
+      {required ? <i className="u-font-size-0_7rem u-color-red">*</i> : null}
+      <div className={`${label ? styles.wrapper : undefined} u-display-flex u-align-items-center`}>
+        {label ? <span className={styles.floatingLabel}>{label}</span> : null}
+        <DatePicker
+          disabledDate={DateRange ? disabledDate : false}
+          disabled={disable}
+          format={dateFormat}
+          value={value ? dayjs(value, dateFormat) : null}
+          placeholder={placeholder}
+          onChange={onChange}
+          size={size}
+          style={{ width: `${width}`, marginLeft: label ? 0 : "5px" }}
+          required={required}
+        />
+      </div>
+    </>
   );
 };
 export default CustomDatePicker;

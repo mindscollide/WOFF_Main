@@ -1,5 +1,5 @@
 import React, { useEffect, useState, useContext } from "react";
-import { useHistory, Link, useRouteMatch } from "react-router-dom";
+import { useNavigate, Link, useLocation } from "react-router";
 import { Loader, Notification } from "../../../components/Layout/Common";
 import { UserContext } from "../../../context";
 
@@ -18,8 +18,7 @@ const SignUp = ({ ...props }) => {
   const SignupContext = useContext(UserContext);
   const { userSignUp, getDepartments, Departments, getRoles, Roles, loading } =
     SignupContext;
-  const route = useRouteMatch();
-  const path = route.path;
+  const path = useLocation().pathname;
   const [Errors, SetErrors] = useState({});
   const [displaySignUpVerification, setDisplaySignUpVerification] =
     useState("true");

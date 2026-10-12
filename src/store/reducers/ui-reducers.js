@@ -24,7 +24,7 @@ const reducer = (state = initialState, action) => {
     case actions.CLOSED_TAB:
       return { ...state, activeTab: false };
     default:
-      return { ...state };
+      return state;
   }
 };
 

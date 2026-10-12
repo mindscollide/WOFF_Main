@@ -1,4 +1,4 @@
-import moment from "moment";
+import dayjs from "dayjs";
 
 export const removeDashesFromDate = (data) => {
   let value = data.split("-");
@@ -36,10 +36,11 @@ export const currentToOneYearBackDate = (format) => {
   // this function tools date format as an argument
   //i.e YYYYMMDD , DDMMYYYY like this
 
-  let _moment = moment();
+  // dayjs values are immutable, so derive both dates from one value
+  let today = dayjs();
 
-  let toDate = _moment.format(format);
-  let fromDate = _moment.subtract(1, "years").format(format);
+  let toDate = today.format(format);
+  let fromDate = today.subtract(1, "year").format(format);
   return { toThisDate: toDate, fromThisDate: fromDate };
   // console.log(toDate, fromDate);
 };

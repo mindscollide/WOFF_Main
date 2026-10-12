@@ -1,23 +1,21 @@
 import React, { useRef, useState, useEffect } from "react";
-import { Container, Box, Grid } from "@material-ui/core";
 import styles from "./style.module.css";
-import { Input, Typography } from "antd";
+import { Input, Typography, Row, Col } from "antd";
 import { UserOutlined } from "@ant-design/icons";
-import { Button, Loader, Notification } from "../../../Components/Elements";
-import { useHistory, useRouteMatch, Link } from "react-router-dom";
+import { Button, Loader, Notification, MaxWidthContainer } from "../../../Components/Elements";
+import { useNavigate, Link } from "react-router";
 import { useDispatch, useSelector } from "react-redux";
 import { signIn } from "../../../store/actions/auth-actions";
 import Helper from "../../../Common/Functions/history_logout";
 import { clearestateBackbutton } from "./../../../store/actions/auth-actions";
-import Password from "antd/lib/input/Password";
 const Login = () => {
-  const state = useSelector((state) => state);
+  const auth = useSelector((state) => state.auth);
+  const ui = useSelector((state) => state.ui);
   const UserIDInput = useRef(null);
   const dispatch = useDispatch();
-  const { auth, ui } = state;
   const { Title } = Typography;
-  const history = useHistory();
-  Helper.history = history;
+  const navigate = useNavigate();
+  Helper.navigate = navigate;
   const [credentials, setCredentials] = useState({
     UserName: "",
     Password: "",
@@ -53,15 +51,13 @@ const Login = () => {
       });
     } else {
       e.preventDefault();
-      dispatch(signIn(credentials, history));
+      dispatch(signIn(credentials, navigate));
     }
   };
 
-  const route = useRouteMatch();
-  const path = route.path;
 
   useEffect(() => {
-    Helper.history = history;
+    Helper.navigate = navigate;
     document.body.className = "login-page";
     return () => {
       document.body.className = "";
@@ -127,20 +123,24 @@ const Login = () => {
     }
   }, [auth.SessionExpeireResponseMessage]);
   return (
-    <Container maxWidth="lg">
+    <MaxWidthContainer>
       <React.StrictMode>
         <form
           autoComplete="off"
-          readonly
-          onclick="this.removeAttribute(
-                    'readOnly');"
           onSubmit={(e) => validateHandler(e)}
         >
-          <Box display="flex" alignItems="center" style={{ height: "100vh" }}>
-            <Grid container spacing={5}>
-              <Grid item lg={6} md={6} sm={12}></Grid>
-              <Grid item lg={6} md={6} sm={12} align="right">
-                <Box className={styles.loginBody}>
+          <div
+            style={{
+              display: "flex",
+              alignItems: "center",
+              height: "100vh"
+            }}>
+            <Row gutter={40} style={{
+              width: "calc(100% + 40px)"
+            }}>
+              <Col lg={12} md={12} sm={24}></Col>
+              <Col lg={12} md={12} sm={24} align="right">
+                <div className={styles.loginBody}>
                   <Title
                     level={3}
                     style={{
@@ -185,26 +185,27 @@ const Login = () => {
                     autoComplete="off"
                     style={{
                       fontFamily: "text-security-disc",
-                      webkitTextSecurity: "disc",
+                      WebkitTextSecurity: "disc",
                       inputSecurity: "none",
                     }}
                     type="text"
                   />
 
                   {!auth.isLoggedIn && auth.ResponseMessage !== "" ? (
-                    <Box align="center">
+                    <div align="center">
                       <div className={styles.error + " " + styles.fade}>
                         {auth.ResponseMessage}
                       </div>
-                    </Box>
+                    </div>
                   ) : null}
 
                   <div style={{ marginTop: "10%" }} />
-                  <Box
+                  <div
                     align="center"
-                    display="flex"
-                    justifyContent="space-evenly"
-                  >
+                    style={{
+                      display: "flex",
+                      justifyContent: "space-evenly"
+                    }}>
                     <Button
                       applyClass="btnBorderStyled"
                       text="Login"
@@ -217,16 +218,16 @@ const Login = () => {
                         text="SIGN UP"
                       />
                     </Link>
-                  </Box>
-                </Box>
-              </Grid>
-            </Grid>
-          </Box>
+                  </div>
+                </div>
+              </Col>
+            </Row>
+          </div>
         </form>
       </React.StrictMode>
       <Notification setOpen={setOpen} open={open.open} message={open.message} />
       {auth.Loading ? <Loader /> : null}
-    </Container>
+    </MaxWidthContainer>
   );
 };
 

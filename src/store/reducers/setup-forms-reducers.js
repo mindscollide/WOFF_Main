@@ -158,7 +158,7 @@ const SetupFormReducer = (state = initialState, action) => {
     case actions.GET_All_REVERT_CASES_FAIL:
       return { ...state, Loading: false, Fail: true };
     default:
-      return { ...state };
+      return state;
   }
 };
 

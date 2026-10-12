@@ -1,11 +1,23 @@
 import React from "react";
-import { DatePicker, Space, Typography } from "antd";
-import { Box } from "@material-ui/core";
-import moment from "moment";
-const StartToEndDate = ({ label, width, size, change, DateRange ,startvalue,endvalue}) => {
-  const { Text } = Typography;
+import { DatePicker } from "antd";
+import dayjs from "dayjs";
+import customParseFormat from "dayjs/plugin/customParseFormat";
+import styles from "../floating-label.module.css";
+
+// lets dayjs parse "DD-MM-YYYY"-style strings with an explicit format
+dayjs.extend(customParseFormat);
+const StartToEndDate = ({
+  label,
+  width,
+  size,
+  change,
+  DateRange,
+  startvalue,
+  endvalue,
+  required,
+}) => {
   const { RangePicker } = DatePicker;
-  let dateFormat = "DD-MM-YYYY"
+  let dateFormat = "DD-MM-YYYY";
   const picker = (e, dateStr) => {
     const date = {
       name: "dater",
@@ -16,20 +28,25 @@ const StartToEndDate = ({ label, width, size, change, DateRange ,startvalue,endv
   };
   const disabledDate = (value) => {
     // Can not select future dates
-    return value && value > moment().endOf("day");
+    return value && value > dayjs().endOf("day");
   };
   return (
-    <Box display="flex" alignItems="center">
-      {label ? <Text style={{ width: "25%" }}>{label}</Text> : null}
+    <div className={`${label ? styles.wrapper : undefined} u-display-flex u-align-items-center`}>
+      {label ? <span className={styles.floatingLabel}>{label}</span> : null}
       <RangePicker
         disabledDate={DateRange ? disabledDate : false}
         onChange={picker}
-        value={startvalue && endvalue?[moment(startvalue, dateFormat), moment(endvalue, dateFormat)]:null}
+        value={
+          startvalue && endvalue
+            ? [dayjs(startvalue, dateFormat), dayjs(endvalue, dateFormat)]
+            : null
+        }
         format={dateFormat}
         size={size}
-        style={{ width: `${width}`, marginLeft: "5px" }}
+        style={{ width: `${width}`, marginLeft: label ? 0 : "5px" }}
+        required={required}
       />
-    </Box>
+    </div>
   );
 };
 

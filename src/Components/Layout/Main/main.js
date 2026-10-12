@@ -2,8 +2,8 @@ import React from "react";
 import { Layout } from "antd";
 import Footer from "../Footer/footer";
 import styles from "./main.module.css";
-import Container from "@material-ui/core/Container";
 import CustomRoutes from "../../../Routes/CustomRoutes";
+import { MaxWidthContainer } from "../../Elements";
 
 const Main = ({
   routingData,
@@ -13,9 +13,9 @@ const Main = ({
   return (
     <Layout>
       <Content className={styles.mainContainer}>
-        <Container maxWidth="lg">
+        <MaxWidthContainer>
         <CustomRoutes RoutingData={routingData} Role={role}/>
-        </Container>
+        </MaxWidthContainer>
       </Content>
       <Footer />
     </Layout>

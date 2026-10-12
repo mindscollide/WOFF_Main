@@ -1,10 +1,5 @@
 import React, { useState, useEffect } from "react";
-import { Grid, Box } from "@material-ui/core";
-import { Typography } from "antd";
-import AddIcon from "@material-ui/icons/Add";
-import Search from "@material-ui/icons/Search";
-import Edit from "@material-ui/icons/Edit";
-import Restore from "@material-ui/icons/Restore";
+import { Typography, Row, Col } from "antd";
 import {
   Button,
   Table,
@@ -22,11 +17,18 @@ import {
   HideNotification,
   SearchBorrowerType,
 } from "../../../../../store/actions/setup-forms-actions";
+
+import {
+  PlusOutlined as AddIcon,
+  SearchOutlined as Search,
+  EditOutlined as Edit,
+  UndoOutlined as Restore,
+} from "@ant-design/icons";
+
 const BorrowerType = () => {
   const { Title } = Typography;
   const dispatch = useDispatch();
-  const state = useSelector((state) => state);
-  const { setupForms } = state;
+  const setupForms = useSelector((state) => state.setupForms);
   const [actions, setAction] = useState({
     add: false,
     update: false,
@@ -200,8 +202,8 @@ const BorrowerType = () => {
   return (
     <>
       <Title level={3}>Borrower Type</Title>
-      <Grid container spacing={1}>
-        <Grid item lg={6} md={6} sm={12}>
+      <Row gutter={8}>
+        <Col lg={12} md={12} sm={24}>
           <TextField
             fullWidth
             label="Enter Borrower Type"
@@ -210,8 +212,8 @@ const BorrowerType = () => {
             value={borrowerType.Title}
             change={handleChange}
           />
-        </Grid>
-        <Grid item lg={2} md={2} sm={12}>
+        </Col>
+        <Col lg={4} md={4} sm={24}>
           <Button
             text="Search"
             icon={<Search />}
@@ -219,8 +221,8 @@ const BorrowerType = () => {
             size="small"
             click={() => dispatch(SearchBorrowerType(borrowerType.Title))}
           />
-        </Grid>
-        <Grid item lg={2} md={2} sm={12}>
+        </Col>
+        <Col lg={4} md={4} sm={24}>
           <Button
             text="Reset"
             icon={<Restore />}
@@ -240,8 +242,8 @@ const BorrowerType = () => {
               dispatch(GetBorrowerType());
             }}
           />
-        </Grid>
-        <Grid item lg={2} md={2} sm={12}>
+        </Col>
+        <Col lg={4} md={4} sm={24}>
           {actions.update ? (
             <Button
               text="Update"
@@ -268,45 +270,47 @@ const BorrowerType = () => {
               click={add}
             />
           )}
-        </Grid>
+        </Col>
 
-        <Grid style={{ marginTop: "1%" }} item lg={12} md={11} sm={12}>
+        <Col style={{ marginTop: "1%" }} lg={24} md={22} sm={24}>
           <Table
             rows={setupForms.BorrowerTypes}
             columns={columns}
             scroll={{ x: "max-content" }}
           />
-        </Grid>
-      </Grid>
+        </Col>
+      </Row>
       <Modal closeModal={handleCancel} modalState={isModalVisible} width={700}>
         {/* this data will be pass to modal when Add Brower btn will be clicked */}
         {actions.add && (
           <>
-            <Box
-              display="flex"
-              justifyContent="center"
-              style={{ padding: "40px" }}
-            >
+            <div
+              style={{
+                display: "flex",
+                justifyContent: "center",
+                padding: "40px"
+              }}>
               <Title level={3} align="center">
                 Are you sure you want to add Borrower Type
               </Title>
-            </Box>
+            </div>
             <GroupedButtons data={addButtonProps} />
           </>
         )}
         {/* this data will be pass to modal when delete icon btn in the table  will be clicked */}
         {actions.delete && (
           <>
-            <Box
-              display="flex"
-              justifyContent="center"
-              style={{ padding: "40px" }}
-            >
+            <div
+              style={{
+                display: "flex",
+                justifyContent: "center",
+                padding: "40px"
+              }}>
               <i className="icon-trash icon-size-two"></i>
               <Title level={3} align="center">
                 Are you sure you want to delete this?
               </Title>
-            </Box>
+            </div>
             <GroupedButtons data={buttonProps} />
           </>
         )}

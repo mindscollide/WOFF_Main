@@ -134,7 +134,7 @@ const reportsReducer = (state = initialState, action) => {
         balanceSheetReport: [],
       };
     default:
-      return { ...state };
+      return state;
   }
 };
 

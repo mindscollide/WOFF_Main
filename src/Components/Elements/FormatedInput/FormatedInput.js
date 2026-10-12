@@ -1,126 +1,77 @@
-import * as React from 'react';
-import PropTypes from 'prop-types';
-import { withStyles, makeStyles } from "@material-ui/core/styles";
-import NumberFormat from 'react-number-format';
-import TextField from '@material-ui/core/TextField';
-const CustomTextField = withStyles({
-    root: {
-      "& label.Mui-focused": {
-        color: "white",
-      },
-      "& label": {
-        fontSize: "0.9rem",
-        color: "#b4b4b4",
-      },
-  
-      "& .MuiOutlinedInput-root": {
-        "& fieldset": {
-          border: "1px solid #dee6e6",
-          borderRadius: 0,
-        },
-        "&:hover fieldset": {
-          border: "1px solid #dee6e6",
-          borderRadius: 0,
-        },
-        "&.Mui-focused fieldset": {
-          border: "1px solid #12B0E8",
-          borderRadius: 0,
-        },
-      },
-    },
-  })(TextField);
-export const NumberFormatCustom = React.forwardRef(function NumberFormatCustom(props, ref) {
-  const { onChange,textLength, ...other } = props;
-  return (
-    <NumberFormat
-    thousandsGroupStyle="thousand"
-    decimalSeparator="."
-    displayType="input"
-    type={props.type}
-    value={props.value}
-    thousandSeparator={true}
-    fixedDecimalScale={true}
-    decimalScale={2} 
-      {...other}
-      getInputRef={ref}
-      onValueChange={(values) => {
-        onChange({
-          target: {
-            name: props.name,
-            value: values.value,
-          },
-        });
-      }}
-    />
-  );
-});
-
-NumberFormatCustom.propTypes = {
-  name: PropTypes.string.isRequired,
-  onChange: PropTypes.func.isRequired,
-};
+import React from "react";
+import { Input } from "antd";
+import { NumericFormat } from "react-number-format";
+import styles from "../floating-label.module.css";
 
 export const FormattedInputs = ({
-    label,
-    Label,
-    value,
-    size,
-    change,
-    name,
-    variant,
-    required,
-    numLength,
-    disable,
-    type,
-    textLength,
-    minLength,
-    fullWidth,
-    placeholder,
-    onblur
-})=> {
+  autoComplete,
+  label,
+  Label,
+  value,
+  size,
+  change,
+  name,
+  required,
+  disable,
+  type,
+  textLength,
+  minLength,
+  fullWidth,
+  placeholder,
+  onblur,
+  maxLength,
+}) => {
   return (
     <>
-   {label?<b style={{ fontSize: "0.7rem" }}>{label}
-   {required?<i style={{ fontSize: "0.7rem" ,color:"red"}}>*</i>:null}</b>:null} 
-     <CustomTextField
-        onBlur={onblur}
-        placeholder={placeholder}
-        label={Label && <small>{Label}</small>}
-        value={value === null ? "" : value}
-        type={type}
-        size={size}
-        onChange={change}
-        name={name}
-        disabled={disable}
-        id="formatted-numberformat-input"
-        InputProps={{
-          maxLength: textLength,
-          minLength: minLength,
-          inputComponent: NumberFormatCustom,
-        }}
-        variant="outlined"
-        fullWidth={fullWidth}
-        required={required}
-      />
+      {label ? (
+        <b className="u-font-size-0_7rem">
+          {label}
+          {required ? <i className="u-font-size-0_7rem u-color-red">*</i> : null}
+        </b>
+      ) : null}
+      <div className={Label ? styles.wrapper : undefined}>
+        {Label ? (
+          <span className={styles.floatingLabel}>
+            {Label}
+            {required ? <span style={{ color: "red" }}> *</span> : null}
+          </span>
+        ) : null}
+        {/* react-number-format v5's NumericFormat (NumberFormat in v4); customInput renders antd's Input as the
+            actual DOM element and handles all ref-forwarding internally —
+            this replaces the previous MUI TextField + inputComponent +
+            hand-built forwardRef/inputRef-stripping dance entirely, rather
+            than porting it (that plumbing caused a real crash earlier in
+            this migration and was fragile). */}
+        <NumericFormat
+          customInput={Input}
+          thousandsGroupStyle="thousand"
+          decimalSeparator="."
+          thousandSeparator={true}
+          decimalScale={2}
+          fixedDecimalScale={true}
+          type={type}
+          value={value === null ? "" : value}
+          autoComplete={autoComplete}
+          onBlur={onblur}
+          placeholder={placeholder}
+          size="large"
+          name={name}
+          disabled={disable}
+          maxLength={maxLength}
+          minLength={minLength}
+          style={{
+            width: fullWidth ? "100%" : undefined,
+          }}
+          onValueChange={(values) => {
+            change({
+              target: {
+                name: name,
+                value: values.value,
+              },
+            });
+          }}
+        />
+      </div>
     </>
-     
   );
-}
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+};

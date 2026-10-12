@@ -1,12 +1,6 @@
 import React, { useState,useEffect } from "react";
-import { Grid, Box } from "@material-ui/core";
-import { Typography, Space } from "antd";
-import AddIcon from "@material-ui/icons/Add";
-import Search from "@material-ui/icons/Search";
-import Edit from "@material-ui/icons/Edit";
-import Restore from "@material-ui/icons/Restore";
+import { Typography, Space, Row, Col } from "antd";
 import {
-  CheckBox,
   SelectBox,
   Button,
   Table,
@@ -18,10 +12,16 @@ import {
 } from "../../../../Components/Elements";
 import { useDispatch, useSelector } from "react-redux";
 
+import {
+  PlusOutlined as AddIcon,
+  SearchOutlined as Search,
+  EditOutlined as Edit,
+  UndoOutlined as Restore,
+} from "@ant-design/icons";
+
 const ApprovalFlow = () => {
   const { Title ,Text} = Typography;
   const dispatch = useDispatch();
-  const state = useSelector((state) => state);
   const [open, setOpen] = useState({
     flag: false,
     message: "",
@@ -126,8 +126,8 @@ const ApprovalFlow = () => {
   return (
     <>
       <Title level={3}>Audit Trail</Title>
-      <Grid container spacing={1}>
-        <Grid item lg={2} md={2} sm={12}>
+      <Row gutter={8}>
+        <Col lg={4} md={4} sm={24}>
           <TextField
             name={"WofCode"}
             fullWidth
@@ -136,8 +136,8 @@ const ApprovalFlow = () => {
             change={handleChange}
             value={State.ApprovalFlowName}
           />
-        </Grid>
-        <Grid item lg={2} md={2} sm={12}>
+        </Col>
+        <Col lg={4} md={4} sm={24}>
           <TextField
             fullWidth
             name={"MysisCustomerCode"}
@@ -146,8 +146,8 @@ const ApprovalFlow = () => {
             change={handleChange}
             value={State.ApprovalFlowDescription}
           />
-        </Grid>
-        <Grid item lg={2} md={2} sm={12}>
+        </Col>
+        <Col lg={4} md={4} sm={24}>
           <TextField
             fullWidth
             name={"BorrowerNPLCode"}
@@ -156,8 +156,8 @@ const ApprovalFlow = () => {
             change={handleChange}
             value={State.ApprovalFlowDescription}
           />
-        </Grid>
-        <Grid item lg={4} md={4} sm={12}>
+        </Col>
+        <Col lg={8} md={8} sm={24}>
           <TextField
             fullWidth
             name={"ActionBy"}
@@ -166,8 +166,8 @@ const ApprovalFlow = () => {
             change={handleChange}
             value={State.ApprovalFlowDescription}
           />
-        </Grid>
-        <Grid item lg={2} md={2} sm={12}>
+        </Col>
+        <Col lg={4} md={4} sm={24}>
         <SelectBox 
           label="Select Action"
           // change={handleUser}
@@ -176,9 +176,9 @@ const ApprovalFlow = () => {
           name="RemainingUser"
           propertyName={"Fullname"}
            />
-        </Grid>
+        </Col>
       
-        <Grid item lg={4} md={4} sm={12}>
+        <Col lg={8} md={8} sm={24}>
                 <StartToEndDate
                   // change={datehandler}
                   label={"Action On"}
@@ -188,8 +188,8 @@ const ApprovalFlow = () => {
                   // endvalue={form.DateTO!==null && form.DateFrom!=="" ?DateDisplayFormat(form.DateTO):''}
                   DateRange={true}
                 />
-              </Grid>
-        <Grid item lg={2} md={2} sm={12}>
+              </Col>
+        <Col lg={4} md={4} sm={24}>
         <Button
           text="Search"
           icon={<Search />}
@@ -197,19 +197,19 @@ const ApprovalFlow = () => {
           size="small"
           // click={()=>dispatch(SearchApprovalFlow(State.ApprovalFlowName,State.ApprovalFlowDescription))}
         />
-        </Grid>
-        <Grid item lg={2} md={2} sm={12}>
+        </Col>
+        <Col lg={4} md={4} sm={24}>
         <Button
           text="Reset"
           icon={<Restore />}
           applyClass="btnDarkSolid"
           size="small"
         />
-        </Grid>
-        <Grid style={{ marginTop: "1%" }} item lg={12} md={11} sm={12}>
+        </Col>
+        <Col style={{ marginTop: "1%" }} lg={24} md={22} sm={24}>
           <Table rows={[{name:"adssada"}]} columns={columns} scroll={{ x: "max-content" }} />
-        </Grid>
-      </Grid>
+        </Col>
+      </Row>
       <Modal
         modalTitle={<b>Audit Detail</b>}
         closeModal={handleCancel}
@@ -221,37 +221,40 @@ const ApprovalFlow = () => {
         
         {isModalVisible && (
           <>
-            <Box
-              display="flex"
-              justifyContent="center"
-              style={{ padding: "10px" }}
-            >
-              <Grid container spacing={2}>
-              <Grid style={{ marginTop: "1%",}} item lg={6} md={6} sm={12}>
+            <div
+              style={{
+                display: "flex",
+                justifyContent: "center",
+                padding: "10px"
+              }}>
+              <Row gutter={16} style={{
+                width: "calc(100% + 16px)"
+              }}>
+              <Col style={{ marginTop: "1%",}} lg={12} md={12} sm={24}>
               <Text style={{ width: "25%" ,color:"#025f5c"}}>Action By</Text>
-                </Grid>
-                <Grid style={{ marginTop: "1%" }} item lg={6} md={6} sm={12}>
+                </Col>
+                <Col style={{ marginTop: "1%" }} lg={12} md={12} sm={24}>
               <Text style={{ width: "25%",color:"#025f5c" }}>Action On</Text>
-                </Grid>
-                <Grid style={{ marginTop: "1%" }} item lg={6} md={6} sm={12}>
+                </Col>
+                <Col style={{ marginTop: "1%" }} lg={12} md={12} sm={24}>
               <Text style={{ width: "25%",color:"#025f5c" }}>Description</Text>
-                </Grid>
+                </Col>
              
-                <Grid style={{ marginTop: "1%" }} item lg={12} md={12} sm={12}>
+                <Col style={{ marginTop: "1%" }} lg={24} md={24} sm={24}>
                   <Table
                     rows={[]}
                     columns={columnsForModal}
                     pagination={false}
                     scroll={{ x: "max-content" }}
                   />
-                </Grid>
-              </Grid>
-            </Box>
+                </Col>
+              </Row>
+            </div>
             <div style={{ marginTop: "25px" }} />
           </>
         )}
       </Modal>
-       <Notification setOpen={setOpen} open={open.flag} message={open.message} />
+      <Notification setOpen={setOpen} open={open.flag} message={open.message} />
     </>
   );
 };

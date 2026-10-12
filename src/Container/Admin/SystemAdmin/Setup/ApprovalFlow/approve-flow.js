@@ -1,12 +1,6 @@
 import React, { useState,useEffect } from "react";
-import { Grid, Box } from "@material-ui/core";
-import { Typography, Space } from "antd";
-import AddIcon from "@material-ui/icons/Add";
-import Search from "@material-ui/icons/Search";
-import Edit from "@material-ui/icons/Edit";
-import Restore from "@material-ui/icons/Restore";
+import { Typography, Space, Row, Col } from "antd";
 import {
-  CheckBox,
   SelectBox,
   Button,
   Table,
@@ -24,11 +18,18 @@ import {
   GetApprovalFlowForEdit,
   UpdateApprovalFlowForEdit,
   DeleteApprovalFlowForEdit} from '../../../../../store/actions/setup-forms-actions'
+
+import {
+  PlusOutlined as AddIcon,
+  SearchOutlined as Search,
+  EditOutlined as Edit,
+  UndoOutlined as Restore,
+} from "@ant-design/icons";
+
 const ApprovalFlow = () => {
   const { Title } = Typography;
   const dispatch = useDispatch();
-  const state = useSelector((state) => state);
-  const { setupForms } = state;
+  const setupForms = useSelector((state) => state.setupForms);
   const priorityOptions = ["1", "2", "3", "4", "5", "6", "7", "8", "9", "10"];
   const [open, setOpen] = useState({
     flag: false,
@@ -356,8 +357,8 @@ const ApprovalFlow = () => {
   return (
     <>
       <Title level={3}>Approval Flow</Title>
-      <Grid container spacing={1}>
-        <Grid item lg={2} md={2} sm={12}>
+      <Row gutter={8}>
+        <Col lg={4} md={4} sm={24}>
           <TextField
             name={"ApprovalFlowName"}
             fullWidth
@@ -367,8 +368,8 @@ const ApprovalFlow = () => {
             change={handleChange}
             value={State.ApprovalFlowName}
           />
-        </Grid>
-        <Grid item lg={4} md={4} sm={12}>
+        </Col>
+        <Col lg={8} md={8} sm={24}>
           <TextField
             fullWidth
             name={"ApprovalFlowDescription"}
@@ -378,8 +379,8 @@ const ApprovalFlow = () => {
             change={handleChange}
             value={State.ApprovalFlowDescription}
           />
-        </Grid>
-        <Grid item lg={2} md={2} sm={12}>
+        </Col>
+        <Col lg={4} md={4} sm={24}>
         <Button
           text="Search"
           icon={<Search />}
@@ -387,8 +388,8 @@ const ApprovalFlow = () => {
           size="small"
           click={()=>dispatch(SearchApprovalFlow(State.ApprovalFlowName,State.ApprovalFlowDescription))}
         />
-        </Grid>
-        <Grid item lg={2} md={2} sm={12}>
+        </Col>
+        <Col lg={4} md={4} sm={24}>
         <Button
           text="Reset"
           icon={<Restore />}
@@ -406,8 +407,8 @@ const ApprovalFlow = () => {
             dispatch(GetApprovalFlow())
           }}
         />
-        </Grid>
-        <Grid item lg={2} md={2} sm={12}>
+        </Col>
+        <Col lg={4} md={4} sm={24}>
           <Button
             text="Add New"
             icon={<AddIcon />}
@@ -416,11 +417,11 @@ const ApprovalFlow = () => {
             disableBtn={true}
             click={add}
           />
-        </Grid>
-        <Grid style={{ marginTop: "1%" }} item lg={12} md={11} sm={12}>
+        </Col>
+        <Col style={{ marginTop: "1%" }} lg={24} md={22} sm={24}>
           <Table rows={setupForms.ApprovalFlows} columns={columns} scroll={{ x: "max-content" }} />
-        </Grid>
-      </Grid>
+        </Col>
+      </Row>
       <Modal
         modalTitle={actions.addRole && <b>Add User</b>}
         closeModal={handleCancel}
@@ -431,46 +432,49 @@ const ApprovalFlow = () => {
         {/* this data will be pass to modal when Add Approval btn will be clicked */}
         {actions.add && (
           <>
-            <Box
-              display="flex"
-              justifyContent="center"
-              style={{ padding: "40px" }}
-            >
+            <div
+              style={{
+                display: "flex",
+                justifyContent: "center",
+                padding: "40px"
+              }}>
               <Title level={3} align="center">
                 Are you sure you want to add Approval Flow
               </Title>
-            </Box>
+            </div>
             <GroupedButtons data={ApprovalFlowbuttonProps} />
           </>
         )}
         {/* this data will be pass to modal when delete icon btn in the table  will be clicked */}
         {actions.delete && (
           <>
-            <Box
-              display="flex"
-              justifyContent="center"
-              style={{ padding: "40px" }}
-            >
+            <div
+              style={{
+                display: "flex",
+                justifyContent: "center",
+                padding: "40px"
+              }}>
               <div className="icon-trash icon-size-two"></div>
               <Title level={3} align="center">
                 Are you sure you want to delete this?
               </Title>
-            </Box>
+            </div>
             <GroupedButtons data={addButtonProps} />
           </>
         )}
         {actions.delete1 && (
           <>
-            <Box
-              display="flex"
-              justifyContent="center"
-              style={{ padding: "40px" }}
-            >
+            <div
+              style={{
+                display: "flex",
+                justifyContent: "center",
+                padding: "40px"
+              }}>
               <div className="icon-trash icon-size-two"></div>
               <Title level={3} align="center">
                 Are you sure you want to delete this?
               </Title>
-            </Box>
+            </div>
             <GroupedButtons data={ApprovalFlowbuttonProps} />
           </>
         )}
@@ -478,13 +482,16 @@ const ApprovalFlow = () => {
         {/* this data will be pass to modal when add role icon btn in the table  will be clicked */}
         {actions.addRole && (
           <>
-            <Box
-              display="flex"
-              justifyContent="center"
-              style={{ padding: "10px" }}
-            >
-              <Grid container spacing={2}>
-                <Grid item md={6} lg={6} sm={12}>
+            <div
+              style={{
+                display: "flex",
+                justifyContent: "center",
+                padding: "10px"
+              }}>
+              <Row gutter={16} style={{
+                width: "calc(100% + 16px)"
+              }}>
+                <Col md={12} lg={12} sm={24}>
                 <b>Approval Flow Name</b>
                   <TextField
                     disable
@@ -511,8 +518,8 @@ const ApprovalFlow = () => {
                   option={priorityOptions} 
                   required/>
                   
-                </Grid>
-                <Grid item md={6} lg={6} sm={12}>
+                </Col>
+                <Col md={12} lg={12} sm={24}>
                   <b>Description</b>
                   <TextField
                     rows={7}
@@ -521,25 +528,25 @@ const ApprovalFlow = () => {
                     fullWidth
                     value={approvalFlow.ApprovalFlowDescription}
                   />
-                </Grid>
-                <Grid item align="center" lg={12}md={12}sm={12}style={{ paddingTop: "20px" }} >
+                </Col>
+                <Col align="center" lg={24} md={24} sm={24} style={{ paddingTop: "20px" }}>
                   <Button
                     text="Add User"
                     applyClass="btnDarkSolidMini"
                     size="small"
                     click={()=>AddUser()}
                   />
-                </Grid>
-                <Grid style={{ marginTop: "1%" }} item lg={12} md={12} sm={12}>
+                </Col>
+                <Col style={{ marginTop: "1%" }} lg={24} md={24} sm={24}>
                   <Table
                     rows={existingUserList}
                     columns={columnsForModal}
                     pagination={false}
                     scroll={{ x: "max-content" }}
                   />
-                </Grid>
-              </Grid>
-            </Box>
+                </Col>
+              </Row>
+            </div>
             <div style={{ marginTop: "25px" }} />
           </>
         )}
@@ -553,22 +560,23 @@ const ApprovalFlow = () => {
             width={700}
           >
             <>
-              <Box
-                display="flex"
-                justifyContent="center"
-                style={{ padding: "40px" }}
-              >
+              <div
+                style={{
+                  display: "flex",
+                  justifyContent: "center",
+                  padding: "40px"
+                }}>
                 <div className="icon-trash icon-size-two"></div>
                 <Title level={3} align="center">
                   Are you sure you want to delete this?
                 </Title>
-              </Box>
+              </div>
               <GroupedButtons data={ApprovalFlowForEditButtonProps} />
             </>
           </Modal>
         </>
       )}
-       <Notification setOpen={setOpen} open={open.flag} message={open.message} />
+      <Notification setOpen={setOpen} open={open.flag} message={open.message} />
     </>
   );
 };

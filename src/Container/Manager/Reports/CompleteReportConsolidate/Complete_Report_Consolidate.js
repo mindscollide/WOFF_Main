@@ -1,7 +1,6 @@
-import { Box, Grid } from "@material-ui/core";
 import React, { useState, useEffect } from "react";
 import styles from "./style.module.css";
-import { Typography, Space, Radio } from "antd";
+import { Typography, Space, Radio, Row, Col } from "antd";
 import {
   SelectBox,
   Button,
@@ -47,8 +46,8 @@ const CompleteReportsConsolidate = () => {
 
   const dispatch = useDispatch();
 
-  const state = useSelector((state) => state);
-  const { reports, setupForms } = state;
+  const reports = useSelector((state) => state.reports);
+  const setupForms = useSelector((state) => state.setupForms);
   const { Title } = Typography;
 
   // data states
@@ -244,20 +243,22 @@ const CompleteReportsConsolidate = () => {
     <form onSubmit={(e) => handleSubmit(e, submitType)}>
       <>
         <Paper padding="2">
-          <Grid container spacing={1}>
+          <Row gutter={8}>
             {/* Row 01 */}
-            <Grid item lg={9} md={9} sm={12}>
+            <Col lg={18} md={18} sm={24}>
               <Title level={3}>Complete Report Consolidate</Title>
-            </Grid>
+            </Col>
             <div style={{ marginTop: "8%" }} />
             {/* Row 2 */}
-            <Grid container spacing={1}>
-              <Grid item lg={4} md={4} sm={12}>
+            <Row gutter={8}>
+              <Col lg={8} md={8} sm={24}>
                 <label>
                   <b>Date Of WriteOff</b>
                 </label>
                 <br />
-                <Box display="flex">
+                <div style={{
+                  display: "flex"
+                }}>
                   <StartToEndDate
                     change={datehandler}
                     width="100%!important"
@@ -274,14 +275,16 @@ const CompleteReportsConsolidate = () => {
                     }
                     DateRange={true}
                   />
-                </Box>
-              </Grid>
-              <Grid item lg={4} md={4} sm={12}>
+                </div>
+              </Col>
+              <Col lg={8} md={8} sm={24}>
                 <label>
                   <b>FRA Total</b>
                 </label>
                 <br />
-                <Box display="flex">
+                <div style={{
+                  display: "flex"
+                }}>
                   <FormattedInputs
                     placeholder="From"
                     label={null}
@@ -302,9 +305,9 @@ const CompleteReportsConsolidate = () => {
                     value={form.AmountTo}
                     change={ammountFieldHandler}
                   />
-                </Box>
-              </Grid>
-              <Grid item lg={4} md={4} sm={12}>
+                </div>
+              </Col>
+              <Col lg={8} md={8} sm={24}>
                 <label>
                   <b>MISYS Customer Code</b>
                 </label>
@@ -321,9 +324,9 @@ const CompleteReportsConsolidate = () => {
                   label={null}
                   size="small"
                 />
-              </Grid>
+              </Col>
               <div style={{ marginTop: "8%" }} />
-              <Grid item lg={3} md={3} sm={12}>
+              <Col lg={6} md={6} sm={24}>
                 <label>
                   <b>Borrower NPL Code</b>
                 </label>
@@ -336,8 +339,8 @@ const CompleteReportsConsolidate = () => {
                   size="small"
                   fullWidth
                 />
-              </Grid>
-              <Grid item lg={3} md={3} sm={12}>
+              </Col>
+              <Col lg={6} md={6} sm={24}>
                 <label>
                   <b>CNIC Number</b>
                 </label>
@@ -352,8 +355,8 @@ const CompleteReportsConsolidate = () => {
                   textLength={15}
                   minLength={15}
                 />
-              </Grid>
-              <Grid item lg={3} md={3} sm={12}>
+              </Col>
+              <Col lg={6} md={6} sm={24}>
                 <label>
                   <b>Name of Borrower</b>
                 </label>
@@ -366,8 +369,8 @@ const CompleteReportsConsolidate = () => {
                   label={null}
                   size="small"
                 />
-              </Grid>
-              <Grid item lg={3} md={3} sm={12}>
+              </Col>
+              <Col lg={6} md={6} sm={24}>
                 <label>
                   <b>Classification of Advance</b>
                 </label>
@@ -380,11 +383,11 @@ const CompleteReportsConsolidate = () => {
                   propertyName={"title"}
                   option={setupForms.ClassificationOfAdvances}
                 />
-              </Grid>
-            </Grid>
+              </Col>
+            </Row>
             {/* Row 03 */}
-            <Grid container spacing={1}>
-              <Grid item lg={3} md={3} sm={12}>
+            <Row gutter={8}>
+              <Col lg={6} md={6} sm={24}>
                 <label>
                   <b>Business Segment</b>
                 </label>
@@ -397,8 +400,8 @@ const CompleteReportsConsolidate = () => {
                   label={"Select Business Segment"}
                   propertyName={"title"}
                 />
-              </Grid>
-              <Grid item lg={3} md={3} sm={12}>
+              </Col>
+              <Col lg={6} md={6} sm={24}>
                 <label>
                   <b>Reason of Write Off</b>
                 </label>
@@ -411,8 +414,8 @@ const CompleteReportsConsolidate = () => {
                   change={fieldsHandler}
                   label={"Select Write Off Reason"}
                 />
-              </Grid>
-              <Grid item lg={3} md={3} sm={12}>
+              </Col>
+              <Col lg={6} md={6} sm={24}>
                 <label>
                   <b>WOF Code</b>
                 </label>
@@ -425,8 +428,8 @@ const CompleteReportsConsolidate = () => {
                   size="small"
                   fullWidth
                 />
-              </Grid>
-              <Grid item lg={3} md={3} sm={12} align="left">
+              </Col>
+              <Col lg={6} md={6} sm={24} align="left">
                 <label>
                   <b>Charge Off</b>
                 </label>
@@ -444,9 +447,9 @@ const CompleteReportsConsolidate = () => {
                     Old Charge-Off
                   </Radio>
                 </Radio.Group>
-              </Grid>
+              </Col>
               {/* <Grid item lg={5} md={5} sm={12} ></Grid> */}
-              <Grid item lg={2} md={2} sm={12}>
+              <Col lg={4} md={4} sm={24}>
                 <div style={{ marginTop: "14%" }} />
                 <Button
                   applyClass="btnMiniPrimary"
@@ -455,8 +458,8 @@ const CompleteReportsConsolidate = () => {
                   click={() => setsubmitType(1)}
                   type="submit"
                 />
-              </Grid>
-              <Grid item lg={10} md={10} sm={12} align="right">
+              </Col>
+              <Col lg={20} md={20} sm={24} align="right">
                 <div style={{ marginTop: "2%" }} />
                 <Space>
                   <Button
@@ -469,19 +472,19 @@ const CompleteReportsConsolidate = () => {
                 </Space>
                 <br />
                 <br />
-              </Grid>
+              </Col>
 
-              <Grid container spacing={1}>
-                <Grid item style={{ marginTop: "2%" }} lg={12} md={12} sm={12}>
+              <Row gutter={8}>
+                <Col style={{ marginTop: "2%" }} lg={24} md={24} sm={24}>
                   <Table
                     rows={rows}
                     columns={columns}
                     scroll={{ x: "max-content" }}
                   />
-                </Grid>
-              </Grid>
-            </Grid>
-          </Grid>
+                </Col>
+              </Row>
+            </Row>
+          </Row>
         </Paper>
       </>
       <Notification setOpen={setOpen} open={open.open} message={open.message} />

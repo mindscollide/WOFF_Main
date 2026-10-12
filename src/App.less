@@ -1,7 +1,113 @@
-@import "~antd/dist/antd.less";
+// antd v5 is CSS-in-JS: no antd.less import. Theme tokens live in
+// src/theme.js (ConfigProvider), base styles come from antd/dist/reset.css
+// (imported in src/index.js).
 // @import url("https://fonts.googleapis.com/css2?family=Open+Sans:ital,wght@0,300;0,400;0,600;0,700;0,800;1,300;1,400;1,600;1,700;1,800&display=swap");
 // @import url("https://fonts.googleapis.com/css2?family=Open+Sans:ital,wght@0,300;0,400;0,600;0,700;0,800;1,300;1,400;1,600;1,700;1,800&display=swap");
 // all global styles are witten here
+
+// Date/Time/Range pickers (StartToEndDate, DatePicker, TimePicker Elements
+// wrappers all render antd's Picker, which shares this ".ant-picker" root
+// class) styled to match the MUI text-field border convention used
+// elsewhere in this app: #dee6e6 border, square corners, no hover color
+// change, #12B0E8 on focus (see CustomTextField's withStyles in
+// text-field.js/FormatedInput.js for the same three values).
+.ant-picker {
+  border       : 1px solid #dee6e6 !important;
+  border-radius: 0 !important;
+  box-shadow   : none !important;
+}
+
+.ant-picker:hover {
+  border-color: #dee6e6 !important;
+}
+
+.ant-picker-focused {
+  border-color: #12B0E8 !important;
+  box-shadow  : none !important;
+}
+
+// Text inputs (TextField Elements wrapper) — same border convention as the
+// pickers above. When an Input has a prefix/suffix (e.g. Login's UserOutlined
+// icon), antd wraps the real <input> in a .ant-input-affix-wrapper — and the
+// inner <input> keeps the plain .ant-input class too, so without the reset
+// below both the wrapper AND the nested input would show this border,
+// rendering as a visible box-inside-a-box around the icon.
+.ant-input,
+.ant-input-affix-wrapper {
+  border       : 1px solid #dee6e6 !important;
+  border-radius: 0 !important;
+  box-shadow   : none !important;
+}
+
+.ant-input-affix-wrapper .ant-input {
+  border     : none !important;
+  box-shadow : none !important;
+}
+
+.ant-input:hover,
+.ant-input-affix-wrapper:hover {
+  border-color: #dee6e6 !important;
+}
+
+.ant-input:focus,
+.ant-input-focused,
+.ant-input-affix-wrapper:focus,
+.ant-input-affix-wrapper-focused {
+  border-color: #12B0E8 !important;
+  box-shadow  : none !important;
+}
+
+// Select (SelectBox/SelectBoxWithButton/MultipleSelectCheckmarks Elements
+// wrappers) — same border/background convention as the inputs/pickers above.
+// antd v6: the visible box is the .ant-select root itself (v4/v5 drew it on a
+// child .ant-select-selector, which no longer exists).
+.ant-select {
+  border          : 1px solid #dee6e6 !important;
+  border-radius   : 0 !important;
+  box-shadow      : none !important;
+  background-color: white !important;
+}
+
+.ant-select:hover {
+  border-color: #dee6e6 !important;
+}
+
+.ant-select-focused {
+  border-color: #12B0E8 !important;
+  box-shadow  : none !important;
+}
+
+// MultipleSelectCheckmarks (Transaction Type etc.) collapses every selected
+// tag into one comma-joined string via maxTagPlaceholder, rendered through
+// the same overflow item that normally holds individual tag pills. Left to
+// wrap, a long selection grows the box taller instead of staying a fixed
+// 40px like every other field — force one line with an ellipsis.
+// (v6 names: .ant-select-content / .ant-select-content-item.)
+.ant-select-multiple .ant-select-content {
+  flex-wrap: nowrap !important;
+  overflow : hidden !important;
+}
+
+.ant-select-content-item {
+  overflow : hidden !important;
+  max-width: 100%;
+}
+
+.ant-select-content-item .ant-select-selection-item {
+  overflow     : hidden !important;
+  max-width    : 100%;
+  text-overflow: ellipsis !important;
+  white-space  : nowrap !important;
+}
+
+// Notification Elements wrapper — antd's own .ant-notification-notice-title
+// rule sets an explicit (dark) text color that wins over the teal
+// background's inherited color otherwise; !important here matches that
+// same specificity fight.
+.app-teal-notification .ant-notification-notice-title,
+.app-teal-notification .ant-notification-notice-close {
+  color: #fff !important;
+}
 
 // global css for side bar
 .ant-menu-root.ant-menu-vertical,
@@ -9,8 +115,9 @@
 .ant-menu-root.ant-menu-vertical-right,
 .ant-menu-root.ant-menu-inline {
   background-color: #025f5c;
-  color: #80b1af;
+  color           : #80b1af;
 }
+
 // .ant-menu-submenu-title:hover {
 //   background-color: #04908b;
 //   color: whitesmoke !important;
@@ -21,78 +128,63 @@
 
 .ant-menu-sub.ant-menu-inline {
   background-color: #025f5c;
-  color: whitesmoke !important;
+  color           : whitesmoke !important;
 }
+
 .ant-menu-item-selected {
   background-color: #43b78f !important;
-  color: #fff;
-  border-right: none !important;
+  color           : #fff;
+  border-right    : none !important;
 }
+
 // global css for sidebar ends here
-.ant-table-thead > tr * {
+.ant-table-thead>tr * {
   background-color: #e7ecec !important;
-  color: #b27706 !important;
-  font-weight: bold !important;
+  color           : #b27706 !important;
+  font-weight     : bold !important;
 }
 
 .ant-table-row {
   background-color: #f6f6f6 !important;
 }
+
 .ant-layout {
   background-color: #f6f6f6;
 }
+
 .ant-scrolling-effect {
   width: 100% !important;
 }
-.ant-select-selector {
-  background-color: #5d6a6a !important;
-}
 
 .ant-menu-submenu-title {
-  color: #80b1af !important;
+  color           : #80b1af !important;
   background-color: inherit !important;
 }
 
-.ant-menu-item-active > .ant-menu-title-content > a:hover {
+.ant-menu-item-active>.ant-menu-title-content>a:hover {
   color: white !important;
 }
-.ant-menu-item-active > .ant-menu-title-content:hover {
+
+.ant-menu-item-active>.ant-menu-title-content:hover {
   color: inherit !important;
 }
+
 .ant-menu-inline .ant-menu-item::after {
   border-right: none !important;
 }
+
 .ant-menu-item:active,
 .ant-menu-submenu-title:active {
   background: none !important;
 }
+
 .ant-menu-item-only-child:hover {
   color: #fff !important;
 }
-.ant-select-arrow {
-  display: inline-block;
-  color: inherit;
-  font-style: normal;
-  line-height: 0;
-  text-transform: none;
-  vertical-align: -0.125em;
-  text-rendering: optimizeLegibility;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-  position: absolute;
-  top: 50%;
-  right: 25px;
-  height: 12px;
-  margin-top: -15px;
-  color: rgba(0, 0, 0, 0.25);
-  font-size: 12px;
-  line-height: 1;
-  text-align: center;
-  pointer-events: none;
-}
+
 .ant-layout-sider.ant-layout-sider-dark {
-  position: relative;
-  min-width: 0;
+  position  : relative;
+  min-width : 0;
   min-height: auto;
   background: #025f5c !important;
   transition: all 0.2s;
@@ -108,19 +200,41 @@
 //   -webkit-line-clamp: 2; /* number of lines to show */
 //   -webkit-box-orient: vertical;
 // }
-.MuiButtonBase-root.Mui-disabled {
-  cursor: default !important;
+
+// .ant-menu-title-content {
+//   white-space: nowrap !important;
+//   overflow: initial !important;
+//   text-overflow: initial !important;
+//   flex: none !important;
+//   display: block !important;
+// }
+
+// Disabled buttons: greyed out the way the MUI version styled
+// .MuiButtonBase-root.Mui-disabled.
+.ant-btn:disabled,
+.ant-btn[disabled] {
+  cursor        : default !important;
   pointer-events: none !important;
-  filter: grayscale(100%) !important;
-  opacity: 0.5 !important;
+  filter        : grayscale(100%) !important;
+  opacity       : 0.5 !important;
 }
+
+// antd v5+ sizes buttons with a fixed `height` and no vertical padding, so the
+// `height: 100% !important` used by Button/button.module.css classes
+// collapses them to their line-height (~32px). v4 large buttons were 40px;
+// a min-height restores that without touching the shared button classes.
+.ant-btn.ant-btn-lg {
+  min-height: 40px;
+}
+
 .ant-menu-title-content {
-  white-space: nowrap !important;
-  overflow: initial !important;
+  white-space  : nowrap !important;
+  overflow     : initial !important;
   text-overflow: initial !important;
-  flex: none !important;
-  display: block !important;
+  flex         : none !important;
+  display      : block !important;
 }
-.ant-picker-input > input[disabled] {
+
+.ant-picker-input>input[disabled] {
   color: rgba(0, 0, 0, 1) !important;
 }

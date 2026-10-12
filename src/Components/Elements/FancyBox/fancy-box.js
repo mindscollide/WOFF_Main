@@ -1,11 +1,8 @@
 import React, { useEffect, useState } from "react";
 import styles from "./style.module.css";
-import { Box } from "@material-ui/core";
-import { Space } from "antd";
-import Grid from "@material-ui/core/Grid";
+import { Space, Row, Col } from "antd";
 import { Notification } from "../Notifications";
 import {
-  NumberFormatCustom,
   FormattedInputs,
 } from "../FormatedInput/FormatedInput";
 const FancyBox = ({
@@ -186,17 +183,13 @@ const FancyBox = ({
   }, [state ? state : ""]);
   console.log("ViewStateViewStateViewState", state);
   return (
-    <Grid
-      container
-      spacing={2}
-      style={{ backgroundColor: "#e7f5f4", padding: "1%" }}
-    >
+    <Row gutter={16} style={{ backgroundColor: "#e7f5f4", padding: "1%" }}>
       <Notification
         setOpen={setstate}
         open={State.open}
         message={State.message}
       />
-      <Grid item lg={4} md={4} sm={12}>
+      <Col lg={8} md={8} sm={24}>
         <div className={styles.sectionConsolidated}>
           <div className={styles.box}>
             <div className={styles.boxHeading + " " + isDisable}>
@@ -272,7 +265,9 @@ const FancyBox = ({
                 required={required}
               />
               <div style={{ marginTop: 10 }} />
-              <Box display="flex">
+              <div style={{
+                display: "flex"
+              }}>
                 <Space>
                   <FormattedInputs
                     onblur={onBlurOtherCharges}
@@ -311,7 +306,7 @@ const FancyBox = ({
                     required={required}
                   />
                 </Space>
-              </Box>
+              </div>
               <div style={{ marginTop: 10 }} />
               <FormattedInputs
                 value={ABNSTotal}
@@ -326,8 +321,8 @@ const FancyBox = ({
             </div>
           </div>
         </div>
-      </Grid>
-      <Grid item lg={4} md={4} sm={12}>
+      </Col>
+      <Col lg={8} md={8} sm={24}>
         <div className={styles.sectionConsolidated}>
           <div className={styles.box}>
             <div className={styles.boxHeading + " " + isDisable}>
@@ -403,7 +398,9 @@ const FancyBox = ({
                 required={required}
               />
               <div style={{ marginTop: 10 }} />
-              <Box display="flex">
+              <div style={{
+                display: "flex"
+              }}>
                 <Space>
                   <FormattedInputs
                     onblur={onBlurOtherCharges}
@@ -442,7 +439,7 @@ const FancyBox = ({
                     required={required}
                   />
                 </Space>
-              </Box>
+              </div>
               <div style={{ marginTop: 10 }} />
               <FormattedInputs
                 value={APBSTotal}
@@ -457,8 +454,8 @@ const FancyBox = ({
             </div>
           </div>
         </div>
-      </Grid>
-      <Grid item lg={4} md={4} sm={12}>
+      </Col>
+      <Col lg={8} md={8} sm={24}>
         <div className={styles.sectionConsolidated}>
           <div className={styles.box}>
             <div className={styles.boxHeading + " " + isDisable}>
@@ -524,7 +521,9 @@ const FancyBox = ({
                 required={required}
               />
               <div style={{ marginTop: 10 }} />
-              <Box display="flex">
+              <div style={{
+                display: "flex"
+              }}>
                 <Space>
                   <FormattedInputs
                     onblur={onBlurOtherCharges}
@@ -563,7 +562,7 @@ const FancyBox = ({
                     required={required}
                   />
                 </Space>
-              </Box>
+              </div>
               <div style={{ marginTop: 10 }} />
               <FormattedInputs
                 value={FRATotal}
@@ -578,8 +577,8 @@ const FancyBox = ({
             </div>
           </div>
         </div>
-      </Grid>
-    </Grid>
+      </Col>
+    </Row>
   );
 };
 

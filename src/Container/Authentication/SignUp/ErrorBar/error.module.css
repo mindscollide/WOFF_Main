@@ -5,3 +5,17 @@
   color: white !important;
   width: 100% !important;
 }
+
+.fadeIn {
+  animation: errorBarFadeIn 1s ease-in-out;
+}
+@keyframes errorBarFadeIn {
+  from { opacity: 0; }
+  to { opacity: 1; }
+}
+.caption {
+  display: block;
+  font-size: 0.75rem;
+  line-height: 1.66;
+  letter-spacing: 0.03333em;
+}

@@ -1,13 +1,13 @@
 import React, { useState, useEffect } from "react";
-import { Grid, Box } from "@material-ui/core";
-import { Typography, Space } from "antd";
-import AddIcon from "@material-ui/icons/Add";
-import { DownloadOutlined } from '@ant-design/icons';
-import Search from "@material-ui/icons/Search";
-import Edit from "@material-ui/icons/Edit";
-import Restore from "@material-ui/icons/Restore";
+import { Typography, Space, Row, Col } from "antd";
 import {
-  CheckBox,
+  DownloadOutlined,
+  PlusOutlined as AddIcon,
+  SearchOutlined as Search,
+  EditOutlined as Edit,
+  UndoOutlined as Restore,
+} from '@ant-design/icons';
+import {
   SelectBox,
   Button,
   Table,
@@ -22,7 +22,6 @@ import { useDispatch, useSelector } from "react-redux";
 const UserAudit = () => {
   const { Title, Text } = Typography;
   const dispatch = useDispatch();
-  const state = useSelector((state) => state);
   const [open, setOpen] = useState({
     flag: false,
     message: "",
@@ -133,8 +132,8 @@ const UserAudit = () => {
   return (
     <>
       <Title level={3}>User Audit</Title>
-      <Grid container spacing={1}>
-        <Grid item lg={3} md={3} sm={12}>
+      <Row gutter={8}>
+        <Col lg={6} md={6} sm={24}>
           <TextField
             name={"WofCode"}
             fullWidth
@@ -143,8 +142,8 @@ const UserAudit = () => {
             change={handleChange}
             value={State.ApprovalFlowName}
           />
-        </Grid>
-        <Grid item lg={3} md={3} sm={12}>
+        </Col>
+        <Col lg={6} md={6} sm={24}>
           <SelectBox
             label="Select Action"
             // change={handleUser}
@@ -152,8 +151,8 @@ const UserAudit = () => {
             value={letterStatus}
             propertyName={"Fullname"}
           />
-        </Grid>
-        <Grid item lg={3} md={3} sm={12}>
+        </Col>
+        <Col lg={6} md={6} sm={24}>
           <TextField
             fullWidth
             name={"ActionBy"}
@@ -162,9 +161,9 @@ const UserAudit = () => {
             change={handleChange}
             value={State.ApprovalFlowDescription}
           />
-        </Grid>
+        </Col>
 
-        <Grid item lg={3} md={3} sm={12}>
+        <Col lg={6} md={6} sm={24}>
           <StartToEndDate
             // change={datehandler}
             label={"Action On"}
@@ -174,8 +173,8 @@ const UserAudit = () => {
             // endvalue={form.DateTO!==null && form.DateFrom!=="" ?DateDisplayFormat(form.DateTO):''}
             DateRange={true}
           />
-        </Grid>
-        <Grid item md={12} lg={12} sm={12} align="center">
+        </Col>
+        <Col md={24} lg={24} sm={24} align="center">
           <Space>
             <Button
               text="Search"
@@ -191,11 +190,11 @@ const UserAudit = () => {
               size="small"
             />
           </Space>
-        </Grid>
-        <Grid style={{ marginTop: "1%" }} item lg={12} md={11} sm={12}>
+        </Col>
+        <Col style={{ marginTop: "1%" }} lg={24} md={22} sm={24}>
           <Title level={3}>User Status</Title>
-        </Grid>
-        <Grid item lg={12} md={12} sm={12} align="center">
+        </Col>
+        <Col lg={24} md={24} sm={24} align="center">
         <Space>
           <Button
             text="Download User Status"
@@ -204,8 +203,8 @@ const UserAudit = () => {
             size="small" 
             ghost/>
           </Space>
-        </Grid>
-      </Grid>
+        </Col>
+      </Row>
       <Notification setOpen={setOpen} open={open.flag} message={open.message} />
     </>
   );

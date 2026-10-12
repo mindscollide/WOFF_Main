@@ -1,8 +1,6 @@
-import React, { useState } from "react";
-import Snackbar from "@material-ui/core/Snackbar";
-import MuiAlert from "@material-ui/lab/Alert";
-import { useStyles } from "./NotificationStyle";
-import { useDispatch, useSelector } from "react-redux";
+import React, { useEffect } from "react";
+import { notification } from "antd";
+
 const Message = {
   success: "success",
   error: "error",
@@ -10,44 +8,47 @@ const Message = {
   warning: "warning",
 };
 
-function Alert(props) {
-  return <MuiAlert elevation={6} variant="filled" {...props} />;
-}
+// Kept as a controlled component with the exact same {setOpen, open, message}
+// API every caller already uses (~100+ call sites) — antd's notification is
+// an imperative singleton (notification.open({...}) called from anywhere),
+// a different programming model from MUI's Snackbar+Alert, so this wrapper
+// triggers it internally instead of changing every call site.
 const Notification = ({ setOpen, open, message }) => {
-  const state = useSelector((state) => state);
-  const dispatch = useDispatch();
-  const { auth } = state;
-  const classes = useStyles();
-  const vertical = "top";
-  const horizontal = "right";
-  const handleClose = (event, reason) => {
-    if (reason === "clickaway") {
-      return;
-    }
-    setOpen(!open);
+  const handleClose = () => {
+    // Preserved exactly as the MUI version had it — some callers key their
+    // own state on "open", others on "flag"; this always writes "flag",
+    // a pre-existing inconsistency this migration isn't meant to fix.
+    setOpen({
+      flag: false,
+      message: "",
+    });
   };
-  return (
-    <>
-      {message!==""?<div className={classes.root}>
-      <Snackbar
-        autoHideDuration={2000}
-        anchorOrigin={{ vertical, horizontal }}
-        open={open}
-        onClose={handleClose}
-        message={message}
-        key={vertical + horizontal}
-      >
-          <Alert
-            onClose={handleClose}
-            severity={"error"}
-            className={classes.BackGroundSucces}>
-            {message}
-          </Alert>
-    </Snackbar>
-  </div>:null}
-    </>
-    
-    
-  );
+
+  useEffect(() => {
+    if (open && message !== "") {
+      notification.open({
+        // antd v6 renamed the notice's `message` field to `title`
+        title: message,
+        placement: "topRight",
+        duration: 2,
+        // The original MUI Alert always rendered with a hardcoded teal
+        // "success" background regardless of its severity="error" prop
+        // (a pre-existing bug — the classes.BackGroundSucces override always
+        // won) — preserved exactly rather than "corrected" to show red.
+        // className (not just style) is needed because antd's own
+        // .ant-notification-notice-title rule sets an explicit text color
+        // that would otherwise win over an inherited one from style={}.
+        className: "app-teal-notification",
+        style: {
+          backgroundColor: "#078480",
+        },
+        onClose: handleClose,
+      });
+    }
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [open, message]);
+
+  return null;
 };
+
 export { Notification, Message };

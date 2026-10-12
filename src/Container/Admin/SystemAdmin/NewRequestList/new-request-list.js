@@ -1,27 +1,21 @@
 import React, { useState, useEffect } from "react";
-import { Grid, Box, Container } from "@material-ui/core";
-import { Typography } from "antd";
+import { Typography, Row, Col } from "antd";
 import {
   saveUserRequest,
   newRequestList,
 } from "./../../../../store/actions/request-actions";
 import styles from "../../../Authentication/SignUp/style.module.css";
 import { useDispatch, useSelector } from "react-redux";
-import {
-  Paper,
-  Button,
-  Loader,
-  TextField,
-  Notification,
-} from "../../../../Components/Elements";
+import { Paper, Button, Loader, TextField, Notification, MaxWidthContainer } from "../../../../Components/Elements";
 import RequestListTemplate from "./request-list-template";
 import { ControlOutlined } from "@ant-design/icons";
 
 const NewRequestList = () => {
   const { Title, Text } = Typography;
   const dispatch = useDispatch();
-  const state = useSelector((state) => state);
-  const { wofApprovals, requestReducer, ui } = state;
+  const wofApprovals = useSelector((state) => state.wofApprovals);
+  const requestReducer = useSelector((state) => state.requestReducer);
+  const ui = useSelector((state) => state.ui);
   const [userRequestDetails, setUserRequestDetails] = useState(
     requestReducer.UserRequestDetails
   );
@@ -78,18 +72,18 @@ const NewRequestList = () => {
   useEffect(() => {}, [comment]);
   return (
     <>
-      <Container maxWidth="lg">
+      <MaxWidthContainer>
         {userRequestDetails !== null ? (
           <>
             <Title level={3}>Pending Signup Requests</Title>
-            <Grid container spacing={1}>
-              <Grid item lg={4} md={4} sm={12}></Grid>
-              <Grid item lg={6} md={6} sm={12}>
+            <Row gutter={8}>
+              <Col lg={8} md={8} sm={24}></Col>
+              <Col lg={12} md={12} sm={24}>
                 <Title level={5}>
                   Below are the pending Sign Up requests for your approval
                 </Title>
-              </Grid>
-            </Grid>
+              </Col>
+            </Row>
             {userRequestDetails != null && userRequestDetails != undefined
               ? userRequestDetails.map((item, index) => (
                   <RequestListTemplate
@@ -210,14 +204,14 @@ const NewRequestList = () => {
         ) : (
           <>
             <Title level={3}>Pending Signup Requests</Title>
-            <Grid container spacing={1}>
-              <Grid item lg={4} md={4} sm={12}></Grid>
-              <Grid item lg={6} md={6} sm={12}>
+            <Row gutter={8}>
+              <Col lg={8} md={8} sm={24}></Col>
+              <Col lg={12} md={12} sm={24}>
                 <Title level={5}>
                   You do not have any Pending Signup Request{" "}
                 </Title>
-              </Grid>
-            </Grid>
+              </Col>
+            </Row>
           </>
         )}
         <Notification
@@ -226,7 +220,7 @@ const NewRequestList = () => {
           message={open.message}
         />
         {requestReducer.Loading ? <Loader /> : null}
-      </Container>
+      </MaxWidthContainer>
     </>
   );
 };

@@ -1,7 +1,5 @@
 import React, { useEffect, useState, useRef } from "react";
-import { Grid, Box } from "@material-ui/core";
-import AddIcon from "@material-ui/icons/Add";
-import { Typography, Radio, Tooltip } from "antd";
+import { Typography, Radio, Tooltip, Row, Col } from "antd";
 import {
   Paper,
   InputWithBtn,
@@ -16,7 +14,7 @@ import {
   FancyBoxSection,
   Table,
 } from "../../../../../Components/Elements";
-import { useHistory } from "react-router";
+import { useNavigate } from "react-router";
 import { useSelector, useDispatch } from "react-redux";
 import { directorTypeOptions } from "../../../../../Common/SelectFieldOption/select-field-option";
 import {
@@ -39,13 +37,13 @@ import {
   GetNatureOfSecurity,
   GetWOFReason,
 } from "../../../../../store/actions/setup-forms-actions";
+import { PlusOutlined as AddIcon } from "@ant-design/icons";
 const EditApprovedCases = () => {
   const { Title } = Typography;
   let WriteOffData = useSelector((state) => state.writeOffCases.WriteOffData);
-  const state = useSelector((state) => state);
-  const { setupForms } = state;
+  const setupForms = useSelector((state) => state.setupForms);
   const dispatch = useDispatch();
-  const history = useHistory();
+  const navigate = useNavigate();
   const [openN, setOpenN] = useState(false);
   const [openApproval, setOpenApproval] = useState(false);
   const [openWriteoff, setOpenWriteoff] = useState(false);
@@ -1241,10 +1239,10 @@ const EditApprovedCases = () => {
             setFinalDetails(FinalObject);
             setGoToSave(!goToSave);
           } else if (saveValue == 1) {
-            dispatch(EditApprovedWriteOff(FinalObject, history, setOpen));
+            dispatch(EditApprovedWriteOff(FinalObject, navigate, setOpen));
             setFinalDetails(FinalObject);
           } else if (saveValue == 2) {
-            dispatch(EditApprovedWriteOff(FinalObject, history, setOpen));
+            dispatch(EditApprovedWriteOff(FinalObject, navigate, setOpen));
             setFinalDetails(FinalObject);
           }
         } else {
@@ -1778,8 +1776,8 @@ const EditApprovedCases = () => {
       <form onSubmit={(e) => goToSaveHandler(e)}>
         <Title level={2}>Edit Write Off</Title>
         <Paper padding="1">
-          <Grid container spacing={2}>
-            <Grid item lg={3} md={3} sm={12} xs={12}>
+          <Row gutter={16}>
+            <Col lg={6} md={6} sm={24} xs={24}>
               <TextField
                 disable
                 isUpperCase={true}
@@ -1793,8 +1791,8 @@ const EditApprovedCases = () => {
                 value={misysSection.MisysCode}
                 name="MisysCode"
               />
-            </Grid>
-            <Grid item lg={2} md={2} sm={12} xs={12}>
+            </Col>
+            <Col lg={4} md={4} sm={24} xs={24}>
               <TextField
                 name="WOFCode"
                 size="small"
@@ -1804,8 +1802,8 @@ const EditApprovedCases = () => {
                 fullWidth
                 change={misysSectionHandler}
               />
-            </Grid>
-            <Grid item lg={2} md={2} sm={12} xs={12}>
+            </Col>
+            <Col lg={4} md={4} sm={24} xs={24}>
               <TextField
                 change={misysSectionHandler}
                 value={misysSection.NPLCode}
@@ -1815,8 +1813,8 @@ const EditApprovedCases = () => {
                 textLength={7}
                 name="NPLCode"
               />
-            </Grid>
-            <Grid item lg={5} md={5} sm={12} xs={12}>
+            </Col>
+            <Col lg={10} md={10} sm={24} xs={24}>
               <TextField
                 value={misysSection.BorrowerName}
                 change={misysSectionHandler}
@@ -1827,8 +1825,8 @@ const EditApprovedCases = () => {
                 required
                 name="BorrowerName"
               />
-            </Grid>
-            <Grid item lg={6} md={6} sm={12} xs={12}>
+            </Col>
+            <Col lg={12} md={12} sm={24} xs={24}>
               <TextField
                 value={misysSection.AddressOfBorrower}
                 change={misysSectionHandler}
@@ -1839,8 +1837,8 @@ const EditApprovedCases = () => {
                 textLength={300}
                 required
               />
-            </Grid>
-            <Grid item lg={3} md={3} sm={12} xs={12}>
+            </Col>
+            <Col lg={6} md={6} sm={24} xs={24}>
               <TextField
                 value={misysSection.NTNNumber}
                 change={NTNnumberHandler}
@@ -1851,8 +1849,8 @@ const EditApprovedCases = () => {
                 textLength={8}
                 minLength={8}
               />
-            </Grid>
-            <Grid item lg={3} md={3} sm={12} xs={12}>
+            </Col>
+            <Col lg={6} md={6} sm={24} xs={24}>
               <SelectBox
                 change={misysSectionHandler}
                 name="ManagementUnitID"
@@ -1862,8 +1860,8 @@ const EditApprovedCases = () => {
                 value={misysSection.ManagementUnitID}
                 required
               />
-            </Grid>
-            <Grid item lg={4} md={4} sm={12} xs={12}>
+            </Col>
+            <Col lg={8} md={8} sm={24} xs={24}>
               <div style={{ marginTop: "10px" }} />
               <SelectBox
                 change={misysSectionHandler}
@@ -1874,8 +1872,8 @@ const EditApprovedCases = () => {
                 required
                 value={misysSection.BorrowerTypeID}
               />
-            </Grid>
-            <Grid item lg={2} md={2} sm={12} xs={12}>
+            </Col>
+            <Col lg={4} md={4} sm={24} xs={24}>
               <div style={{ marginTop: "10px" }} />
               <TextField
                 label={"IParty ID"}
@@ -1886,13 +1884,13 @@ const EditApprovedCases = () => {
                 value={misysSection.Iparty}
                 fullWidth
               />
-            </Grid>
-          </Grid>
+            </Col>
+          </Row>
         </Paper>
         <div style={{ marginTop: "20px" }} />
         <Paper padding="1">
-          <Grid container spacing={2}>
-            <Grid item lg={3} md={3} sm={12} xs={12}>
+          <Row gutter={16}>
+            <Col lg={6} md={6} sm={24} xs={24}>
               <SelectBox
                 option={accountNumbersFromStore && accountNumbersFromStore}
                 change={AcountSelection}
@@ -1901,8 +1899,8 @@ const EditApprovedCases = () => {
                 required
                 name="AccountNumber"
               />
-            </Grid>
-            <Grid item lg={2} md={2} sm={12} xs={12}>
+            </Col>
+            <Col lg={4} md={4} sm={24} xs={24}>
               <TextField
                 change={CodeHandler}
                 value={AccountDetails.BranchCode}
@@ -1913,8 +1911,8 @@ const EditApprovedCases = () => {
                 minLength={4}
                 name="BranchCode"
               />
-            </Grid>
-            <Grid item lg={3} md={3} sm={12} xs={12}>
+            </Col>
+            <Col lg={6} md={6} sm={24} xs={24}>
               <TextField
                 change={AccountDetailsHandler}
                 value={AccountDetails.BranchName}
@@ -1925,8 +1923,8 @@ const EditApprovedCases = () => {
                 textLength={300}
                 required
               />
-            </Grid>
-            <Grid item lg={2} md={2} sm={12} xs={12}>
+            </Col>
+            <Col lg={4} md={4} sm={24} xs={24}>
               <TextField
                 change={CodeHandler}
                 name="RegionCode"
@@ -1937,8 +1935,8 @@ const EditApprovedCases = () => {
                 textLength={2}
                 minLength={2}
               />
-            </Grid>
-            <Grid item lg={2} md={2} sm={12} xs={12}>
+            </Col>
+            <Col lg={4} md={4} sm={24} xs={24}>
               <TextField
                 change={AccountDetailsHandler}
                 name="RegionName"
@@ -1948,11 +1946,11 @@ const EditApprovedCases = () => {
                 fullWidth
                 textLength={40}
               />
-            </Grid>
-            <Grid item lg={12} md={12} sm={12} xs={12}>
+            </Col>
+            <Col lg={24} md={24} sm={24} xs={24}>
               <b style={{ fontSize: "1rem" }}>Sundry Analysis</b>
-            </Grid>
-            <Grid item lg={2} md={2} sm={12} xs={12}>
+            </Col>
+            <Col lg={4} md={4} sm={24} xs={24}>
               <TextField
                 value={AccountDetails.SCode}
                 change={misysSectionHandler}
@@ -1963,8 +1961,8 @@ const EditApprovedCases = () => {
                 name="SCode"
                 minLength={2}
               />
-            </Grid>
-            <Grid item lg={4} md={4} sm={12} xs={12}>
+            </Col>
+            <Col lg={8} md={8} sm={24} xs={24}>
               <TextField
                 change={misysSectionHandler}
                 value={AccountDetails.SDescription}
@@ -1975,8 +1973,8 @@ const EditApprovedCases = () => {
                 width="90%"
                 name="SDescription"
               />
-            </Grid>
-            <Grid item lg={3} md={3} sm={12} xs={12}>
+            </Col>
+            <Col lg={6} md={6} sm={24} xs={24}>
               <TextField
                 change={AccountDetailsHandler}
                 name="FacCode"
@@ -1988,8 +1986,8 @@ const EditApprovedCases = () => {
                 required
                 value={AccountDetails.FacCode}
               />
-            </Grid>
-            <Grid item lg={3} md={3} sm={12} xs={12}>
+            </Col>
+            <Col lg={6} md={6} sm={24} xs={24}>
               <TextField
                 change={AccountDetailsHandler}
                 name="FacName"
@@ -2000,8 +1998,8 @@ const EditApprovedCases = () => {
                 required
                 value={AccountDetails.FacName}
               />
-            </Grid>
-          </Grid>
+            </Col>
+          </Row>
           <div style={{ marginTop: "20px" }} />
           {console.log("FRATotal", SectionDetails)}
           <FancyBoxSection
@@ -2015,12 +2013,8 @@ const EditApprovedCases = () => {
             DateDisplayFormat={DateDisplayFormat}
             calculatorBoxhandler={calculatorBoxhandlerdata}
           />
-          <Grid
-            container
-            spacing={2}
-            style={{ backgroundColor: "#e7f5f4", padding: "1%" }}
-          >
-            <Grid item lg={12} md={12} sm={12} xs={12} align="center">
+          <Row gutter={16} style={{ backgroundColor: "#e7f5f4", padding: "1%" }}>
+            <Col lg={24} md={24} sm={24} xs={24} align="center">
               <Button
                 text={"Add Record"}
                 icon={<AddIcon />}
@@ -2028,8 +2022,8 @@ const EditApprovedCases = () => {
                 size="large"
                 click={AddSectionDetails}
               />
-            </Grid>
-          </Grid>
+            </Col>
+          </Row>
           <div style={{ marginTop: "20px" }} />
           <FancyBox
             state={AccountDetails}
@@ -2041,14 +2035,10 @@ const EditApprovedCases = () => {
             setallinput={setallinput}
             allinput={allinput}
           />
-          <Grid
-            container
-            spacing={2}
-            style={{ backgroundColor: "#e7f5f4", padding: "1%" }}
-          >
-            <Grid item lg={12} md={12} sm={12} xs={12} align="center">
+          <Row gutter={16} style={{ backgroundColor: "#e7f5f4", padding: "1%" }}>
+            <Col lg={24} md={24} sm={24} xs={24} align="center">
               <Title level={4}>Consolidated</Title>
-            </Grid>
+            </Col>
             <ConsolidateBox
               state={consolidateCalculatorBox}
               ABNSTotal={consolidateCalculatorBox.ABNSTotal}
@@ -2056,7 +2046,7 @@ const EditApprovedCases = () => {
               FRATotal={consolidateCalculatorBox.FRATotal}
               disable={true}
             />
-            <Grid item lg={12} md={12} sm={12} xs={12} align="center">
+            <Col lg={24} md={24} sm={24} xs={24} align="center">
               <Button
                 text="Update Record"
                 icon={<AddIcon />}
@@ -2064,14 +2054,14 @@ const EditApprovedCases = () => {
                 size="large"
                 click={AddRecordHandler}
               />
-            </Grid>
-          </Grid>
+            </Col>
+          </Row>
         </Paper>
         <div style={{ marginTop: "20px" }} />
         <Paper padding="1">
           <Title level={4}>Collateral Detail</Title>
-          <Grid container spacing={2}>
-            <Grid item lg={3} md={3} sm={12} xs={12}>
+          <Row gutter={16}>
+            <Col lg={6} md={6} sm={24} xs={24}>
               <div style={{ marginTop: "20px" }} />
               <SelectBox
                 // required
@@ -2082,8 +2072,8 @@ const EditApprovedCases = () => {
                 value={accountCollateralSection.natureOfSecurity}
                 change={collateralSectionHandlerNew}
               />
-            </Grid>
-            <Grid item lg={3} md={3} sm={12} xs={12}>
+            </Col>
+            <Col lg={6} md={6} sm={24} xs={24}>
               <div style={{ marginTop: "20px" }} />
               <SelectBox
                 // required
@@ -2094,8 +2084,8 @@ const EditApprovedCases = () => {
                 value={accountCollateralSection.natureOfCharge}
                 change={collateralSectionHandlerNew}
               />
-            </Grid>
-            <Grid item lg={3} md={3} sm={12} xs={12}>
+            </Col>
+            <Col lg={6} md={6} sm={24} xs={24}>
               <FormattedInputs
                 fullWidth
                 label="FS Value of Security"
@@ -2106,8 +2096,8 @@ const EditApprovedCases = () => {
                 value={accountCollateralSection.fsValue}
                 change={collateralSectionHandlerNew}
               />
-            </Grid>
-            <Grid item lg={3} md={3} sm={12} xs={12}>
+            </Col>
+            <Col lg={6} md={6} sm={24} xs={24}>
               <div style={{ marginTop: "20px" }} />
               <DatePicker
                 size="large"
@@ -2124,8 +2114,8 @@ const EditApprovedCases = () => {
                 DateRange
                 change={collateralSectionHandlerNew}
               />
-            </Grid>
-            <Grid item lg={12} md={12} sm={12} xs={12} align="center">
+            </Col>
+            <Col lg={24} md={24} sm={24} xs={24} align="center">
               <Button
                 text={"Add Record"}
                 icon={<AddIcon />}
@@ -2133,23 +2123,23 @@ const EditApprovedCases = () => {
                 size="large"
                 click={AddMultipleCollateralDetails}
               />
-            </Grid>
+            </Col>
             <div style={{ marginTop: "5%" }} />
-            <Grid item style={{ marginTop: "2%" }} lg={12} md={12} sm={12}>
+            <Col style={{ marginTop: "2%" }} lg={24} md={24} sm={24}>
               <Table
                 rows={AccountCollateralValue}
                 columns={column}
                 scroll={{ x: "max-content" }}
                 pagination={true}
               />
-            </Grid>
-          </Grid>
+            </Col>
+          </Row>
         </Paper>
         <div style={{ marginTop: "20px" }} />
         <Paper padding="1">
           <Title level={4}>Additional Detail</Title>
-          <Grid container spacing={1}>
-            <Grid item lg={3} md={3} sm={12}>
+          <Row gutter={8}>
+            <Col lg={6} md={6} sm={24}>
               <SelectBox
                 label="Classification of Advances"
                 propertyName={"title"}
@@ -2158,8 +2148,8 @@ const EditApprovedCases = () => {
                 change={addDetailsSectionHandler}
                 value={additionalDetailsSection.AdvanceClassificationID}
               />
-            </Grid>
-            <Grid item lg={4} md={4} sm={12}>
+            </Col>
+            <Col lg={8} md={8} sm={24}>
               <label>
                 {" "}
                 <b>Charge Off</b>{" "}
@@ -2177,8 +2167,8 @@ const EditApprovedCases = () => {
                   Old Charge-Off
                 </Radio>
               </Radio.Group>
-            </Grid>
-            <Grid item lg={2} md={2} sm={12}>
+            </Col>
+            <Col lg={4} md={4} sm={24}>
               <TextField
                 fullWidth
                 label="Approval Number"
@@ -2188,8 +2178,8 @@ const EditApprovedCases = () => {
                 change={addDetailsSectionHandler}
                 value={additionalDetailsSection.ApprovalNumber}
               />
-            </Grid>
-            <Grid item lg={3} md={3} sm={12}>
+            </Col>
+            <Col lg={6} md={6} sm={24}>
               <DatePicker
                 size="large"
                 width="100%"
@@ -2203,8 +2193,8 @@ const EditApprovedCases = () => {
                     : null
                 }
               />
-            </Grid>
-            <Grid item lg={5} md={5} sm={12}>
+            </Col>
+            <Col lg={10} md={10} sm={24}>
               <DatePicker
                 size="large"
                 width="100%"
@@ -2218,8 +2208,8 @@ const EditApprovedCases = () => {
                     : null
                 }
               />
-            </Grid>
-            <Grid item lg={4} md={4} sm={12}>
+            </Col>
+            <Col lg={8} md={8} sm={24}>
               <SelectBox
                 label="Reason of Write off"
                 option={setupForms.WOFReasons}
@@ -2229,8 +2219,8 @@ const EditApprovedCases = () => {
                 change={addDetailsSectionHandler}
                 value={additionalDetailsSection.WriteOffReason}
               />
-            </Grid>
-            <Grid item lg={3} md={3} sm={12} align="left">
+            </Col>
+            <Col lg={6} md={6} sm={24} align="left">
               <label>
                 {" "}
                 <b>
@@ -2250,8 +2240,8 @@ const EditApprovedCases = () => {
                   Book Cleaning
                 </Radio>
               </Radio.Group>
-            </Grid>
-            <Grid item lg={6} md={6} sm={12} xs={12}>
+            </Col>
+            <Col lg={12} md={12} sm={24} xs={24}>
               <FormattedInputs
                 fullWidth
                 label="Sale of Security"
@@ -2262,8 +2252,8 @@ const EditApprovedCases = () => {
                 value={collateralSection.SaleOfSecurity}
                 change={ColleteralNumberField}
               />
-            </Grid>
-            <Grid item lg={6} md={6} sm={12} xs={12}>
+            </Col>
+            <Col lg={12} md={12} sm={24} xs={24}>
               <div style={{ marginTop: "22px" }} />
               <TextField
                 fullWidth
@@ -2274,8 +2264,8 @@ const EditApprovedCases = () => {
                 value={collateralSection.DetailsOfSecurity}
                 change={collateralSectionHandler}
               />
-            </Grid>
-            <Grid item lg={6} md={6} sm={12} xs={12}>
+            </Col>
+            <Col lg={12} md={12} sm={24} xs={24}>
               <TextField
                 fullWidth
                 label="Change in Securities held by the bank during the loan period"
@@ -2285,8 +2275,8 @@ const EditApprovedCases = () => {
                 value={collateralSection.ChangeInSecurity}
                 change={collateralSectionHandler}
               />
-            </Grid>
-            <Grid item lg={6} md={6} sm={12} xs={12}>
+            </Col>
+            <Col lg={12} md={12} sm={24} xs={24}>
               <TextField
                 fullWidth
                 label="Details security by the bank at approving W-off"
@@ -2296,8 +2286,8 @@ const EditApprovedCases = () => {
                 value={collateralSection.SecuritybyBankAtWriteOff}
                 change={collateralSectionHandler}
               />
-            </Grid>
-            <Grid item lg={6} md={6} sm={12} xs={12}>
+            </Col>
+            <Col lg={12} md={12} sm={24} xs={24}>
               <div style={{ marginTop: "20px" }} />
               <label>
                 <b>
@@ -2315,8 +2305,8 @@ const EditApprovedCases = () => {
                 <Radio value={1}>Yes</Radio>
                 <Radio value={2}>No</Radio>
               </Radio.Group>
-            </Grid>
-            <Grid item lg={6} md={6} sm={12} xs={12}>
+            </Col>
+            <Col lg={12} md={12} sm={24} xs={24}>
               <div style={{ marginTop: "20px" }} />
               <label>
                 <b>
@@ -2334,8 +2324,8 @@ const EditApprovedCases = () => {
                 <Radio value={1}>Yes</Radio>
                 <Radio value={2}>No</Radio>
               </Radio.Group>
-            </Grid>
-            <Grid item lg={6} md={6} sm={12} xs={12}>
+            </Col>
+            <Col lg={12} md={12} sm={24} xs={24}>
               <div style={{ marginTop: "20px" }} />
               <label>
                 {" "}
@@ -2351,8 +2341,8 @@ const EditApprovedCases = () => {
                 <Radio value={1}>Yes</Radio>
                 <Radio value={2}>No</Radio>
               </Radio.Group>
-            </Grid>
-            <Grid item lg={6} md={6} sm={12} xs={12}>
+            </Col>
+            <Col lg={12} md={12} sm={24} xs={24}>
               <div style={{ marginTop: "20px" }} />
               <label>
                 <b>
@@ -2370,14 +2360,14 @@ const EditApprovedCases = () => {
                 <Radio value={1}>Yes</Radio>
                 <Radio value={2}>No</Radio>
               </Radio.Group>
-            </Grid>
-          </Grid>
+            </Col>
+          </Row>
         </Paper>
         <div style={{ marginTop: "20px" }} />
         <Paper padding="1">
           <Title level={4}>Recovery After Write-off</Title>
-          <Grid container spacing={1}>
-            <Grid item lg={3} md={3} sm={12} xs={12}>
+          <Row gutter={8}>
+            <Col lg={6} md={6} sm={24} xs={24}>
               <b style={{ fontSize: "0.7rem" }}>{"Date of Recovery"}</b>
               <DatePicker
                 width="100%"
@@ -2392,8 +2382,8 @@ const EditApprovedCases = () => {
                 name="DateOfRecovery"
                 change={recoveryWriteOffSectionHandler}
               />
-            </Grid>
-            <Grid item lg={3} md={3} sm={12} xs={12}>
+            </Col>
+            <Col lg={6} md={6} sm={24} xs={24}>
               <FormattedInputs
                 fullWidth
                 label="Principal"
@@ -2403,8 +2393,8 @@ const EditApprovedCases = () => {
                 value={recoveryWriteOffSection.Principal}
                 change={recoveryNumberField}
               />
-            </Grid>
-            <Grid item lg={3} md={3} sm={12} xs={12}>
+            </Col>
+            <Col lg={6} md={6} sm={24} xs={24}>
               <FormattedInputs
                 fullWidth
                 label="Nominated (Debited Mark-up)"
@@ -2414,8 +2404,8 @@ const EditApprovedCases = () => {
                 value={recoveryWriteOffSection.Nominated}
                 change={recoveryNumberField}
               />
-            </Grid>
-            <Grid item lg={3} md={3} sm={12} xs={12}>
+            </Col>
+            <Col lg={6} md={6} sm={24} xs={24}>
               <FormattedInputs
                 fullWidth
                 label="Non-Accrual (Un-Debited Mark-up)"
@@ -2425,10 +2415,10 @@ const EditApprovedCases = () => {
                 value={recoveryWriteOffSection.Nonaccural}
                 change={recoveryNumberField}
               />
-            </Grid>
+            </Col>
             <div style={{ marginTop: "10px" }} />
-            <Grid container spacing={1}>
-              <Grid item lg={5} md={5} sm={12} xs={12}>
+            <Row gutter={8}>
+              <Col lg={10} md={10} sm={24} xs={24}>
                 <FormattedInputs
                   fullWidth
                   label="Other Charges"
@@ -2438,8 +2428,8 @@ const EditApprovedCases = () => {
                   value={recoveryWriteOffSection.OtherCharges}
                   change={recoveryNumberField}
                 />
-              </Grid>
-              <Grid item lg={5} md={5} sm={12} xs={12}>
+              </Col>
+              <Col lg={10} md={10} sm={24} xs={24}>
                 <FormattedInputs
                   fullWidth
                   label="Penal Interest"
@@ -2449,8 +2439,8 @@ const EditApprovedCases = () => {
                   value={recoveryWriteOffSection.PenalInterest}
                   change={recoveryNumberField}
                 />
-              </Grid>
-              <Grid item lg={2} md={2} sm={12} xs={12}>
+              </Col>
+              <Col lg={4} md={4} sm={24} xs={24}>
                 <FormattedInputs
                   disable
                   fullWidth
@@ -2461,13 +2451,13 @@ const EditApprovedCases = () => {
                   value={recoveryWriteOffSection.Total}
                   change={recoveryNumberField}
                 />
-              </Grid>
-            </Grid>
-          </Grid>
+              </Col>
+            </Row>
+          </Row>
         </Paper>
         <div style={{ marginTop: "20px" }} />
-        <Grid container spacing={2} justifyContent="center">
-          <Grid item lg={2} md={2} sm={12}>
+        <Row gutter={16} justify="center">
+          <Col lg={4} md={4} sm={24}>
             <Button
               text="Next"
               endIcon={<i className="icon-arrow-right icon-size-one"></i>}
@@ -2476,8 +2466,8 @@ const EditApprovedCases = () => {
               type="submit"
               click={() => setsaveValue(0)}
             />
-          </Grid>
-        </Grid>
+          </Col>
+        </Row>
       </form>
       <Notification
         setOpen={setOpenApproval}

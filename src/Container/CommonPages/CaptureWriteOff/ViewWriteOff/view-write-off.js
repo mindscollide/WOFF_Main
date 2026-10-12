@@ -4,9 +4,7 @@ import {
   NullState,
 } from "../../../../store/actions/write-off-actions";
 import React, { useEffect, useState, useRef } from "react";
-import { Grid, Box } from "@material-ui/core";
-import AddIcon from "@material-ui/icons/Add";
-import { Typography, Radio } from "antd";
+import { Typography, Radio, Row, Col } from "antd";
 import {
   Paper,
   InputWithBtn,
@@ -35,11 +33,12 @@ import {
   GetWOFReason,
 } from "../../../../store/actions/setup-forms-actions";
 
+import { PlusOutlined as AddIcon } from "@ant-design/icons";
+
 const ViewWriteOffs = () => {
   const { Title } = Typography;
   const WriteOffData = useSelector((state) => state.writeOffCases.WriteOffData);
-  const state = useSelector((state) => state);
-  const { setupForms } = state;
+  const setupForms = useSelector((state) => state.setupForms);
   const dispatch = useDispatch();
 
   const structure = {
@@ -443,8 +442,8 @@ const ViewWriteOffs = () => {
     <>
       <Title level={2}>View Write Off</Title>
       <Paper padding="1">
-        <Grid container spacing={2}>
-          <Grid item lg={3} md={3} sm={12} xs={12}>
+        <Row gutter={16}>
+          <Col lg={6} md={6} sm={24} xs={24}>
             <TextField
               label="Misys Customer Code"
               size="small"
@@ -458,9 +457,9 @@ const ViewWriteOffs = () => {
               value={misysSection.MisysCode}
               name="MisysCode"
             />
-          </Grid>
+          </Col>
 
-          <Grid item lg={2} md={2} sm={12} xs={12}>
+          <Col lg={4} md={4} sm={24} xs={24}>
             <TextField
               name=""
               size="small"
@@ -470,8 +469,8 @@ const ViewWriteOffs = () => {
               label={"WOF Code"}
               fullWidth
             />
-          </Grid>
-          <Grid item lg={2} md={2} sm={12} xs={12}>
+          </Col>
+          <Col lg={4} md={4} sm={24} xs={24}>
             <TextField
               value={misysSection.NPLCode}
               size="small"
@@ -481,8 +480,8 @@ const ViewWriteOffs = () => {
               textLength={7}
               name="NPLCode"
             />
-          </Grid>
-          <Grid item lg={5} md={5} sm={12} xs={12}>
+          </Col>
+          <Col lg={10} md={10} sm={24} xs={24}>
             <TextField
               value={misysSection.BorrowerName}
               size="small"
@@ -492,8 +491,8 @@ const ViewWriteOffs = () => {
               disable
               name="BorrowerName"
             />
-          </Grid>
-          <Grid item lg={6} md={6} sm={12} xs={12}>
+          </Col>
+          <Col lg={12} md={12} sm={24} xs={24}>
             <TextField
               value={misysSection.AddressOfBorrower}
               name="AddressOfBorrower"
@@ -503,8 +502,8 @@ const ViewWriteOffs = () => {
               disable
               textLength={300}
             />
-          </Grid>
-          <Grid item lg={3} md={3} sm={12} xs={12}>
+          </Col>
+          <Col lg={6} md={6} sm={24} xs={24}>
             <TextField
               value={misysSection.NTNNumber}
               name="NTNNumber"
@@ -514,8 +513,8 @@ const ViewWriteOffs = () => {
               disable
               textLength={13}
             />
-          </Grid>
-          <Grid item lg={3} md={3} sm={12} xs={12}>
+          </Col>
+          <Col lg={6} md={6} sm={24} xs={24}>
             <SelectBox
               name="ManagementUnitID"
               option={setupForms.ManagementUnits}
@@ -524,10 +523,10 @@ const ViewWriteOffs = () => {
               value={misysSection.ManagementUnitID}
               disable
             />
-          </Grid>
+          </Col>
 
           <div style={{ marginTop: "10px" }} />
-          <Grid item lg={4} md={4} sm={12} xs={12}>
+          <Col lg={8} md={8} sm={24} xs={24}>
             {/* <div style={{ marginTop: "35px" }} /> */}
             <SelectBox
               name="BorrowerTypeID"
@@ -537,8 +536,8 @@ const ViewWriteOffs = () => {
               disable
               value={misysSection.BorrowerTypeID}
             />
-          </Grid>
-          <Grid item lg={2} md={2} sm={12} xs={12}>
+          </Col>
+          <Col lg={4} md={4} sm={24} xs={24}>
             {/* <div style={{ marginTop: "35px" }} /> */}
             <TextField
               label={"IParty ID"}
@@ -549,7 +548,7 @@ const ViewWriteOffs = () => {
               value={misysSection.IParty}
               fullWidth
             />
-          </Grid>
+          </Col>
           {/* <Grid item lg={5} md={5} sm={12} xs={12}>
             <b style={{ fontSize: "1rem" }}>Sundry Analysis</b>
             <div style={{ marginTop: "10px" }} />
@@ -575,12 +574,12 @@ const ViewWriteOffs = () => {
               />
             </Box>
           </Grid> */}
-        </Grid>
+        </Row>
       </Paper>
       <div style={{ marginTop: "20px" }} />
       <Paper padding="1">
-        <Grid container spacing={2}>
-          <Grid item lg={3} md={3} sm={12} xs={12}>
+        <Row gutter={16}>
+          <Col lg={6} md={6} sm={24} xs={24}>
             <SelectBox
               option={accountNumbersFromStore && accountNumbersFromStore}
               change={AcountSelection}
@@ -588,8 +587,8 @@ const ViewWriteOffs = () => {
               label="Account Number"
               name="AccountNumber"
             />
-          </Grid>
-          <Grid item lg={2} md={2} sm={12} xs={12}>
+          </Col>
+          <Col lg={4} md={4} sm={24} xs={24}>
             <TextField
               value={AccountDetails.branchCode}
               size="small"
@@ -599,8 +598,8 @@ const ViewWriteOffs = () => {
               name="BranchCode"
               disable
             />
-          </Grid>
-          <Grid item lg={3} md={3} sm={12} xs={12}>
+          </Col>
+          <Col lg={6} md={6} sm={24} xs={24}>
             <TextField
               value={AccountDetails.branchName}
               name="BranchName"
@@ -610,8 +609,8 @@ const ViewWriteOffs = () => {
               textLength={300}
               disable
             />
-          </Grid>
-          <Grid item lg={2} md={2} sm={12} xs={12}>
+          </Col>
+          <Col lg={4} md={4} sm={24} xs={24}>
             <TextField
               name="RegionCode"
               size="small"
@@ -621,8 +620,8 @@ const ViewWriteOffs = () => {
               textLength={2}
               disable
             />
-          </Grid>
-          <Grid item lg={2} md={2} sm={12} xs={12}>
+          </Col>
+          <Col lg={4} md={4} sm={24} xs={24}>
             <TextField
               name="RegionName"
               size="small"
@@ -632,11 +631,11 @@ const ViewWriteOffs = () => {
               textLength={40}
               disable
             />
-          </Grid>
-          <Grid item lg={12} md={12} sm={12} xs={12}>
+          </Col>
+          <Col lg={24} md={24} sm={24} xs={24}>
             <b style={{ fontSize: "1rem" }}>Sundry Code and Description</b>
-          </Grid>
-          <Grid item lg={2} md={2} sm={12} xs={12}>
+          </Col>
+          <Col lg={4} md={4} sm={24} xs={24}>
             {/* <TextField
               name="SCode"
               size="small"
@@ -655,8 +654,8 @@ const ViewWriteOffs = () => {
               // textLength={2}
               disable
             />
-          </Grid>
-          <Grid item lg={3} md={3} sm={12} xs={12}>
+          </Col>
+          <Col lg={6} md={6} sm={24} xs={24}>
             {/* <div style={{ marginTop: 22 }} /> */}
             <TextField
               value={AccountDetails.sDescription}
@@ -667,8 +666,8 @@ const ViewWriteOffs = () => {
               // textLength={10}
               disable
             />
-          </Grid>
-          <Grid item lg={3} md={3} sm={12} xs={12}>
+          </Col>
+          <Col lg={6} md={6} sm={24} xs={24}>
             {/* <div style={{ marginTop: 22 }} /> */}
             <TextField
               name="FacCode"
@@ -679,8 +678,8 @@ const ViewWriteOffs = () => {
               disable
               value={AccountDetails.facCode}
             />
-          </Grid>
-          <Grid item lg={3} md={3} sm={12} xs={12}>
+          </Col>
+          <Col lg={6} md={6} sm={24} xs={24}>
             {/* <div style={{ marginTop: 22 }} /> */}
             <TextField
               name="FacName"
@@ -691,8 +690,8 @@ const ViewWriteOffs = () => {
               disable
               value={AccountDetails.facName}
             />
-          </Grid>
-        </Grid>
+          </Col>
+        </Row>
         <div style={{ marginTop: "20px" }} />
         <FancyBoxSection
           hide={true}
@@ -705,16 +704,13 @@ const ViewWriteOffs = () => {
         <div style={{ marginTop: "20px" }} />
 
         <Title level={4}>Collateral Details</Title>
-        <Grid container spacing={2}>
+        <Row gutter={16}>
           <div style={{ marginTop: "5%" }} />
-          <Grid
-            item
-            spacing={2}
+          <Col
             style={{ backgroundColor: "#e7f5f4", padding: "1%" }}
-            lg={12}
-            md={12}
-            sm={12}
-          >
+            lg={24}
+            md={24}
+            sm={24}>
             <div style={{ marginTop: "2%" }} />
 
             <Table
@@ -723,8 +719,8 @@ const ViewWriteOffs = () => {
               scroll={{ x: "max-content" }}
               pagination={true}
             />
-          </Grid>
-        </Grid>
+          </Col>
+        </Row>
         <div style={{ marginTop: "20px" }} />
         <FancyBox
           state={null}
@@ -734,14 +730,10 @@ const ViewWriteOffs = () => {
           FRATotal={AccountDetails.fraTotal}
           disable={true}
         />
-        <Grid
-          container
-          spacing={2}
-          style={{ backgroundColor: "#e7f5f4", padding: "1%" }}
-        >
-          <Grid item lg={12} md={12} sm={12} xs={12} align="center">
+        <Row gutter={16} style={{ backgroundColor: "#e7f5f4", padding: "1%" }}>
+          <Col lg={24} md={24} sm={24} xs={24} align="center">
             <Title level={4}>Consolidated</Title>
-          </Grid>
+          </Col>
           <ConsolidateBox
             ViewState={consolidateCalculatorBox}
             FRATotal={consolidateCalculatorBox.fraTotal}
@@ -749,14 +741,14 @@ const ViewWriteOffs = () => {
             APBSTotal={consolidateCalculatorBox.apbsTotal}
             disable={true}
           />
-        </Grid>
+        </Row>
       </Paper>
       <div style={{ marginTop: "20px" }} />
       <div style={{ marginTop: "20px" }} />
       <Paper padding="1">
         <Title level={4}>Additional Detail</Title>
-        <Grid container spacing={1}>
-          <Grid item lg={3} md={3} sm={12}>
+        <Row gutter={8}>
+          <Col lg={6} md={6} sm={24}>
             <div style={{ marginTop: "20px" }} />
             <SelectBox
               label="Classification of Advances"
@@ -766,8 +758,8 @@ const ViewWriteOffs = () => {
               value={additionalDetailsSection.advanceClassificationID}
               disable
             />
-          </Grid>
-          <Grid item lg={4} md={4} sm={12}>
+          </Col>
+          <Col lg={8} md={8} sm={24}>
             <div style={{ marginTop: "20px" }} />
             <label>
               {" "}
@@ -786,8 +778,8 @@ const ViewWriteOffs = () => {
                 Old Charge-Off
               </Radio>
             </Radio.Group>
-          </Grid>
-          <Grid item lg={2} md={2} sm={12}>
+          </Col>
+          <Col lg={4} md={4} sm={24}>
             <div style={{ marginTop: "20px" }} />
             <TextField
               fullWidth
@@ -798,8 +790,8 @@ const ViewWriteOffs = () => {
               name="ApprovalNumber"
               value={additionalDetailsSection.approvalNumber}
             />
-          </Grid>
-          <Grid item lg={3} md={3} sm={12}>
+          </Col>
+          <Col lg={6} md={6} sm={24}>
             <b style={{ fontSize: "0.7rem" }}>{"Date of Approval"}</b>
             <DatePicker
               size="large"
@@ -814,8 +806,8 @@ const ViewWriteOffs = () => {
                   : null
               }
             />
-          </Grid>
-          <Grid item lg={5} md={5} sm={12}>
+          </Col>
+          <Col lg={10} md={10} sm={24}>
             <b style={{ fontSize: "0.7rem" }}>{"Date of Write Off"}</b>
             <DatePicker
               size="large"
@@ -830,8 +822,8 @@ const ViewWriteOffs = () => {
                   : null
               }
             />
-          </Grid>
-          <Grid item lg={4} md={4} sm={12}>
+          </Col>
+          <Col lg={8} md={8} sm={24}>
             <div style={{ marginTop: "20px" }} />
             <SelectBox
               label="Reason of Write off"
@@ -841,8 +833,8 @@ const ViewWriteOffs = () => {
               disable
               value={additionalDetailsSection.writeOffReason}
             />
-          </Grid>
-          <Grid item lg={3} md={3} sm={12} align="left">
+          </Col>
+          <Col lg={6} md={6} sm={24} align="left">
             <div style={{ marginTop: "20px" }} />
             <label>
               {" "}
@@ -857,8 +849,8 @@ const ViewWriteOffs = () => {
               <Radio value={1}>Settlement</Radio>
               <Radio value={2}>Book Cleaning</Radio>
             </Radio.Group>
-          </Grid>
-          <Grid item lg={6} md={6} sm={12} xs={12}>
+          </Col>
+          <Col lg={12} md={12} sm={24} xs={24}>
             <FormattedInputs
               fullWidth
               label="Sale of Security"
@@ -868,8 +860,8 @@ const ViewWriteOffs = () => {
               value={collateralSection.saleOfSecurity}
               disable
             />
-          </Grid>
-          <Grid item lg={6} md={6} sm={12} xs={12}>
+          </Col>
+          <Col lg={12} md={12} sm={24} xs={24}>
             <div style={{ marginTop: "22px" }} />
             <TextField
               fullWidth
@@ -881,8 +873,8 @@ const ViewWriteOffs = () => {
               value={collateralSection.detailsOfSecurity}
               disable
             />
-          </Grid>
-          <Grid item lg={6} md={6} sm={12} xs={12}>
+          </Col>
+          <Col lg={12} md={12} sm={24} xs={24}>
             <TextField
               fullWidth
               label="Change in Securities held by the bank during the loan period"
@@ -892,8 +884,8 @@ const ViewWriteOffs = () => {
               value={collateralSection.changeInSecurity}
               disable
             />
-          </Grid>
-          <Grid item lg={6} md={6} sm={12} xs={12}>
+          </Col>
+          <Col lg={12} md={12} sm={24} xs={24}>
             <TextField
               fullWidth
               // label="Details security by the bank at approving W-off"
@@ -904,8 +896,8 @@ const ViewWriteOffs = () => {
               value={collateralSection.securitybyBankAtWriteOff}
               disable
             />
-          </Grid>
-          <Grid item lg={6} md={6} sm={12} xs={12}>
+          </Col>
+          <Col lg={12} md={12} sm={24} xs={24}>
             <div style={{ marginTop: "20px" }} />
             <label>
               <b>
@@ -923,8 +915,8 @@ const ViewWriteOffs = () => {
               <Radio value={1}>Yes</Radio>
               <Radio value={2}>No</Radio>
             </Radio.Group>
-          </Grid>
-          <Grid item lg={6} md={6} sm={12} xs={12}>
+          </Col>
+          <Col lg={12} md={12} sm={24} xs={24}>
             <div style={{ marginTop: "20px" }} />
             <label>
               <b>
@@ -942,8 +934,8 @@ const ViewWriteOffs = () => {
               <Radio value={1}>Yes</Radio>
               <Radio value={2}>No</Radio>
             </Radio.Group>
-          </Grid>
-          <Grid item lg={6} md={6} sm={12} xs={12}>
+          </Col>
+          <Col lg={12} md={12} sm={24} xs={24}>
             <div style={{ marginTop: "20px" }} />
             <label>
               {" "}
@@ -958,8 +950,8 @@ const ViewWriteOffs = () => {
               <Radio value={1}>Yes</Radio>
               <Radio value={2}>No</Radio>
             </Radio.Group>
-          </Grid>
-          <Grid item lg={6} md={6} sm={12} xs={12}>
+          </Col>
+          <Col lg={12} md={12} sm={24} xs={24}>
             <div style={{ marginTop: "20px" }} />
             <label>
               <b>
@@ -975,14 +967,14 @@ const ViewWriteOffs = () => {
               <Radio value={1}>Yes</Radio>
               <Radio value={2}>No</Radio>
             </Radio.Group>
-          </Grid>
-        </Grid>
+          </Col>
+        </Row>
       </Paper>
       <div style={{ marginTop: "20px" }} />
       <Paper padding="1">
         <Title level={4}>Recovery After Write-off</Title>
-        <Grid container spacing={1}>
-          <Grid item lg={3} md={3} sm={12} xs={12}>
+        <Row gutter={8}>
+          <Col lg={6} md={6} sm={24} xs={24}>
             <b style={{ fontSize: "0.7rem" }}>{"Date of Recovery"}</b>
             <DatePicker
               width="100%"
@@ -997,8 +989,8 @@ const ViewWriteOffs = () => {
               placeholder={"Date of Recovery"}
               name="DateOfRecovery"
             />
-          </Grid>
-          <Grid item lg={3} md={3} sm={12} xs={12}>
+          </Col>
+          <Col lg={6} md={6} sm={24} xs={24}>
             <FormattedInputs
               // type="number"
               fullWidth
@@ -1009,8 +1001,8 @@ const ViewWriteOffs = () => {
               value={recoveryWriteOffSection.principal}
               disable
             />
-          </Grid>
-          <Grid item lg={3} md={3} sm={12} xs={12}>
+          </Col>
+          <Col lg={6} md={6} sm={24} xs={24}>
             <FormattedInputs
               // type="number"
               fullWidth
@@ -1021,8 +1013,8 @@ const ViewWriteOffs = () => {
               value={recoveryWriteOffSection.nominated}
               disable
             />
-          </Grid>
-          <Grid item lg={3} md={3} sm={12} xs={12}>
+          </Col>
+          <Col lg={6} md={6} sm={24} xs={24}>
             <FormattedInputs
               // type="number"
               fullWidth
@@ -1033,10 +1025,10 @@ const ViewWriteOffs = () => {
               value={recoveryWriteOffSection.nonaccural}
               disable
             />
-          </Grid>
+          </Col>
           <div style={{ marginTop: "10px" }} />
-          <Grid container spacing={1}>
-            <Grid item lg={5} md={5} sm={12} xs={12}>
+          <Row gutter={8}>
+            <Col lg={10} md={10} sm={24} xs={24}>
               <FormattedInputs
                 // type="number"
                 fullWidth
@@ -1047,8 +1039,8 @@ const ViewWriteOffs = () => {
                 value={recoveryWriteOffSection.otherCharges}
                 disable
               />
-            </Grid>
-            <Grid item lg={5} md={5} sm={12} xs={12}>
+            </Col>
+            <Col lg={10} md={10} sm={24} xs={24}>
               <FormattedInputs
                 // type="number"
                 fullWidth
@@ -1059,8 +1051,8 @@ const ViewWriteOffs = () => {
                 value={recoveryWriteOffSection.penalInterest}
                 disable
               />
-            </Grid>
-            <Grid item lg={2} md={2} sm={12} xs={12}>
+            </Col>
+            <Col lg={4} md={4} sm={24} xs={24}>
               <FormattedInputs
                 // type="number"
                 fullWidth
@@ -1071,9 +1063,9 @@ const ViewWriteOffs = () => {
                 value={recoveryWriteOffSection.total}
                 disable
               />
-            </Grid>
-          </Grid>
-        </Grid>
+            </Col>
+          </Row>
+        </Row>
       </Paper>
       <div style={{ marginTop: "20px" }} />
       <Title level={2}>Sponsor / Owner Details</Title>
@@ -1081,8 +1073,8 @@ const ViewWriteOffs = () => {
       {sponsorOwnerDetail &&
         sponsorOwnerDetail.map((item, ind) => (
           <Paper padding="2" key={ind}>
-            <Grid container spacing={2}>
-              <Grid item lg={3} md={3} sm={12} xs={12}>
+            <Row gutter={16}>
+              <Col lg={6} md={6} sm={24} xs={24}>
                 <SelectBox
                   size="small"
                   label="Director Type"
@@ -1091,8 +1083,8 @@ const ViewWriteOffs = () => {
                   name="DirectorTypeID"
                   disable
                 />
-              </Grid>
-              <Grid item lg={3} md={3} sm={12} xs={12}>
+              </Col>
+              <Col lg={6} md={6} sm={24} xs={24}>
                 <TextField
                   size="small"
                   disable
@@ -1102,8 +1094,8 @@ const ViewWriteOffs = () => {
                   textLength={300}
                   name="DirectorName"
                 />
-              </Grid>
-              <Grid item lg={3} md={3} sm={12} xs={12}>
+              </Col>
+              <Col lg={6} md={6} sm={24} xs={24}>
                 <TextField
                   size="small"
                   label="CNIC"
@@ -1113,8 +1105,8 @@ const ViewWriteOffs = () => {
                   name="CNIC"
                   disable
                 />
-              </Grid>
-              <Grid item lg={3} md={3} sm={12} xs={12}>
+              </Col>
+              <Col lg={6} md={6} sm={24} xs={24}>
                 <TextField
                   size="small"
                   label="Father / Husband Name"
@@ -1124,8 +1116,8 @@ const ViewWriteOffs = () => {
                   name="FatherHusband"
                   disable
                 />
-              </Grid>
-              <Grid item lg={12} md={12} sm={12} xs={12} align="center">
+              </Col>
+              <Col lg={24} md={24} sm={24} xs={24} align="center">
                 <TextField
                   multiline
                   rows={4}
@@ -1135,8 +1127,8 @@ const ViewWriteOffs = () => {
                   name="Address"
                   disable
                 />
-              </Grid>
-            </Grid>
+              </Col>
+            </Row>
           </Paper>
         ))}
     </>

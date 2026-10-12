@@ -50,7 +50,7 @@ const reducer = (state = initialState, action) => {
         message:"",
       };
     default:
-      return { ...state };
+      return state;
   }
 };
 

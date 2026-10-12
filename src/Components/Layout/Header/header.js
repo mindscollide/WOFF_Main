@@ -1,14 +1,5 @@
 import React, { useEffect } from "react";
-import { Layout, Typography, Tooltip } from "antd";
-import ExpandMoreIcon from "@material-ui/icons/ExpandMore";
-import Avatar from "@material-ui/core/Avatar";
-import Badge from "@material-ui/core/Badge";
-import IconButton from "@material-ui/core/IconButton";
-import NotificationsNoneIcon from "@material-ui/icons/NotificationsNone";
-import Menu from "@material-ui/core/Menu";
-import MenuItem from "@material-ui/core/MenuItem";
-import ListItemIcon from "@material-ui/core/ListItemIcon";
-// import Logout from '@material-ui/core/Logout';
+import { Layout, Typography, Tooltip, Badge, Dropdown } from "antd";
 import UserImage from "../../../assets/images/user.png";
 import Logo from "../../../assets/images/logo.png";
 import { useDispatch, useSelector } from "react-redux";
@@ -23,31 +14,59 @@ import {
 } from "../../../store/actions/request-actions";
 import Helper from "../../../Common/Functions/history_logout";
 import "./header.css";
-import { useHistory } from "react-router-dom";
+import { useNavigate } from "react-router";
 import { disableGoBack } from "../../../store/actions/ui-actions";
 import { makeTabAvtive } from "../../../store/actions/ui-actions";
+import { BellOutlined as NotificationsNoneIcon } from "@ant-design/icons";
 const Header = ({ Notification, title, UserDetails }) => {
-  console.log(Notification);
-  const history = useHistory();
+  const navigate = useNavigate();
   const dispatch = useDispatch();
-  const state = useSelector((state) => state);
-  const { wofApprovals, requestReducer, ui } = state;
+  const wofApprovals = useSelector((state) => state.wofApprovals);
+  const requestReducer = useSelector((state) => state.requestReducer);
+  const ui = useSelector((state) => state.ui);
   const { Title } = Typography;
   const { Header } = Layout;
   const Details = JSON.parse(localStorage.getItem("UserDetails"));
-  const role = parseInt(JSON.parse(localStorage.getItem("role")));
-  const [anchorEl, setAnchorEl] = React.useState(null);
-  const open = Boolean(anchorEl);
-  const handleClick = (event) => {
-    setAnchorEl(event.currentTarget);
-  };
-
-  const handleClose = () => {
-    setAnchorEl(null);
-  };
-  Helper.history = history;
+  // Bell dropdown: one entry, which depends on the role (3 = Manager sees
+  // pending approvals, otherwise System Admin sees new user requests).
+  const notificationItems = [
+    Details.roleID === 3
+      ? {
+          key: "approvals",
+          label: (
+            <span>
+              <i className="icon-chevron-right color-black icon-s mr-2"></i>
+              {wofApprovals.ApprovalsCount} Pending For Approval
+            </span>
+          ),
+          onClick: () => {
+            dispatch(getApprovals(Details.userID));
+            localStorage.setItem("parent", "sub1");
+            localStorage.setItem("child", "1");
+            dispatch(makeTabAvtive());
+            navigate("/Wof/Manager/PendingApprovals");
+          },
+        }
+      : {
+          key: "requests",
+          label: (
+            <span>
+              <i className="icon-chevron-right color-black icon-s mr-2"></i>
+              {requestReducer.userRequestCount} New User Requests
+            </span>
+          ),
+          onClick: () => {
+            dispatch(newRequestList(Details.userID));
+            localStorage.setItem("parent", "sub1");
+            localStorage.setItem("child", "15");
+            dispatch(makeTabAvtive());
+            navigate("/Wof/Admin/NewRequestList");
+          },
+        },
+  ];
+  Helper.navigate = navigate;
   useEffect(() => {
-    Helper.history = history;
+    Helper.navigate = navigate;
   }, []);
   const openUserRequest = () => {
     console.log(Details.userID);
@@ -87,7 +106,7 @@ const Header = ({ Notification, title, UserDetails }) => {
       if (value == "true") {
         console.log("ali12345", value == "true", 3);
         if (newTabCount2 - 1 == 0) {
-          dispatch(signOut(history));
+          dispatch(signOut(navigate));
           window.localStorage.isMySessionActive = "false";
         } else {
           window.localStorage.isMySessionActive = "false";
@@ -139,66 +158,34 @@ const Header = ({ Notification, title, UserDetails }) => {
         {Notification !== null && Notification === true ? (
           <Tooltip placement="bottom" title="Notification">
             <div className="notify">
-              <IconButton onClick={handleClick}>
-                <Badge
-                  badgeContent={
-                    Details.roleID === 2
-                      ? requestReducer.userRequestCount
-                      : wofApprovals.ApprovalsCount
-                  }
-                  color="secondary"
-                  overlap="circular"
-                >
-                  <NotificationsNoneIcon
-                    fontSize="large"
-                    className="noti-icon"
-                  />
-                </Badge>
-              </IconButton>
-              <Menu
-                anchorEl={anchorEl}
-                open={open}
-                onClose={handleClose}
-                onClick={handleClose}
-                style={{ top: "45px", left: "35px" }}
+              <Dropdown
+                menu={{ items: notificationItems }}
+                trigger={["click"]}
+                placement="bottomRight"
               >
-                <MenuItem>
-                  {Details.roleID === 3 ? (
-                    <ListItemIcon
-                      onClick={() => {
-                        dispatch(getApprovals(Details.userID));
-                        localStorage.setItem("parent", "sub1");
-                        localStorage.setItem("child", "1");
-                        dispatch(makeTabAvtive());
-                        history.push("/Wof/Manager/PendingApprovals");
-                      }}
-                    >
-                      <i className="icon-chevron-right color-black icon-s mr-2"></i>
-                      {wofApprovals.ApprovalsCount} Pending For Approval
-                    </ListItemIcon>
-                  ) : (
-                    <ListItemIcon
-                      onClick={() => {
-                        dispatch(newRequestList(Details.userID));
-                        localStorage.setItem("parent", "sub1");
-                        localStorage.setItem("child", "15");
-                        dispatch(makeTabAvtive());
-                        history.push("/Wof/Admin/NewRequestList");
-                      }}
-                    >
-                      <i className="icon-chevron-right color-black icon-s mr-2"></i>
-                      {requestReducer.userRequestCount} New User Requests
-                    </ListItemIcon>
-                  )}
-                </MenuItem>
-              </Menu>
+                <span className="u-cursor-pointer">
+                  <Badge
+                    count={
+                      Details.roleID === 2
+                        ? requestReducer.userRequestCount
+                        : wofApprovals.ApprovalsCount
+                    }
+                  >
+                    {/* 35px matches MUI fontSize="large" */}
+                    <NotificationsNoneIcon
+                      style={{ fontSize: 35 }}
+                      className="noti-icon"
+                    />
+                  </Badge>
+                </span>
+              </Dropdown>
             </div>
           </Tooltip>
         ) : null}
         {/* its logout button */}
         <Tooltip placement="bottom" title="Logout">
           <div className="logout-icon-section">
-            <div onClick={() => dispatch(signOut(history))}>
+            <div onClick={() => dispatch(signOut(navigate))}>
               <div className="logout-icon">
                 <i className="icon-login icon-size-one "></i>
               </div>

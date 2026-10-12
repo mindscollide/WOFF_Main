@@ -1,7 +1,6 @@
-import { Box, Grid } from "@material-ui/core";
 import React, { useState, useEffect } from "react";
 import styles from "./style.module.css";
-import { Typography, Space, Radio } from "antd";
+import { Typography, Space, Radio, Row, Col } from "antd";
 import {
   SelectBox,
   Button,
@@ -43,8 +42,8 @@ const CreditPolicy = () => {
   var [rows, setRows] = useState([]);
   const [submitType, setsubmitType] = useState(1);
   const dispatch = useDispatch();
-  const state = useSelector((state) => state);
-  const { reports, setupForms } = state;
+  const reports = useSelector((state) => state.reports);
+  const setupForms = useSelector((state) => state.setupForms);
   const { Title } = Typography;
 
   // data states
@@ -183,14 +182,14 @@ const CreditPolicy = () => {
     <form onSubmit={(e) => handleSubmit(e, submitType)}>
       <>
         <Paper padding="2">
-          <Grid container spacing={1}>
-            <Grid item lg={9} md={9} sm={12}>
+          <Row gutter={8}>
+            <Col lg={18} md={18} sm={24}>
               <Title level={3}>Credit Policy</Title>
-            </Grid>
+            </Col>
             <div style={{ marginTop: "8%" }} />
             {/* Row 2 */}
-            <Grid container spacing={1}>
-              <Grid item lg={4} md={4} sm={12}>
+            <Row gutter={8}>
+              <Col lg={8} md={8} sm={24}>
                 <label>
                   <b>Date Of WriteOff</b>
                 </label>
@@ -211,13 +210,15 @@ const CreditPolicy = () => {
                   }
                   DateRange={true}
                 />
-              </Grid>
-              <Grid item lg={4} md={4} sm={12}>
+              </Col>
+              <Col lg={8} md={8} sm={24}>
                 <label>
                   <b>FRA Total</b>
                 </label>
                 <br />
-                <Box display="flex">
+                <div style={{
+                  display: "flex"
+                }}>
                   <FormattedInputs
                     placeholder="From"
                     fullWidth
@@ -236,9 +237,9 @@ const CreditPolicy = () => {
                     value={form.AmountTo}
                     change={ammountFieldHandler}
                   />
-                </Box>
-              </Grid>
-              <Grid item lg={4} md={4} sm={12}>
+                </div>
+              </Col>
+              <Col lg={8} md={8} sm={24}>
                 <label>
                   <b>MISYS Customer Code</b>
                 </label>
@@ -252,9 +253,9 @@ const CreditPolicy = () => {
                   // required
                   size="small"
                 />
-              </Grid>
+              </Col>
               <div style={{ marginTop: "8%" }} />
-              <Grid item lg={3} md={3} sm={12}>
+              <Col lg={6} md={6} sm={24}>
                 <label>
                   <b>Borrower NPL Code</b>
                 </label>
@@ -267,8 +268,8 @@ const CreditPolicy = () => {
                   size="small"
                   fullWidth
                 />
-              </Grid>
-              <Grid item lg={3} md={3} sm={12}>
+              </Col>
+              <Col lg={6} md={6} sm={24}>
                 <label>
                   <b>CNIC Number</b>
                 </label>
@@ -283,8 +284,8 @@ const CreditPolicy = () => {
                   label={null}
                   size="small"
                 />
-              </Grid>
-              <Grid item lg={3} md={3} sm={12}>
+              </Col>
+              <Col lg={6} md={6} sm={24}>
                 <label>
                   <b>Name of Borrower</b>
                 </label>
@@ -297,8 +298,8 @@ const CreditPolicy = () => {
                   label={null}
                   size="small"
                 />
-              </Grid>
-              <Grid item lg={3} md={3} sm={12}>
+              </Col>
+              <Col lg={6} md={6} sm={24}>
                 <label>
                   <b>Classification of Advance</b>
                 </label>
@@ -311,11 +312,11 @@ const CreditPolicy = () => {
                   option={setupForms.ClassificationOfAdvances}
                   propertyName={"title"}
                 />
-              </Grid>
-            </Grid>
+              </Col>
+            </Row>
             {/* Row 03 */}
-            <Grid container spacing={1}>
-              <Grid item lg={3} md={3} sm={12}>
+            <Row gutter={8}>
+              <Col lg={6} md={6} sm={24}>
                 <label>
                   <b>WOF Code</b>
                 </label>
@@ -328,8 +329,8 @@ const CreditPolicy = () => {
                   size="small"
                   fullWidth
                 />
-              </Grid>
-              <Grid item lg={3} md={3} sm={12} align="left">
+              </Col>
+              <Col lg={6} md={6} sm={24} align="left">
                 <label>
                   <b>Charge Off</b>
                 </label>
@@ -347,8 +348,8 @@ const CreditPolicy = () => {
                     Old Charge-Off
                   </Radio>
                 </Radio.Group>
-              </Grid>
-              <Grid item lg={3} md={3} sm={12}>
+              </Col>
+              <Col lg={6} md={6} sm={24}>
                 <div style={{ marginTop: "9%" }} />
                 <Button
                   applyClass="btnMiniPrimary"
@@ -357,8 +358,8 @@ const CreditPolicy = () => {
                   click={() => setsubmitType(1)}
                   type="submit"
                 />
-              </Grid>
-              <Grid item lg={3} md={3} sm={12} align="right">
+              </Col>
+              <Col lg={6} md={6} sm={24} align="right">
                 <div style={{ marginTop: "9%" }} />
                 <Space>
                   <Button
@@ -369,18 +370,18 @@ const CreditPolicy = () => {
                     icon={<i className="icon-export-excel icon-size-one"></i>}
                   />
                 </Space>
-              </Grid>
-            </Grid>
-            <Grid container spacing={1}>
-              <Grid item style={{ marginTop: "2%" }} lg={12} md={12} sm={12}>
+              </Col>
+            </Row>
+            <Row gutter={8}>
+              <Col style={{ marginTop: "2%" }} lg={24} md={24} sm={24}>
                 <Table
                   rows={rows}
                   columns={columns}
                   scroll={{ x: "max-content" }}
                 />
-              </Grid>
-            </Grid>
-          </Grid>
+              </Col>
+            </Row>
+          </Row>
         </Paper>
         <Notification
           setOpen={setOpen}

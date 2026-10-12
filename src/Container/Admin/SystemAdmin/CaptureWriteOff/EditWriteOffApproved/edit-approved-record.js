@@ -1,5 +1,4 @@
 import React, { useEffect, useState } from "react";
-import { Grid, Box } from "@material-ui/core";
 import {
   Paper,
   TextField,
@@ -7,19 +6,17 @@ import {
   Button,
   Notification,
 } from "../../../../../Components/Elements";
-import { Typography } from "antd";
+import { Typography, Row, Col } from "antd";
 import { useDispatch, useSelector } from "react-redux";
-import AddIcon from "@material-ui/icons/Add";
 import { GetBorrowerType } from "../../../../../store/actions/setup-forms-actions";
 import { directorTypeOptions } from "../../../../../Common/SelectFieldOption/select-field-option";
-import ClearOutlinedIcon from "@material-ui/icons/ClearOutlined";
 import { EditApprovedWriteOff } from "../../../../../store/actions/write-off-actions";
-import { useHistory } from "react-router";
+import { useNavigate } from "react-router";
+import { PlusOutlined as AddIcon, CloseOutlined as ClearOutlinedIcon } from "@ant-design/icons";
 const EditApprovedRecord = ({ setGoToSave, goToSave, PreviousPageDetails }) => {
   const { Title } = Typography;
-  const history = useHistory();
-  const state = useSelector((state) => state);
-  const { setupForms } = state;
+  const navigate = useNavigate();
+  const setupForms = useSelector((state) => state.setupForms);
   const [open, setOpen] = useState({
     open: false,
     message: "",
@@ -183,7 +180,7 @@ const EditApprovedRecord = ({ setGoToSave, goToSave, PreviousPageDetails }) => {
         PreviousPageDetails.AdditionalDetails.AdvanceClassificationID = 1;
       }
       console.log(PreviousPageDetails);
-      dispatch(EditApprovedWriteOff(PreviousPageDetails, history, setOpen));
+      dispatch(EditApprovedWriteOff(PreviousPageDetails, navigate, setOpen));
     } else {
       setOpen({
         ...open,
@@ -272,10 +269,10 @@ const EditApprovedRecord = ({ setGoToSave, goToSave, PreviousPageDetails }) => {
     <>
       <form onSubmit={SaveAll}>
         <div style={{ marginTop: "20px" }} />
-        <Grid container spacing={2}></Grid>
+        <Row gutter={16}></Row>
         <Paper padding="2">
-          <Grid container spacing={2}>
-            <Grid item lg={3} md={3} sm={12} xs={12}>
+          <Row gutter={16}>
+            <Col lg={6} md={6} sm={24} xs={24}>
               <TextField
                 label="Misys Customer Code"
                 disable
@@ -283,16 +280,16 @@ const EditApprovedRecord = ({ setGoToSave, goToSave, PreviousPageDetails }) => {
                 fullWidth
                 textLength={300}
               />
-            </Grid>
-            <Grid item lg={2} md={2} sm={12} xs={12}>
+            </Col>
+            <Col lg={4} md={4} sm={24} xs={24}>
               <TextField
                 label="WOF Code"
                 disable
                 value={InformationSection.WOFCode}
                 fullWidth
               />
-            </Grid>
-            <Grid item lg={2} md={2} sm={12} xs={12}>
+            </Col>
+            <Col lg={4} md={4} sm={24} xs={24}>
               <TextField
                 label="Borrower NPL Code"
                 value={InformationSection.NPLCode}
@@ -300,8 +297,8 @@ const EditApprovedRecord = ({ setGoToSave, goToSave, PreviousPageDetails }) => {
                 textLength={7}
                 disable
               />
-            </Grid>
-            <Grid item lg={2} md={2} sm={12} xs={12}>
+            </Col>
+            <Col lg={4} md={4} sm={24} xs={24}>
               <TextField
                 label="Borrower Name"
                 value={InformationSection.BorrowerName}
@@ -309,8 +306,8 @@ const EditApprovedRecord = ({ setGoToSave, goToSave, PreviousPageDetails }) => {
                 textLength={300}
                 disable
               />
-            </Grid>
-            <Grid item lg={3} md={3} sm={12} xs={12}>
+            </Col>
+            <Col lg={6} md={6} sm={24} xs={24}>
               <TextField
                 label="Borrower Type"
                 value={InformationSection.BorrowerTypeID}
@@ -318,8 +315,8 @@ const EditApprovedRecord = ({ setGoToSave, goToSave, PreviousPageDetails }) => {
                 textLength={300}
                 disable
               />
-            </Grid>
-          </Grid>
+            </Col>
+          </Row>
         </Paper>
         <Title level={2}>Sponsor / Owner Details</Title>
         <div style={{ marginTop: "20px" }} />
@@ -327,7 +324,7 @@ const EditApprovedRecord = ({ setGoToSave, goToSave, PreviousPageDetails }) => {
           sponsorOwnerDetail.map((item, ind) => (
             <div key={ind}>
               <Paper padding="2">
-                <Box align="right">
+                <div align="right">
                   {ind > 0 && (
                     <i
                       className="icon-trash icon-size-one pdfRed"
@@ -336,9 +333,9 @@ const EditApprovedRecord = ({ setGoToSave, goToSave, PreviousPageDetails }) => {
                       onClick={() => removeNewRecordHandler(ind)}
                     />
                   )}
-                </Box>
-                <Grid container spacing={2}>
-                  <Grid item lg={3} md={3} sm={12} xs={12}>
+                </div>
+                <Row gutter={16}>
+                  <Col lg={6} md={6} sm={24} xs={24}>
                     <SelectBox
                       size="small"
                       label="Director Type"
@@ -349,8 +346,8 @@ const EditApprovedRecord = ({ setGoToSave, goToSave, PreviousPageDetails }) => {
                       option={directorTypeOptions}
                       focus={() => sectionIndexHandler(ind)}
                     />
-                  </Grid>
-                  <Grid item lg={3} md={3} sm={12} xs={12}>
+                  </Col>
+                  <Col lg={6} md={6} sm={24} xs={24}>
                     <TextField
                       size="small"
                       label="Name of Proprietor/Director/Partner"
@@ -361,8 +358,8 @@ const EditApprovedRecord = ({ setGoToSave, goToSave, PreviousPageDetails }) => {
                       name="DirectorName"
                       focus={() => sectionIndexHandler(ind)}
                     />
-                  </Grid>
-                  <Grid item lg={3} md={3} sm={12} xs={12}>
+                  </Col>
+                  <Col lg={6} md={6} sm={24} xs={24}>
                     <TextField
                       size="small"
                       label="CNIC"
@@ -375,8 +372,8 @@ const EditApprovedRecord = ({ setGoToSave, goToSave, PreviousPageDetails }) => {
                       name="CNIC"
                       focus={() => sectionIndexHandler(ind)}
                     />
-                  </Grid>
-                  <Grid item lg={3} md={3} sm={12} xs={12}>
+                  </Col>
+                  <Col lg={6} md={6} sm={24} xs={24}>
                     <TextField
                       size="small"
                       label="Father / Husband Name"
@@ -388,8 +385,8 @@ const EditApprovedRecord = ({ setGoToSave, goToSave, PreviousPageDetails }) => {
                       name="FatherHusband"
                       focus={() => sectionIndexHandler(ind)}
                     />
-                  </Grid>
-                  <Grid item lg={12} md={12} sm={12} xs={12} align="center">
+                  </Col>
+                  <Col lg={24} md={24} sm={24} xs={24} align="center">
                     <div style={{ marginTop: "15px" }} />
                     <TextField
                       multiline
@@ -401,15 +398,15 @@ const EditApprovedRecord = ({ setGoToSave, goToSave, PreviousPageDetails }) => {
                       name="Address"
                       focus={() => sectionIndexHandler(ind)}
                     />
-                  </Grid>
-                </Grid>
+                  </Col>
+                </Row>
               </Paper>
               <div style={{ marginBottom: "25px" }} />
             </div>
           ))}
 
         <div style={{ marginTop: "25px" }} />
-        <Grid item md={12} lg={12} sm={12} align="center">
+        <Col md={24} lg={24} sm={24} align="center">
           <Button
             text="Add Record"
             icon={<AddIcon />}
@@ -418,10 +415,10 @@ const EditApprovedRecord = ({ setGoToSave, goToSave, PreviousPageDetails }) => {
             click={addNewRecordHandler}
             disableBtn={disable1}
           />
-        </Grid>
+        </Col>
         <div style={{ marginTop: "25px" }} />
-        <Grid container spacing={2} justifyContent="center">
-          <Grid item lg={2} md={2} sm={12}>
+        <Row gutter={16} justify="center">
+          <Col lg={4} md={4} sm={24}>
             <Button
               text="Previous"
               icon={<i className="icon-arrow-left icon-size-one"></i>}
@@ -429,8 +426,8 @@ const EditApprovedRecord = ({ setGoToSave, goToSave, PreviousPageDetails }) => {
               size="large"
               click={() => setGoToSave(!goToSave)}
             />
-          </Grid>
-          <Grid item lg={3} md={3} sm={12}>
+          </Col>
+          <Col lg={6} md={6} sm={24}>
             <Button
               text="Save and Proceed"
               type="submit"
@@ -439,7 +436,7 @@ const EditApprovedRecord = ({ setGoToSave, goToSave, PreviousPageDetails }) => {
               size="large"
               click={() => setsaveValue(1)}
             />
-          </Grid>
+          </Col>
 
           {/* <Grid item lg={4} md={4} sm={12}>
             <Button
@@ -451,7 +448,7 @@ const EditApprovedRecord = ({ setGoToSave, goToSave, PreviousPageDetails }) => {
               click={() => setsaveValue(2)}
             />
           </Grid> */}
-        </Grid>
+        </Row>
         <Notification
           setOpen={setError}
           open={error}

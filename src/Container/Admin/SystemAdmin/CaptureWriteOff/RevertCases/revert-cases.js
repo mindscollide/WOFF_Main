@@ -1,8 +1,7 @@
-import { Box, Grid } from "@material-ui/core";
 import React, { useState, useEffect } from "react";
 // import styles from "../../../../Manager/Reports/CompleteReports/s";
-import { Typography, Space, Radio, Tooltip } from "antd";
-import { Link, useHistory } from "react-router-dom";
+import { Typography, Space, Radio, Tooltip, Row, Col } from "antd";
+import { Link, useNavigate } from "react-router";
 import {
   SelectBox,
   Button,
@@ -59,8 +58,8 @@ const RevertCases = () => {
   const [ApprovalHistory, setviewApprovalHistory] = useState([]);
 
   const dispatch = useDispatch();
-  const state = useSelector((state) => state);
-  const { reports, setupForms } = state;
+  const reports = useSelector((state) => state.reports);
+  const setupForms = useSelector((state) => state.setupForms);
   const { Title } = Typography;
 
   // data states
@@ -86,7 +85,7 @@ const RevertCases = () => {
     open: false,
     message: "",
   });
-  const history = useHistory();
+  const navigate = useNavigate();
   const fieldsHandler = (e, val) => {
     let id = e.target.id !== undefined ? e.target.id : null;
     let name = e.target.name;
@@ -228,14 +227,14 @@ const RevertCases = () => {
   const View = (e, value) => {
     localStorage.setItem("wofCustomerMasterID", JSON.stringify(value));
     dispatch(enableGoBack());
-    history.push("/Wof/Admin/ViewWriteOff");
+    navigate("/Wof/Admin/ViewWriteOff");
   };
   const Edit = (e, value) => {
     localStorage.setItem("parent", "");
     localStorage.setItem("child", "");
     dispatch(activeEdit());
     localStorage.setItem("wofCustomerMasterID", JSON.stringify(value));
-    history.push("/Wof/Admin/EditWriteOffDetails");
+    navigate("/Wof/Admin/EditWriteOffDetails");
   };
   const handleCancel1 = () => {
     setIsModalVisible1(false);
@@ -455,12 +454,12 @@ const RevertCases = () => {
       <form onSubmit={(e) => handleSubmit(e, submitType)}>
         <>
           <Paper padding="2">
-            <Grid container spacing={1}>
+            <Row gutter={8}>
               {/* Row 01 */}
-              <Grid item lg={9} md={9} sm={12}>
+              <Col lg={18} md={18} sm={24}>
                 <Title level={3}>In-Active Cases</Title>
-              </Grid>
-              <Grid item lg={3} md={3} sm={12} align="right">
+              </Col>
+              <Col lg={6} md={6} sm={24} align="right">
                 <Space>
                   <Button
                     type="submit"
@@ -472,16 +471,18 @@ const RevertCases = () => {
                 </Space>
                 <br />
                 <br />
-              </Grid>
+              </Col>
               <div style={{ marginTop: "8%" }} />
               {/* Row 2 */}
-              <Grid container spacing={1}>
-                <Grid item lg={4} md={4} sm={12}>
+              <Row gutter={8}>
+                <Col lg={8} md={8} sm={24}>
                   <label>
                     <b>Date</b>
                   </label>
                   <br />
-                  <Box display="flex">
+                  <div style={{
+                    display: "flex"
+                  }}>
                     <StartToEndDate
                       change={datehandler}
                       width="100%!important"
@@ -498,14 +499,16 @@ const RevertCases = () => {
                       }
                       DateRange={true}
                     />
-                  </Box>
-                </Grid>
-                <Grid item lg={4} md={4} sm={12}>
+                  </div>
+                </Col>
+                <Col lg={8} md={8} sm={24}>
                   <label>
                     <b>Amount</b>
                   </label>
                   <br />
-                  <Box display="flex">
+                  <div style={{
+                    display: "flex"
+                  }}>
                     <FormattedInputs
                       placeholder="From"
                       label={null}
@@ -526,9 +529,9 @@ const RevertCases = () => {
                       value={form.AmountTo}
                       change={ammountFieldHandler}
                     />
-                  </Box>
-                </Grid>
-                <Grid item lg={4} md={4} sm={12}>
+                  </div>
+                </Col>
+                <Col lg={8} md={8} sm={24}>
                   <label>
                     <b>MISYS Customer Code</b>
                   </label>
@@ -551,9 +554,9 @@ const RevertCases = () => {
                     label={null}
                     size="small"
                   />
-                </Grid>
+                </Col>
                 <div style={{ marginTop: "8%" }} />
-                <Grid item lg={3} md={3} sm={12}>
+                <Col lg={6} md={6} sm={24}>
                   <label>
                     <b>Borrower NPL Code</b>
                   </label>
@@ -566,8 +569,8 @@ const RevertCases = () => {
                     size="small"
                     fullWidth
                   />
-                </Grid>
-                <Grid item lg={3} md={3} sm={12}>
+                </Col>
+                <Col lg={6} md={6} sm={24}>
                   <label>
                     <b>CNIC Number</b>
                   </label>
@@ -582,8 +585,8 @@ const RevertCases = () => {
                     textLength={13}
                     minLength={13}
                   />
-                </Grid>
-                <Grid item lg={3} md={3} sm={12}>
+                </Col>
+                <Col lg={6} md={6} sm={24}>
                   <label>
                     <b>Name of Sponsor / Owner</b>
                   </label>
@@ -596,8 +599,8 @@ const RevertCases = () => {
                     label={null}
                     size="small"
                   />
-                </Grid>
-                <Grid item lg={3} md={3} sm={12}>
+                </Col>
+                <Col lg={6} md={6} sm={24}>
                   <label>
                     <b>Classification of Advance</b>
                   </label>
@@ -610,11 +613,11 @@ const RevertCases = () => {
                     propertyName={"title"}
                     option={setupForms.ClassificationOfAdvances}
                   />
-                </Grid>
-              </Grid>
+                </Col>
+              </Row>
               {/* Row 03 */}
-              <Grid container spacing={1}>
-                <Grid item lg={4} md={4} sm={12} align="left">
+              <Row gutter={8}>
+                <Col lg={8} md={8} sm={24} align="left">
                   <label>
                     <b>Charge Off</b>
                   </label>
@@ -631,8 +634,8 @@ const RevertCases = () => {
                       Old Charge-Off
                     </Radio>
                   </Radio.Group>
-                </Grid>
-                <Grid item lg={3} md={3} sm={12}>
+                </Col>
+                <Col lg={6} md={6} sm={24}>
                   <label>
                     <b>Business Segment</b>
                   </label>
@@ -645,8 +648,8 @@ const RevertCases = () => {
                     label={null}
                     propertyName={"title"}
                   />
-                </Grid>
-                <Grid item lg={3} md={3} sm={12}>
+                </Col>
+                <Col lg={6} md={6} sm={24}>
                   <label>
                     <b>Reason of Write Off</b>
                   </label>
@@ -659,8 +662,8 @@ const RevertCases = () => {
                     change={fieldsHandler}
                     label={null}
                   />
-                </Grid>
-                <Grid item lg={2} md={2} sm={12}>
+                </Col>
+                <Col lg={4} md={4} sm={24}>
                   <div style={{ marginTop: "14%" }} />
                   <Button
                     applyClass="btnMiniPrimary"
@@ -669,16 +672,16 @@ const RevertCases = () => {
                     click={() => setsubmitType(1)}
                     type="submit"
                   />
-                </Grid>
-                <Grid item style={{ marginTop: "2%" }} lg={12} md={12} sm={12}>
+                </Col>
+                <Col style={{ marginTop: "2%" }} lg={24} md={24} sm={24}>
                   <Table
                     rows={rows}
                     columns={columns}
                     scroll={{ x: "max-content" }}
                   />
-                </Grid>
-              </Grid>
-            </Grid>
+                </Col>
+              </Row>
+            </Row>
           </Paper>
         </>
       </form>

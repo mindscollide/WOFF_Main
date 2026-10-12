@@ -1,1 +1,5 @@
 node_modules
+dist
+
+# All markdown docs (CLAUDE.md, notes, handoffs) are local-machine only — never committed
+*.md

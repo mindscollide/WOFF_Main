@@ -1,5 +1,4 @@
 import React, { useEffect, useState } from "react";
-import { Grid, Badge, Box } from "@material-ui/core";
 import {
   Paper,
   TextField,
@@ -7,14 +6,14 @@ import {
   Button,
   Notification,
 } from "../../Elements";
-import { message, Typography, Tooltip } from "antd";
+import { message, Typography, Tooltip, Row, Col } from "antd";
 import { useSelector, useDispatch } from "react-redux";
-import AddIcon from "@material-ui/icons/Add";
-import ClearOutlinedIcon from "@material-ui/icons/ClearOutlined";
-import { useHistory } from "react-router";
+import { useNavigate } from "react-router";
 import { directorTypeOptions } from "../../../Common/SelectFieldOption/select-field-option";
 import { addWriteOff } from "../../../store/actions/write-off-actions";
 import { GetBorrowerType } from "../../../store/actions/setup-forms-actions";
+
+import { PlusOutlined as AddIcon, CloseOutlined as ClearOutlinedIcon } from "@ant-design/icons";
 
 const SaveRecord = ({
   setGoToSave,
@@ -23,15 +22,14 @@ const SaveRecord = ({
   WofCode,
   setwofcode,
 }) => {
-  const state = useSelector((state) => state);
-  const { setupForms } = state;
+  const setupForms = useSelector((state) => state.setupForms);
   const [open, setOpen] = useState({
     open: false,
     message: "",
   });
   const { Title } = Typography;
   const dispatch = useDispatch();
-  const history = useHistory();
+  const navigate = useNavigate();
   let UserDetails = JSON.parse(localStorage.getItem("UserDetails"));
   const [sectionIndex, setSectionIndex] = useState(null);
   const [saveValue, setsaveValue] = useState(null);
@@ -194,7 +192,7 @@ const SaveRecord = ({
       }
       console.log("PreviousPageDetails", PreviousPageDetails);
       dispatch(
-        addWriteOff(PreviousPageDetails, history, setwofcode, setOpen, open)
+        addWriteOff(PreviousPageDetails, navigate, setwofcode, setOpen, open)
       );
     } else {
       setOpen({
@@ -298,8 +296,8 @@ const SaveRecord = ({
       <form onSubmit={SaveAll}>
         <Title level={2}>Sponsor / Owner Details</Title>
         <Paper padding="2">
-          <Grid container spacing={2}>
-            <Grid item lg={3} md={3} sm={12} xs={12}>
+          <Row gutter={16}>
+            <Col lg={6} md={6} sm={24} xs={24}>
               <TextField
                 label="Misys Customer Code"
                 disable
@@ -308,11 +306,11 @@ const SaveRecord = ({
                 textLength={300}
                 size="large"
               />
-            </Grid>
-            <Grid item lg={2} md={2} sm={12} xs={12}>
+            </Col>
+            <Col lg={4} md={4} sm={24} xs={24}>
               <TextField label="WOF Code" disable value={WofCode} fullWidth />
-            </Grid>
-            <Grid item lg={2} md={2} sm={12} xs={12}>
+            </Col>
+            <Col lg={4} md={4} sm={24} xs={24}>
               <TextField
                 label="Borrower NPL Code"
                 value={InformationSection.NPLCode}
@@ -320,8 +318,8 @@ const SaveRecord = ({
                 textLength={7}
                 disable
               />
-            </Grid>
-            <Grid item lg={2} md={2} sm={12} xs={12}>
+            </Col>
+            <Col lg={4} md={4} sm={24} xs={24}>
               <TextField
                 label="Borrower Name"
                 value={InformationSection.BorrowerName}
@@ -329,8 +327,8 @@ const SaveRecord = ({
                 textLength={300}
                 disable
               />
-            </Grid>
-            <Grid item lg={3} md={3} sm={12} xs={12}>
+            </Col>
+            <Col lg={6} md={6} sm={24} xs={24}>
               <TextField
                 label="Borrower Type"
                 value={InformationSection.BorrowerTypeID}
@@ -338,8 +336,8 @@ const SaveRecord = ({
                 textLength={300}
                 disable
               />
-            </Grid>
-          </Grid>
+            </Col>
+          </Row>
         </Paper>
 
         <div style={{ marginTop: "20px" }} />
@@ -351,7 +349,7 @@ const SaveRecord = ({
           sponsorOwnerDetail.map((item, ind) => (
             <div key={ind}>
               <Paper padding="2">
-                <Box align="right">
+                <div align="right">
                   <Tooltip title="Delete" color={"Black"}>
                     {ind > 0 && (
                       <i
@@ -362,9 +360,9 @@ const SaveRecord = ({
                       />
                     )}
                   </Tooltip>
-                </Box>
-                <Grid container spacing={2}>
-                  <Grid item lg={3} md={3} sm={12} xs={12}>
+                </div>
+                <Row gutter={16}>
+                  <Col lg={6} md={6} sm={24} xs={24}>
                     <SelectBox
                       size="large"
                       label="Director Type"
@@ -376,8 +374,8 @@ const SaveRecord = ({
                       focus={() => sectionIndexHandler(ind)}
                       required
                     />
-                  </Grid>
-                  <Grid item lg={3} md={3} sm={12} xs={12}>
+                  </Col>
+                  <Col lg={6} md={6} sm={24} xs={24}>
                     <TextField
                       focus={() => sectionIndexHandler(ind)}
                       size="large"
@@ -389,8 +387,8 @@ const SaveRecord = ({
                       name="DirectorName"
                       required
                     />
-                  </Grid>
-                  <Grid item lg={3} md={3} sm={12} xs={12}>
+                  </Col>
+                  <Col lg={6} md={6} sm={24} xs={24}>
                     <TextField
                       focus={() => sectionIndexHandler(ind)}
                       // size="small"
@@ -405,8 +403,8 @@ const SaveRecord = ({
                       name="CNIC"
                       // required
                     />
-                  </Grid>
-                  <Grid item lg={3} md={3} sm={12} xs={12}>
+                  </Col>
+                  <Col lg={6} md={6} sm={24} xs={24}>
                     <TextField
                       focus={() => sectionIndexHandler(ind)}
                       // size="small"
@@ -419,8 +417,8 @@ const SaveRecord = ({
                       value={item.FatherHusband}
                       name="FatherHusband"
                     />
-                  </Grid>
-                  <Grid item lg={12} md={12} sm={12} xs={12} align="center">
+                  </Col>
+                  <Col lg={24} md={24} sm={24} xs={24} align="center">
                     <div style={{ marginTop: "15px" }} />
                     <TextField
                       focus={() => sectionIndexHandler(ind)}
@@ -433,15 +431,15 @@ const SaveRecord = ({
                       name="Address"
                       required
                     />
-                  </Grid>
-                </Grid>
+                  </Col>
+                </Row>
               </Paper>
 
               <div style={{ marginBottom: "25px" }} />
             </div>
           ))}
         <div style={{ marginTop: "25px" }} />
-        <Grid item md={12} lg={12} sm={12} align="center">
+        <Col md={24} lg={24} sm={24} align="center">
           <Button
             text="Add Record"
             icon={<AddIcon />}
@@ -450,11 +448,11 @@ const SaveRecord = ({
             click={addNewRecordHandler}
             disableBtn={disable1}
           />
-        </Grid>
+        </Col>
 
         <div style={{ marginTop: "25px" }} />
-        <Grid container spacing={2} justifyContent="center">
-          <Grid item lg={2} md={2} sm={12}>
+        <Row gutter={16} justify="center">
+          <Col lg={4} md={4} sm={24}>
             <Button
               text="Previous"
               icon={<i className="icon-arrow-left icon-size-one"></i>}
@@ -462,9 +460,9 @@ const SaveRecord = ({
               size="large"
               click={() => setGoToSave(!goToSave)}
             />
-          </Grid>
+          </Col>
 
-          <Grid item lg={2} md={2} sm={12}>
+          <Col lg={4} md={4} sm={24}>
             <Button
               text="Save"
               type="submit"
@@ -473,9 +471,9 @@ const SaveRecord = ({
               size="large"
               click={() => setsaveValue(1)}
             />
-          </Grid>
+          </Col>
 
-          <Grid item lg={4} md={4} sm={12}>
+          <Col lg={8} md={8} sm={24}>
             <Button
               text="Save & Send For Approval"
               type="submit"
@@ -484,8 +482,8 @@ const SaveRecord = ({
               size="large"
               click={() => setsaveValue(2)}
             />
-          </Grid>
-        </Grid>
+          </Col>
+        </Row>
       </form>
       <Notification
         setOpen={setError}

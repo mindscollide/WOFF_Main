@@ -1,0 +1,30 @@
+{
+  "DateFrom": "",
+  "DateTO": "",
+  "AmountFrom": 0,
+  "AmountTo": 0,
+  "MiSysCustomerCode": "",
+  "BorrowserNPLCode": "",
+  "CNICNumber": "",
+  "NameOfSponsor": "",
+  "AdvanceClassificationID": 0,
+  "ChargeOfType": 1,
+  "ManagementUnitID": 2,
+  "WriteOffReason": 1,
+  "WOFCode": ""
+}
+{
+  "DateFrom": "",
+  "DateTO": "",
+  "AmountFrom": 0,
+  "AmountTo": 0,
+  "MiSysCustomerCode": "",
+  "BorrowserNPLCode": "",
+  "CNICNumber": "",
+  "NameOfSponsor": "",
+  "AdvanceClassificationID": 0,
+  "ChargeOfType": 1,
+  "ManagementUnitID": 2,
+  "WriteOffReason": 1,
+  "WOFCode": ""
+}

@@ -1,0 +1,25 @@
+.loginBody {
+  width: 400px;
+  padding: 18px;
+  border-radius: 12px;
+  background: rgba(0, 0, 0, 0.2);
+  margin-top: 10%;
+}
+
+.error {
+  color: #dc3545;
+  font-size: 11px;
+  width: 100%;
+  background: #ce0000;
+  color: #ffff;
+  padding: 2px;
+  text-align: center !important;
+  margin-top: 10px;
+}
+
+.fade {
+  transition: opacity 0.15s linear;
+}
+/* .ant-input.ant-input-lg.passworfdic {
+  -webkit-text-security: disc !important;
+} */

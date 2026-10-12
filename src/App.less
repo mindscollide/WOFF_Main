@@ -1,0 +1,126 @@
+@import "~antd/dist/antd.less";
+// @import url("https://fonts.googleapis.com/css2?family=Open+Sans:ital,wght@0,300;0,400;0,600;0,700;0,800;1,300;1,400;1,600;1,700;1,800&display=swap");
+// @import url("https://fonts.googleapis.com/css2?family=Open+Sans:ital,wght@0,300;0,400;0,600;0,700;0,800;1,300;1,400;1,600;1,700;1,800&display=swap");
+// all global styles are witten here
+
+// global css for side bar
+.ant-menu-root.ant-menu-vertical,
+.ant-menu-root.ant-menu-vertical-left,
+.ant-menu-root.ant-menu-vertical-right,
+.ant-menu-root.ant-menu-inline {
+  background-color: #025f5c;
+  color: #80b1af;
+}
+// .ant-menu-submenu-title:hover {
+//   background-color: #04908b;
+//   color: whitesmoke !important;
+// }
+.ant-menu-submenu-arrow {
+  display: none;
+}
+
+.ant-menu-sub.ant-menu-inline {
+  background-color: #025f5c;
+  color: whitesmoke !important;
+}
+.ant-menu-item-selected {
+  background-color: #43b78f !important;
+  color: #fff;
+  border-right: none !important;
+}
+// global css for sidebar ends here
+.ant-table-thead > tr * {
+  background-color: #e7ecec !important;
+  color: #b27706 !important;
+  font-weight: bold !important;
+}
+
+.ant-table-row {
+  background-color: #f6f6f6 !important;
+}
+.ant-layout {
+  background-color: #f6f6f6;
+}
+.ant-scrolling-effect {
+  width: 100% !important;
+}
+.ant-select-selector {
+  background-color: #5d6a6a !important;
+}
+
+.ant-menu-submenu-title {
+  color: #80b1af !important;
+  background-color: inherit !important;
+}
+
+.ant-menu-item-active > .ant-menu-title-content > a:hover {
+  color: white !important;
+}
+.ant-menu-item-active > .ant-menu-title-content:hover {
+  color: inherit !important;
+}
+.ant-menu-inline .ant-menu-item::after {
+  border-right: none !important;
+}
+.ant-menu-item:active,
+.ant-menu-submenu-title:active {
+  background: none !important;
+}
+.ant-menu-item-only-child:hover {
+  color: #fff !important;
+}
+.ant-select-arrow {
+  display: inline-block;
+  color: inherit;
+  font-style: normal;
+  line-height: 0;
+  text-transform: none;
+  vertical-align: -0.125em;
+  text-rendering: optimizeLegibility;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  position: absolute;
+  top: 50%;
+  right: 25px;
+  height: 12px;
+  margin-top: -15px;
+  color: rgba(0, 0, 0, 0.25);
+  font-size: 12px;
+  line-height: 1;
+  text-align: center;
+  pointer-events: none;
+}
+.ant-layout-sider.ant-layout-sider-dark {
+  position: relative;
+  min-width: 0;
+  min-height: auto;
+  background: #025f5c !important;
+  transition: all 0.2s;
+}
+
+// .ant-menu-title-content{
+//   word-break: break-word;
+//   overflow: hidden;
+//   text-overflow: ellipsis;
+//   display: -webkit-box;
+//   line-height: 16px; /* fallback */
+//   max-height: 32px; /* fallback */
+//   -webkit-line-clamp: 2; /* number of lines to show */
+//   -webkit-box-orient: vertical;
+// }
+.MuiButtonBase-root.Mui-disabled {
+  cursor: default !important;
+  pointer-events: none !important;
+  filter: grayscale(100%) !important;
+  opacity: 0.5 !important;
+}
+.ant-menu-title-content {
+  white-space: nowrap !important;
+  overflow: initial !important;
+  text-overflow: initial !important;
+  flex: none !important;
+  display: block !important;
+}
+.ant-picker-input > input[disabled] {
+  color: rgba(0, 0, 0, 1) !important;
+}

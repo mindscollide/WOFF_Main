@@ -1,0 +1,25 @@
+.uploadButton {
+  border: 1 solid black !important;
+  border-radius: 0 !important;
+  background-color: #025f5c !important;
+  box-shadow: none !important;
+  height: 40px !important;
+}
+
+.search {
+  background: #dfe8e8 !important;
+  color: #078480 !important;
+  border: 1 solid black !important;
+  border-radius: 0 !important;
+  box-shadow: none !important;
+  height: 40px !important;
+}
+
+.next {
+  border: 1 solid 078480 !important;
+  border-radius: 0 !important;
+  background-color: #078480 !important;
+  box-shadow: none !important;
+  height: 40px !important;
+  width: 20% !important;
+}

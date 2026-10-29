@@ -49,6 +49,17 @@
   margin-top: 20px;
 }
 
+/* a Row placed straight inside another Row (not in a Col) is a full-width
+   line of that row: the outer row already carries the gutter offset, so it
+   must not be shifted out a second time */
+.mainContainer :global(.ant-row > .ant-row) {
+  flex: 0 0 100%;
+  max-width: 100%;
+  margin-left: 0 !important;
+  margin-right: 0 !important;
+  margin-top: 0;
+}
+
 /* empty spacer divs placed straight in a Row (e.g. <div style={{marginTop:
    "8%"}} />) became flex items whose percentage margin opened uneven gaps;
    the row gap above does their job */

@@ -1787,7 +1787,7 @@ const AddWriteOff = () => {
                 size="small"
                 label="Sundry Code"
                 textLength={2}
-                width="90%"
+                width="100%"
                 name="SCode"
                 minLength={2}
               />
@@ -1800,7 +1800,7 @@ const AddWriteOff = () => {
                 label="Sundry Description"
                 fullWidth
                 textLength={40}
-                width="90%"
+                width="100%"
                 name="SDescription"
               />
             </Col>
@@ -1845,7 +1845,7 @@ const AddWriteOff = () => {
             DateDisplayFormat={DateDisplayFormat}
             calculatorBoxhandler={calculatorBoxhandlerdata}
           />
-          <Row gutter={16} style={{ backgroundColor: "#E8F3F3", padding: "1%" }}>
+          <Row gutter={16} style={{ backgroundColor: "#E8F3F3" }}>
             <Col lg={24} md={24} sm={24} xs={24} align="center">
               <Button
                 text={"Add Record"}
@@ -1860,7 +1860,6 @@ const AddWriteOff = () => {
           <Title level={4}>Collateral Details</Title>
           <Row gutter={16}>
             <Col lg={6} md={6} sm={24} xs={24}>
-              <div style={{ marginTop: "20px" }} />
               <SelectBox
                 // required
                 label="Nature of Security"
@@ -1872,7 +1871,6 @@ const AddWriteOff = () => {
               />
             </Col>
             <Col lg={6} md={6} sm={24} xs={24}>
-              <div style={{ marginTop: "20px" }} />
               <SelectBox
                 // required
                 label="Nature of Charge"
@@ -1886,7 +1884,7 @@ const AddWriteOff = () => {
             <Col lg={6} md={6} sm={24} xs={24}>
               <FormattedInputs
                 fullWidth
-                label="FS Value of Security"
+                Label="FS Value of Security"
                 size="small"
                 numLength={15}
                 minLength={15}
@@ -1900,7 +1898,6 @@ const AddWriteOff = () => {
               />
             </Col>
             <Col lg={6} md={6} sm={24} xs={24}>
-              <div style={{ marginTop: "20px" }} />
               <DatePicker
                 size="large"
                 width="100%"
@@ -1920,8 +1917,7 @@ const AddWriteOff = () => {
             <Col
               style={{
                 backgroundColor: "#E8F3F3",
-                padding: "1%",
-                marginTop: "2%",
+                marginTop: "20px",
               }}
               lg={24}
               md={24}
@@ -1956,7 +1952,7 @@ const AddWriteOff = () => {
             setallinput={setallinput}
             allinput={allinput}
           />
-          <Row gutter={16} style={{ backgroundColor: "#E8F3F3", padding: "1%" }}>
+          <Row gutter={16} style={{ backgroundColor: "#E8F3F3" }}>
             <Col lg={24} md={24} sm={24} xs={24} align="center">
               <Title level={4}>Consolidated</Title>
             </Col>
@@ -2090,7 +2086,7 @@ const AddWriteOff = () => {
             <Col lg={12} md={12} sm={24} xs={24}>
               <FormattedInputs
                 fullWidth
-                label="Sale of Security"
+                Label="Sale of Security"
                 size="small"
                 minLength={15}
                 numLength={15}
@@ -2100,7 +2096,6 @@ const AddWriteOff = () => {
               />
             </Col>
             <Col lg={12} md={12} sm={24} xs={24}>
-              <div style={{ marginTop: "20px" }} />
               <TextField
                 fullWidth
                 label="Details of Securities obtained at the time of initial approval of loan"
@@ -2219,7 +2214,6 @@ const AddWriteOff = () => {
           <Title level={4}>Recovery After Write-off</Title>
           <Row gutter={8}>
             <Col lg={6} md={6} sm={24} xs={24}>
-              <b style={{ fontSize: "0.7rem" }}>{"Date of Recovery"}</b>
               <DatePicker
                 change={recoveryWriteOffSectionHandler}
                 name="DateOfRecovery"

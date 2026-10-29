@@ -15,7 +15,7 @@ const ConsolidateBox = ({
 }) => {
   const isDisable = disable && styles.disable;
   return (
-    <Row gutter={16} style={{ backgroundColor: "#E8F3F3", padding: "1%" }}>
+    <Row gutter={16} style={{ backgroundColor: "#E8F3F3" }}>
       {console.log("ViewStateViewState",ViewState,state)}
       <Col lg={8} md={8} sm={24}>
         <div className={styles.sectionConsolidated}>
@@ -40,7 +40,7 @@ const ConsolidateBox = ({
                 margin="3px 0px 3px 0px"
                 required
               />
-              <div style={{ marginTop:10}}/>
+              <div style={{ marginTop: 18 }} />
               <FormattedInputs
                 name={"ABNSOutstandingNominal"}
                 label={"Outstanding Nominated (Debited Mark-up)"}
@@ -59,7 +59,7 @@ const ConsolidateBox = ({
                 margin="3px 0px 3px 0px"
                 required
               />
-              <div style={{ marginTop:10}}/>
+              <div style={{ marginTop: 18 }} />
               <FormattedInputs
                 name={"ABNSOutstandingNonAccural"}
                 value={
@@ -78,7 +78,7 @@ const ConsolidateBox = ({
                 margin="3px 0px 3px 0px"
                 required
               />
-              <div style={{ marginTop:10}}/>
+              <div style={{ marginTop: 18 }} />
               <div style={{
                 display: "flex"
               }}>
@@ -121,7 +121,7 @@ const ConsolidateBox = ({
                   />
                 </Space>
               </div>
-              <div style={{ marginTop:10}}/>
+              <div style={{ marginTop: 18 }} />
               <FormattedInputs
                 name={"ABNSTotal"}
                 label={"Total"}
@@ -160,7 +160,7 @@ const ConsolidateBox = ({
                 margin="3px 0px 3px 0px"
                 required
               />
-              <div style={{ marginTop:10}}/>
+              <div style={{ marginTop: 18 }} />
               <FormattedInputs
                 value={
                   state
@@ -179,7 +179,7 @@ const ConsolidateBox = ({
                 margin="3px 0px 3px 0px"
                 required
               />
-              <div style={{ marginTop:10}}/>
+              <div style={{ marginTop: 18 }} />
               <FormattedInputs
                 value={
                   state
@@ -198,7 +198,7 @@ const ConsolidateBox = ({
                 margin="3px 0px 3px 0px"
                 required
               />
-              <div style={{ marginTop:10}}/>
+              <div style={{ marginTop: 18 }} />
               <div style={{
                 display: "flex"
               }}>
@@ -241,7 +241,7 @@ const ConsolidateBox = ({
                   />
                 </Space>
               </div>
-              <div style={{ marginTop:10}}/>
+              <div style={{ marginTop: 18 }} />
               <FormattedInputs
                 value={APBSTotal}
                 name={"APBSTotal"}
@@ -280,7 +280,7 @@ const ConsolidateBox = ({
                 margin="3px 0px 3px 0px"
                 required
               />
-              <div style={{ marginTop:10}}/>
+              <div style={{ marginTop: 18 }} />
               <FormattedInputs
                 name={"FRANominated"}
                 label={"Nominated"}
@@ -299,7 +299,7 @@ const ConsolidateBox = ({
                 margin="3px 0px 3px 0px"
                 required
               />
-              <div style={{ marginTop:10}}/>
+              <div style={{ marginTop: 18 }} />
               <FormattedInputs
                 value={
                   state
@@ -318,7 +318,7 @@ const ConsolidateBox = ({
                 margin="3px 0px 3px 0px"
                 required
               />
-              <div style={{ marginTop:10}}/>
+              <div style={{ marginTop: 18 }} />
               <div style={{
                 display: "flex"
               }}>
@@ -341,7 +341,7 @@ const ConsolidateBox = ({
                     margin="3px 0px 3px 0px"
                     required
                   />
-                  <div style={{ marginTop:10}}/>
+                  <div style={{ marginTop: 18 }} />
                   <FormattedInputs
                     name={"FRAPenalInterest"}
                     label={"Penal Interest"}
@@ -362,7 +362,7 @@ const ConsolidateBox = ({
                   />
                 </Space>
               </div>
-              <div style={{ marginTop:10}}/>
+              <div style={{ marginTop: 18 }} />
               <FormattedInputs
                 value={FRATotal}
                 name={"FRATotal"}

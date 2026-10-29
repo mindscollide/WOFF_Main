@@ -476,14 +476,13 @@ const RevertCases = () => {
               {/* Row 2 */}
               <Row gutter={8}>
                 <Col lg={8} md={8} sm={24}>
-                  <label>
-                    <b>Date</b>
-                  </label>
-                  <br />
+
+
                   <div style={{
                     display: "flex"
                   }}>
                     <StartToEndDate
+                      label="Date"
                       change={datehandler}
                       width="100%!important"
                       size="large"
@@ -497,21 +496,18 @@ const RevertCases = () => {
                           ? DateDisplayFormat(form.DateTO)
                           : ""
                       }
-                      DateRange={true}
-                    />
+                      DateRange={true} />
                   </div>
                 </Col>
                 <Col lg={8} md={8} sm={24}>
-                  <label>
-                    <b>Amount</b>
-                  </label>
-                  <br />
+
+
                   <div style={{
                     display: "flex"
                   }}>
                     <FormattedInputs
                       placeholder="From"
-                      label={null}
+                      Label="Amount From"
                       size="small"
                       minLength={15}
                       fullWidth
@@ -521,7 +517,7 @@ const RevertCases = () => {
                     />
                     <FormattedInputs
                       placeholder="To"
-                      label={null}
+                      Label="Amount To"
                       minLength={15}
                       fullWidth
                       size="small"
@@ -532,10 +528,8 @@ const RevertCases = () => {
                   </div>
                 </Col>
                 <Col lg={8} md={8} sm={24}>
-                  <label>
-                    <b>MISYS Customer Code</b>
-                  </label>
-                  <br />
+
+
                   <TextField
                     name="MiSysCustomerCode"
                     value={form.MiSysCustomerCode}
@@ -551,65 +545,57 @@ const RevertCases = () => {
                     }
                     fullWidth
                     minLength={6}
-                    label={null}
+                    label="MISYS Customer Code"
                     size="small"
                   />
                 </Col>
                 <div style={{ marginTop: "8%" }} />
                 <Col lg={6} md={6} sm={24}>
-                  <label>
-                    <b>Borrower NPL Code</b>
-                  </label>
-                  <br />
+
+
                   <TextField
                     name="BorrowserNPLCode"
                     value={form.BorrowserNPLCode}
                     change={fieldsHandler}
-                    label={null}
+                    label="Borrower NPL Code"
                     size="small"
                     fullWidth
                   />
                 </Col>
                 <Col lg={6} md={6} sm={24}>
-                  <label>
-                    <b>CNIC Number</b>
-                  </label>
-                  <br />
+
+
                   <TextField
                     name="CNICNumber"
                     value={form.CNICNumber}
                     change={CNIChandler}
                     fullWidth
-                    label={null}
+                    label="CNIC Number"
                     size="small"
                     textLength={13}
                     minLength={13}
                   />
                 </Col>
                 <Col lg={6} md={6} sm={24}>
-                  <label>
-                    <b>Name of Sponsor / Owner</b>
-                  </label>
-                  <br />
+
+
                   <TextField
                     name="NameOfSponsor"
                     value={form.NameOfSponsor}
                     change={fieldsHandler}
                     fullWidth
-                    label={null}
+                    label="Name of Sponsor / Owner"
                     size="small"
                   />
                 </Col>
                 <Col lg={6} md={6} sm={24}>
-                  <label>
-                    <b>Classification of Advance</b>
-                  </label>
-                  <br />
+
+
                   <SelectBox
                     name="AdvanceClassificationID"
                     value={form.AdvanceClassificationID}
                     change={fieldsHandler}
-                    label={null}
+                    label="Classification of Advance"
                     propertyName={"title"}
                     option={setupForms.ClassificationOfAdvances}
                   />
@@ -636,35 +622,30 @@ const RevertCases = () => {
                   </Radio.Group>
                 </Col>
                 <Col lg={6} md={6} sm={24}>
-                  <label>
-                    <b>Business Segment</b>
-                  </label>
-                  <br />
+
+
                   <SelectBox
                     option={setupForms.ManagementUnits}
                     name="ManagementUnitID"
                     value={form.ManagementUnitID}
                     change={fieldsHandler}
-                    label={null}
+                    label="Business Segment"
                     propertyName={"title"}
                   />
                 </Col>
                 <Col lg={6} md={6} sm={24}>
-                  <label>
-                    <b>Reason of Write Off</b>
-                  </label>
-                  <br />
+
+
                   <SelectBox
                     propertyName={"title"}
                     option={setupForms.WOFReasons}
                     name="WriteOffReason"
                     value={form.WriteOffReason}
                     change={fieldsHandler}
-                    label={null}
+                    label="Reason of Write Off"
                   />
                 </Col>
                 <Col lg={4} md={4} sm={24}>
-                  <div style={{ marginTop: "14%" }} />
                   <Button
                     applyClass="btnMiniPrimary"
                     text="Search"

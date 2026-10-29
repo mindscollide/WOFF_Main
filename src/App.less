@@ -375,6 +375,18 @@ body.login-page {
   color: #000000;
 }
 
+// the whole table is a rounded card: a thin Secondary outline (no inner grid
+// lines) with all four corners rounded; the rows and header are clipped to it
+.ant-table-wrapper .ant-table {
+  border: 1px solid #9DD4D3;
+  border-radius: 10px !important;
+  overflow: hidden;
+}
+
+.ant-table-wrapper .ant-table-container {
+  border-radius: 9px !important;
+}
+
 .ant-table-tbody > tr.ant-table-row:hover > td {
   background-color: #D0EFEE !important;
 }

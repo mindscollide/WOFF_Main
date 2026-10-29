@@ -195,11 +195,10 @@ const BalanceSheetFormat = () => {
             {/* Row 2 */}
             <Row gutter={8}>
               <Col lg={8} md={8} sm={24}>
-                <label>
-                  <b>Date Of WriteOff</b>
-                </label>
-                <br />
+
+
                 <StartToEndDate
+                  label="Date Of WriteOff"
                   change={datehandler}
                   wudth="100%!important"
                   size="large"
@@ -213,21 +212,18 @@ const BalanceSheetFormat = () => {
                       ? DateDisplayFormat(form.DateTO)
                       : ""
                   }
-                  DateRange={true}
-                />
+                  DateRange={true} />
               </Col>
               <Col lg={8} md={8} sm={24}>
-                <label>
-                  <b>FRA Total</b>
-                </label>
-                <br />
+
+
                 <div style={{
                   display: "flex"
                 }}>
                   <FormattedInputs
                     placeholder="From"
                     fullWidth
-                    label={null}
+                    Label="FRA Total From"
                     size="small"
                     name="AmountFrom"
                     value={form.AmountFrom}
@@ -236,7 +232,7 @@ const BalanceSheetFormat = () => {
                   <FormattedInputs
                     placeholder="To"
                     fullWidth
-                    label={null}
+                    Label="FRA Total To"
                     size="small"
                     name="AmountTo"
                     value={form.AmountTo}
@@ -245,40 +241,34 @@ const BalanceSheetFormat = () => {
                 </div>
               </Col>
               <Col lg={8} md={8} sm={24}>
-                <label>
-                  <b>MISYS Customer Code</b>
-                </label>
-                <br />
+
+
                 <TextField
                   // required
                   name="MiSysCustomerCode"
                   value={form.MiSysCustomerCode}
                   change={fieldsHandler}
                   fullWidth
-                  label={null}
+                  label="MISYS Customer Code"
                   size="small"
                 />
               </Col>
               <div style={{ marginTop: "8%" }} />
               <Col lg={6} md={6} sm={24}>
-                <label>
-                  <b>Borrower NPL Code</b>
-                </label>
-                <br />
+
+
                 <TextField
                   name="BorrowserNPLCode"
                   value={form.BorrowserNPLCode}
                   change={fieldsHandler}
-                  label={null}
+                  label="Borrower NPL Code"
                   size="small"
                   fullWidth
                 />
               </Col>
               <Col lg={6} md={6} sm={24}>
-                <label>
-                  <b>CNIC Number</b>
-                </label>
-                <br />
+
+
                 <TextField
                   textLength={13}
                   name="CNICNumber"
@@ -286,34 +276,30 @@ const BalanceSheetFormat = () => {
                   change={CNIChandler}
                   fullWidth
                   minLength={13}
-                  label={null}
+                  label="CNIC Number"
                   size="small"
                 />
               </Col>
               <Col lg={6} md={6} sm={24}>
-                <label>
-                  <b>Name of Borrower</b>
-                </label>
-                <br />
+
+
                 <TextField
                   name="NameOfSponsor"
                   value={form.NameOfSponsor}
                   change={fieldsHandler}
                   fullWidth
-                  label={null}
+                  label="Name of Borrower"
                   size="small"
                 />
               </Col>
               <Col lg={6} md={6} sm={24}>
-                <label>
-                  <b>Classification of Advance</b>
-                </label>
-                <br />
+
+
                 <SelectBox
                   name="AdvanceClassificationID"
                   value={form.AdvanceClassificationID}
                   change={fieldsHandler}
-                  label={null}
+                  label="Classification of Advance"
                   option={setupForms.ClassificationOfAdvances}
                   propertyName={"title"}
                 />
@@ -323,18 +309,16 @@ const BalanceSheetFormat = () => {
 
             <Row gutter={8}>
               <Col lg={6} md={6} sm={24}>
-                <label>
-                  <b>WOF Code</b>
-                </label>
-                <br />
+
+
                 <TextField
+                  label="WOF Code"
                   name="WOFCode"
                   value={form.WOFCode}
                   change={fieldsHandler}
                   // label={"WOFCode"}
                   size="small"
-                  fullWidth
-                />
+                  fullWidth />
               </Col>
               <Col lg={6} md={6} sm={24} align="left">
                 <label>

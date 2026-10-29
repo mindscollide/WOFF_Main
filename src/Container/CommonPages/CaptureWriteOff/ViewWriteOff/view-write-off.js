@@ -707,7 +707,7 @@ const ViewWriteOffs = () => {
         <Row gutter={16}>
           <div style={{ marginTop: "5%" }} />
           <Col
-            style={{ backgroundColor: "#E8F3F3", padding: "1%" }}
+            style={{ backgroundColor: "#E8F3F3" }}
             lg={24}
             md={24}
             sm={24}>
@@ -730,7 +730,7 @@ const ViewWriteOffs = () => {
           FRATotal={AccountDetails.fraTotal}
           disable={true}
         />
-        <Row gutter={16} style={{ backgroundColor: "#E8F3F3", padding: "1%" }}>
+        <Row gutter={16} style={{ backgroundColor: "#E8F3F3" }}>
           <Col lg={24} md={24} sm={24} xs={24} align="center">
             <Title level={4}>Consolidated</Title>
           </Col>
@@ -853,7 +853,7 @@ const ViewWriteOffs = () => {
           <Col lg={12} md={12} sm={24} xs={24}>
             <FormattedInputs
               fullWidth
-              label="Sale of Security"
+              Label="Sale of Security"
               size="small"
               textLength={(999, 999, 999, 999, 999.99)}
               name="SaleOfSecurity"
@@ -862,7 +862,6 @@ const ViewWriteOffs = () => {
             />
           </Col>
           <Col lg={12} md={12} sm={24} xs={24}>
-            <div style={{ marginTop: "22px" }} />
             <TextField
               fullWidth
               // label=" Details of Securities held by the bank at the time of approving write off case"
@@ -975,7 +974,6 @@ const ViewWriteOffs = () => {
         <Title level={4}>Recovery After Write-off</Title>
         <Row gutter={8}>
           <Col lg={6} md={6} sm={24} xs={24}>
-            <b style={{ fontSize: "0.7rem" }}>{"Date of Recovery"}</b>
             <DatePicker
               width="100%"
               disable

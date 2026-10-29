@@ -8,10 +8,14 @@
   padding: 15px 10px !important;
   position: relative;
   border: 1px solid #035F5C;
+  /* rounded like the section cards (Sanction Details and the amount boxes) */
+  border-radius: 12px;
 }
 .sectionConsolidated .box > .boxHeading {
   position: absolute;
   top: -16px;
+  /* clear of the rounded corner */
+  left: 14px;
   background-color: #E8F3F3;
   padding: 5px;
   color: #035F5C;

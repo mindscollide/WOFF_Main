@@ -183,7 +183,7 @@ const FancyBox = ({
   }, [state ? state : ""]);
   console.log("ViewStateViewStateViewState", state);
   return (
-    <Row gutter={16} style={{ backgroundColor: "#E8F3F3", padding: "1%" }}>
+    <Row gutter={16} style={{ backgroundColor: "#E8F3F3" }}>
       <Notification
         setOpen={setstate}
         open={State.open}
@@ -218,7 +218,7 @@ const FancyBox = ({
                 margin="3px 0px 3px 0px"
                 required={required}
               />
-              <div style={{ marginTop: 10 }} />
+              <div style={{ marginTop: 18 }} />
               <FormattedInputs
                 onblur={onBlurNominal}
                 name={
@@ -241,7 +241,7 @@ const FancyBox = ({
                 margin="3px 0px 3px 0px"
                 required={required}
               />
-              <div style={{ marginTop: 10 }} />
+              <div style={{ marginTop: 18 }} />
               <FormattedInputs
                 onblur={onBlurNonAccural}
                 name={
@@ -264,7 +264,7 @@ const FancyBox = ({
                 margin="3px 0px 3px 0px"
                 required={required}
               />
-              <div style={{ marginTop: 10 }} />
+              <div style={{ marginTop: 18 }} />
               <div style={{
                 display: "flex"
               }}>
@@ -307,7 +307,7 @@ const FancyBox = ({
                   />
                 </Space>
               </div>
-              <div style={{ marginTop: 10 }} />
+              <div style={{ marginTop: 18 }} />
               <FormattedInputs
                 value={ABNSTotal}
                 label={"Total"}
@@ -351,7 +351,7 @@ const FancyBox = ({
                 margin="3px 0px 3px 0px"
                 required={required}
               />
-              <div style={{ marginTop: 10 }} />
+              <div style={{ marginTop: 18 }} />
               <FormattedInputs
                 onblur={onBlurNominal}
                 label={"Nominated (Debited Mark-up)"}
@@ -374,7 +374,7 @@ const FancyBox = ({
                 margin="3px 0px 3px 0px"
                 required={required}
               />
-              <div style={{ marginTop: 10 }} />
+              <div style={{ marginTop: 18 }} />
               <FormattedInputs
                 onblur={onBlurNonAccural}
                 label={"Non-Accrual (Un-Debited Mark-up)"}
@@ -397,7 +397,7 @@ const FancyBox = ({
                 margin="3px 0px 3px 0px"
                 required={required}
               />
-              <div style={{ marginTop: 10 }} />
+              <div style={{ marginTop: 18 }} />
               <div style={{
                 display: "flex"
               }}>
@@ -440,7 +440,7 @@ const FancyBox = ({
                   />
                 </Space>
               </div>
-              <div style={{ marginTop: 10 }} />
+              <div style={{ marginTop: 18 }} />
               <FormattedInputs
                 value={APBSTotal}
                 name={ViewState ? "apbnsTotal" : "APBSTotal"}
@@ -482,7 +482,7 @@ const FancyBox = ({
                 margin="3px 0px 3px 0px"
                 required={required}
               />
-              <div style={{ marginTop: 10 }} />
+              <div style={{ marginTop: 18 }} />
               <FormattedInputs
                 onblur={onBlurNominal}
                 label={"Nominated"}
@@ -501,7 +501,7 @@ const FancyBox = ({
                 margin="3px 0px 3px 0px"
                 required={required}
               />
-              <div style={{ marginTop: 10 }} />
+              <div style={{ marginTop: 18 }} />
               <FormattedInputs
                 onblur={onBlurNonAccural}
                 label={"Non-Accural"}
@@ -520,7 +520,7 @@ const FancyBox = ({
                 margin="3px 0px 3px 0px"
                 required={required}
               />
-              <div style={{ marginTop: 10 }} />
+              <div style={{ marginTop: 18 }} />
               <div style={{
                 display: "flex"
               }}>
@@ -563,7 +563,7 @@ const FancyBox = ({
                   />
                 </Space>
               </div>
-              <div style={{ marginTop: 10 }} />
+              <div style={{ marginTop: 18 }} />
               <FormattedInputs
                 value={FRATotal}
                 label={"Total"}

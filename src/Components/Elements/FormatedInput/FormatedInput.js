@@ -21,18 +21,15 @@ export const FormattedInputs = ({
   onblur,
   maxLength,
 }) => {
+  // Both label props render the same floating chip on the field's border
+  // (as in Fraud main); `label` used to print a bold caption above the field.
+  const floating = Label || label;
   return (
     <>
-      {label ? (
-        <b className="u-font-size-0_7rem">
-          {label}
-          {required ? <i className="u-font-size-0_7rem u-color-red">*</i> : null}
-        </b>
-      ) : null}
-      <div className={Label ? styles.wrapper : undefined}>
-        {Label ? (
+      <div className={floating ? styles.wrapper : undefined}>
+        {floating ? (
           <span className={styles.floatingLabel}>
-            {Label}
+            {floating}
             {required ? <span style={{ color: "#FC4343" }}> *</span> : null}
           </span>
         ) : null}
@@ -63,6 +60,9 @@ export const FormattedInputs = ({
             width: fullWidth ? "100%" : undefined,
           }}
           onValueChange={(values) => {
+            // v5 also fires this when the value prop changes; read-only
+            // fields (e.g. the Total boxes) are rendered without a handler
+            if (typeof change !== "function") return;
             change({
               target: {
                 name: name,

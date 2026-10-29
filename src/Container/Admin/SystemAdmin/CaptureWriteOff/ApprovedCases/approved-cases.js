@@ -605,14 +605,13 @@ const ApprovedCases = () => {
               {/* Row 2 */}
               <Row gutter={8}>
                 <Col lg={8} md={8} sm={24}>
-                  <label>
-                    <b>Date</b>
-                  </label>
-                  <br />
+
+
                   <div style={{
                     display: "flex"
                   }}>
                     <StartToEndDate
+                      label="Date"
                       change={datehandler}
                       width="100%!important"
                       size="large"
@@ -626,21 +625,18 @@ const ApprovedCases = () => {
                           ? DateDisplayFormat(form.DateTO)
                           : ""
                       }
-                      DateRange={true}
-                    />
+                      DateRange={true} />
                   </div>
                 </Col>
                 <Col lg={8} md={8} sm={24}>
-                  <label>
-                    <b>Amount</b>
-                  </label>
-                  <br />
+
+
                   <div style={{
                     display: "flex"
                   }}>
                     <FormattedInputs
                       placeholder="From"
-                      label={null}
+                      Label="Amount From"
                       size="small"
                       minLength={15}
                       fullWidth
@@ -657,7 +653,7 @@ const ApprovedCases = () => {
                     />
                     <FormattedInputs
                       placeholder="To"
-                      label={null}
+                      Label="Amount To"
                       minLength={15}
                       fullWidth
                       size="small"
@@ -675,10 +671,8 @@ const ApprovedCases = () => {
                   </div>
                 </Col>
                 <Col lg={8} md={8} sm={24}>
-                  <label>
-                    <b>MISYS Customer Code</b>
-                  </label>
-                  <br />
+
+
                   <TextField
                     name="MiSysCustomerCode"
                     value={form.MiSysCustomerCode}
@@ -693,66 +687,57 @@ const ApprovedCases = () => {
                     //     : false
                     // }
                     fullWidth
-                    // minLength={6}
-                    label={null}
+                    label="MISYS Customer Code"
                     size="small"
                   />
                 </Col>
                 <div style={{ marginTop: "8%" }} />
                 <Col lg={6} md={6} sm={24}>
-                  <label>
-                    <b>Borrower NPL Code</b>
-                  </label>
-                  <br />
+
+
                   <TextField
                     name="BorrowserNPLCode"
                     value={form.BorrowserNPLCode}
                     change={fieldsHandler}
-                    label={null}
+                    label="Borrower NPL Code"
                     size="small"
                     fullWidth
                   />
                 </Col>
                 <Col lg={6} md={6} sm={24}>
-                  <label>
-                    <b>CNIC Number</b>
-                  </label>
-                  <br />
+
+
                   <TextField
                     name="CNICNumber"
                     value={form.CNICNumber}
                     change={CNIChandler}
                     fullWidth
-                    label={null}
+                    label="CNIC Number"
                     size="small"
                     textLength={13}
                     minLength={13}
                   />
                 </Col>
                 <Col lg={6} md={6} sm={24}>
-                  <label>
-                    <b>Name of Sponsor / Owner</b>
-                  </label>
-                  <br />
+
+
                   <TextField
                     name="NameOfSponsor"
                     value={form.NameOfSponsor}
                     change={fieldsHandler}
                     fullWidth
-                    label={null}
+                    label="Name of Sponsor / Owner"
                     size="small"
                   />
                 </Col>
                 <Col lg={6} md={6} sm={24}>
-                  <label>
-                    <b>Classification of Advance</b>
-                  </label>
-                  <br />
+
+
                   <SelectBox
                     name="AdvanceClassificationID"
                     value={form.AdvanceClassificationID}
                     change={fieldsHandler}
-                    label={null}
+                    label="Classification of Advance"
                     propertyName={"title"}
                     option={setupForms.ClassificationOfAdvances}
                   />
@@ -761,45 +746,39 @@ const ApprovedCases = () => {
               {/* Row 03 */}
               <Row gutter={8}>
                 <Col lg={8} md={8} sm={24}>
-                  <label>
-                    <b>WOF Code</b>
-                  </label>
-                  <br />
+
+
                   <TextField
+                    label="WOF Code"
                     name="WOFCode"
                     value={form.WOFCode}
                     change={fieldsHandler}
                     // label={"WOFCode"}
                     size="small"
-                    fullWidth
-                  />
+                    fullWidth />
                 </Col>
                 <Col lg={6} md={6} sm={24}>
-                  <label>
-                    <b>Business Segment</b>
-                  </label>
-                  <br />
+
+
                   <SelectBox
                     option={setupForms.ManagementUnits}
                     name="ManagementUnitID"
                     value={form.ManagementUnitID}
                     change={fieldsHandler}
-                    label={null}
+                    label="Business Segment"
                     propertyName={"title"}
                   />
                 </Col>
                 <Col lg={6} md={6} sm={24}>
-                  <label>
-                    <b>Reason of Write Off</b>
-                  </label>
-                  <br />
+
+
                   <SelectBox
                     propertyName={"title"}
                     option={setupForms.WOFReasons}
                     name="WriteOffReason"
                     value={form.WriteOffReason}
                     change={fieldsHandler}
-                    label={null}
+                    label="Reason of Write Off"
                   />
                 </Col>
                 <Col lg={8} md={8} sm={24} align="left">
@@ -821,7 +800,6 @@ const ApprovedCases = () => {
                   </Radio.Group>
                 </Col>
                 <Col lg={4} md={4} sm={24}>
-                  <div style={{ marginTop: "14%" }} />
                   <Button
                     applyClass="btnMiniPrimary"
                     text="Search"
@@ -853,38 +831,38 @@ const ApprovedCases = () => {
           columns={viewApprovalColumn}
         />
       </Modal>
-            <Modal
-        closeModal={handleCancel}
-        modalState={isModalVisible1}
-        width={700}
-        modalTitle={<Title level={3}>In-Active</Title>}
-      >
-        <div
-          style={{
-            display: "flex",
-            justifyContent: "center",
-            paddingBottom: "80px",
-            paddingLeft: "20px",
-            paddingRight: "20px"
-          }}>
-          <Col lg={24} md={24} sm={24} xs={24}>
-            <TextField
-              multiline
-              rows={6}
-              label="Please Enter Reason"
-              change={handleDescription}
-              value={approvalReason.Reason}
-              fullWidth
-              required
-            />
-          </Col>
-        </div>
-        {btnStatus ? (
-          <GroupedButtons data={buttonProps2} />
-        ) : (
-          <GroupedButtons data={buttonProps} />
-        )}
-      </Modal>
+      <Modal
+  closeModal={handleCancel}
+  modalState={isModalVisible1}
+  width={700}
+  modalTitle={<Title level={3}>In-Active</Title>}
+>
+  <div
+    style={{
+      display: "flex",
+      justifyContent: "center",
+      paddingBottom: "80px",
+      paddingLeft: "20px",
+      paddingRight: "20px"
+    }}>
+    <Col lg={24} md={24} sm={24} xs={24}>
+      <TextField
+        multiline
+        rows={6}
+        label="Please Enter Reason"
+        change={handleDescription}
+        value={approvalReason.Reason}
+        fullWidth
+        required
+      />
+    </Col>
+  </div>
+  {btnStatus ? (
+    <GroupedButtons data={buttonProps2} />
+  ) : (
+    <GroupedButtons data={buttonProps} />
+  )}
+</Modal>
       <Notification setOpen={setOpen} open={open.flag} message={open.message} />
       {setupForms.Loading ? <Loader /> : null}
     </>

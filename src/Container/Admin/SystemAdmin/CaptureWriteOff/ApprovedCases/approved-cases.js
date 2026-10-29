@@ -582,7 +582,7 @@ const ApprovedCases = () => {
     <>
       <form onSubmit={(e) => handleSubmit(e, submitType)}>
         <>
-          <Paper padding="2">
+          <Paper page>
             <Row gutter={8}>
               {/* Row 01 */}
               <Col lg={18} md={18} sm={24}>
@@ -852,7 +852,7 @@ const ApprovedCases = () => {
           rows={filteredApprovalHistRow && filteredApprovalHistRow}
           columns={viewApprovalColumn}
         />
-      </Modal>;
+      </Modal>
             <Modal
         closeModal={handleCancel}
         modalState={isModalVisible1}

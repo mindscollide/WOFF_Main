@@ -1794,7 +1794,7 @@ const EditWriteOffDetails = () => {
     <>
       <form onSubmit={(e) => goToSaveHandler(e)}>
         <Title level={2}>Edit Write Off</Title>
-        <Paper padding="1">
+        <Paper padding="1" section>
           <Row gutter={16}>
             <Col lg={6} md={6} sm={24} xs={24}>
               <TextField
@@ -1811,7 +1811,7 @@ const EditWriteOffDetails = () => {
                 name="MisysCode"
               />
             </Col>
-            <Col lg={4} md={4} sm={24} xs={24}>
+            <Col lg={6} md={6} sm={24} xs={24}>
               <TextField
                 name="WOFCode"
                 size="small"
@@ -1822,7 +1822,7 @@ const EditWriteOffDetails = () => {
                 change={misysSectionHandler}
               />
             </Col>
-            <Col lg={4} md={4} sm={24} xs={24}>
+            <Col lg={6} md={6} sm={24} xs={24}>
               <TextField
                 change={misysSectionHandler}
                 value={misysSection.NPLCode}
@@ -1833,7 +1833,7 @@ const EditWriteOffDetails = () => {
                 name="NPLCode"
               />
             </Col>
-            <Col lg={10} md={10} sm={24} xs={24}>
+            <Col lg={12} md={12} sm={24} xs={24}>
               <TextField
                 value={misysSection.BorrowerName}
                 change={misysSectionHandler}
@@ -1908,7 +1908,7 @@ const EditWriteOffDetails = () => {
                 />
               </Box>
             </Grid> */}
-            <Col lg={8} md={8} sm={24} xs={24}>
+            <Col lg={6} md={6} sm={24} xs={24}>
               {/* <b style={{ fontSize: "1rem" }}>Sundry Analysis</b> */}
               <div style={{ marginTop: "10px" }} />
               <SelectBox
@@ -1921,7 +1921,7 @@ const EditWriteOffDetails = () => {
                 value={misysSection.BorrowerTypeID}
               />
             </Col>
-            <Col lg={4} md={4} sm={24} xs={24}>
+            <Col lg={6} md={6} sm={24} xs={24}>
               <div style={{ marginTop: "10px" }} />
               <TextField
                 label={"IParty ID"}
@@ -1936,7 +1936,7 @@ const EditWriteOffDetails = () => {
           </Row>
         </Paper>
         <div style={{ marginTop: "20px" }} />
-        <Paper padding="1">
+        <Paper padding="1" section>
           <Row gutter={16}>
             <Col lg={6} md={6} sm={24} xs={24}>
               <SelectBox
@@ -1948,7 +1948,7 @@ const EditWriteOffDetails = () => {
                 name="AccountNumber"
               />
             </Col>
-            <Col lg={4} md={4} sm={24} xs={24}>
+            <Col lg={6} md={6} sm={24} xs={24}>
               <TextField
                 change={CodeHandler}
                 value={AccountDetails.BranchCode}
@@ -1972,7 +1972,7 @@ const EditWriteOffDetails = () => {
                 required
               />
             </Col>
-            <Col lg={4} md={4} sm={24} xs={24}>
+            <Col lg={6} md={6} sm={24} xs={24}>
               <TextField
                 change={CodeHandler}
                 name="RegionCode"
@@ -1984,7 +1984,7 @@ const EditWriteOffDetails = () => {
                 minLength={2}
               />
             </Col>
-            <Col lg={4} md={4} sm={24} xs={24}>
+            <Col lg={6} md={6} sm={24} xs={24}>
               <TextField
                 change={AccountDetailsHandler}
                 name="RegionName"
@@ -1998,7 +1998,7 @@ const EditWriteOffDetails = () => {
             <Col lg={24} md={24} sm={24} xs={24}>
               <b style={{ fontSize: "1rem" }}>Sundry Analysis</b>
             </Col>
-            <Col lg={4} md={4} sm={24} xs={24}>
+            <Col lg={6} md={6} sm={24} xs={24}>
               <TextField
                 value={AccountDetails.SCode}
                 change={misysSectionHandler}
@@ -2010,7 +2010,7 @@ const EditWriteOffDetails = () => {
                 minLength={2}
               />
             </Col>
-            <Col lg={8} md={8} sm={24} xs={24}>
+            <Col lg={6} md={6} sm={24} xs={24}>
               <TextField
                 change={misysSectionHandler}
                 value={AccountDetails.SDescription}
@@ -2060,7 +2060,7 @@ const EditWriteOffDetails = () => {
             DateDisplayFormat={DateDisplayFormat}
             calculatorBoxhandler={calculatorBoxhandlerdata}
           />
-          <Row gutter={16} style={{ backgroundColor: "#e7f5f4", padding: "1%" }}>
+          <Row gutter={16} style={{ backgroundColor: "#E8F3F3", padding: "1%" }}>
             <Col lg={24} md={24} sm={24} xs={24} align="center">
               <Button
                 text={"Add Record"}
@@ -2136,7 +2136,7 @@ const EditWriteOffDetails = () => {
             <div style={{ marginTop: "5%" }} />
             <Col
               style={{
-                backgroundColor: "#e7f5f4",
+                backgroundColor: "#E8F3F3",
                 padding: "1%",
                 marginTop: "2%",
               }}
@@ -2173,7 +2173,7 @@ const EditWriteOffDetails = () => {
             setallinput={setallinput}
             allinput={allinput}
           />
-          <Row gutter={16} style={{ backgroundColor: "#e7f5f4", padding: "1%" }}>
+          <Row gutter={16} style={{ backgroundColor: "#E8F3F3", padding: "1%" }}>
             <Col lg={24} md={24} sm={24} xs={24} align="center">
               <Title level={4}>Consolidated</Title>
             </Col>
@@ -2196,7 +2196,7 @@ const EditWriteOffDetails = () => {
           </Row>
         </Paper>
         {/* <div style={{ marginTop: "20px" }} />
-        <Paper padding="1">
+        <Paper padding="1" section>
           <Title level={4}>Collateral Detail</Title>
           <Grid container spacing={2}>
             <Grid item lg={3} md={3} sm={12} xs={12}>
@@ -2274,7 +2274,7 @@ const EditWriteOffDetails = () => {
           </Grid>
         </Paper> */}
         <div style={{ marginTop: "20px" }} />
-        <Paper padding="1">
+        <Paper padding="1" section>
           <Title level={4}>Additional Detail</Title>
           <Row gutter={8}>
             <Col lg={6} md={6} sm={24}>
@@ -2287,7 +2287,7 @@ const EditWriteOffDetails = () => {
                 value={additionalDetailsSection.AdvanceClassificationID}
               />
             </Col>
-            <Col lg={8} md={8} sm={24}>
+            <Col lg={6} md={6} sm={24}>
               <label>
                 {" "}
                 <b>Charge Off</b>{" "}
@@ -2306,7 +2306,7 @@ const EditWriteOffDetails = () => {
                 </Radio>
               </Radio.Group>
             </Col>
-            <Col lg={4} md={4} sm={24}>
+            <Col lg={6} md={6} sm={24}>
               <TextField
                 fullWidth
                 label="Approval Number"
@@ -2332,7 +2332,7 @@ const EditWriteOffDetails = () => {
                 }
               />
             </Col>
-            <Col lg={10} md={10} sm={24}>
+            <Col lg={12} md={12} sm={24}>
               <DatePicker
                 size="large"
                 width="100%"
@@ -2347,7 +2347,7 @@ const EditWriteOffDetails = () => {
                 }
               />
             </Col>
-            <Col lg={8} md={8} sm={24}>
+            <Col lg={6} md={6} sm={24}>
               <SelectBox
                 label="Reason of Write off"
                 option={setupForms.WOFReasons}
@@ -2504,7 +2504,7 @@ const EditWriteOffDetails = () => {
           </Row>
         </Paper>
         <div style={{ marginTop: "20px" }} />
-        <Paper padding="1">
+        <Paper padding="1" section>
           <Title level={4}>Recovery After Write-off</Title>
           <Row gutter={8}>
             <Col lg={6} md={6} sm={24} xs={24}>
@@ -2558,7 +2558,7 @@ const EditWriteOffDetails = () => {
             </Col>
             <div style={{ marginTop: "10px" }} />
             <Row gutter={8}>
-              <Col lg={10} md={10} sm={24} xs={24}>
+              <Col lg={12} md={12} sm={24} xs={24}>
                 <FormattedInputs
                   fullWidth
                   label="Other Charges"
@@ -2569,7 +2569,7 @@ const EditWriteOffDetails = () => {
                   change={recoveryNumberField}
                 />
               </Col>
-              <Col lg={10} md={10} sm={24} xs={24}>
+              <Col lg={12} md={12} sm={24} xs={24}>
                 <FormattedInputs
                   fullWidth
                   label="Penal Interest"
@@ -2580,7 +2580,7 @@ const EditWriteOffDetails = () => {
                   change={recoveryNumberField}
                 />
               </Col>
-              <Col lg={4} md={4} sm={24} xs={24}>
+              <Col lg={6} md={6} sm={24} xs={24}>
                 <FormattedInputs
                   disable
                   fullWidth
@@ -2597,7 +2597,7 @@ const EditWriteOffDetails = () => {
         </Paper>
         <div style={{ marginTop: "20px" }} />
         <Row gutter={16} justify="center">
-          <Col lg={4} md={4} sm={24}>
+          <Col lg={6} md={6} sm={24}>
             <Button
               text="Next"
               endIcon={<i className="icon-arrow-right icon-size-one"></i>}

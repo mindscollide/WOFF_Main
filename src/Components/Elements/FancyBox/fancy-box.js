@@ -183,7 +183,7 @@ const FancyBox = ({
   }, [state ? state : ""]);
   console.log("ViewStateViewStateViewState", state);
   return (
-    <Row gutter={16} style={{ backgroundColor: "#e7f5f4", padding: "1%" }}>
+    <Row gutter={16} style={{ backgroundColor: "#E8F3F3", padding: "1%" }}>
       <Notification
         setOpen={setstate}
         open={State.open}

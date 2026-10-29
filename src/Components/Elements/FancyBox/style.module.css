@@ -1,20 +1,20 @@
 .sectionConsolidated {
-  background-color: #e7f5f4;
+  background-color: #E8F3F3;
 }
 .border-primary {
-  border: 1px solid #025f5c;
+  border: 1px solid #035F5C;
 }
 .sectionConsolidated .box {
   padding: 15px 10px !important;
   position: relative;
-  border: 1px solid #025f5c;
+  border: 1px solid #035F5C;
 }
 .sectionConsolidated .box > .boxHeading {
   position: absolute;
   top: -16px;
-  background-color: #e7f5f4;
+  background-color: #E8F3F3;
   padding: 5px;
-  color: #025f5c;
+  color: #035F5C;
   font-size: 12px;
   font-weight: 600;
   display: inline-block;
@@ -22,7 +22,7 @@
   max-width: 90%;
 }
 .disable{
-  color: #758181!important;
+  color: #6D6D6D!important;
 }
 .contentbox{
   margin-top: 10px;

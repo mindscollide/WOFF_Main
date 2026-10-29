@@ -15,7 +15,7 @@ const ConsolidateBox = ({
 }) => {
   const isDisable = disable && styles.disable;
   return (
-    <Row gutter={16} style={{ backgroundColor: "#e7f5f4", padding: "1%" }}>
+    <Row gutter={16} style={{ backgroundColor: "#E8F3F3", padding: "1%" }}>
       {console.log("ViewStateViewState",ViewState,state)}
       <Col lg={8} md={8} sm={24}>
         <div className={styles.sectionConsolidated}>

@@ -1,7 +1,84 @@
 .mainContainer {
-  position: relative;
-  padding-left: 15px;
-  padding-right: 20px;
-  min-height: 85vh;
-  margin-top: 60px;
+  /* One white rounded card that fills what's left of the viewport between
+     the fixed 50px header (header.css), the 230px sidebar (sidebar.module.css)
+     and the 40px footer (footer.module.css), and scrolls internally — so the
+     page itself never scrolls. */
+  position: fixed;
+  top: 60px;
+  left: 230px;
+  right: 16px;
+  bottom: 46px;
+  overflow-y: auto;
+  overflow-x: hidden;
+  padding: 16px 20px;
+  background-color: #FFFFFF;
+  border: 1px solid #035F5C;
+  border-radius: 12px;
+}
+
+/* Page headings */
+.mainContainer :global(h1.ant-typography),
+.mainContainer :global(h2.ant-typography),
+.mainContainer :global(h3.ant-typography),
+.mainContainer :global(h4.ant-typography),
+.mainContainer :global(h5.ant-typography) {
+  color: #035F5C !important;
+}
+
+/* ---- One spacing system for every page ----
+   Pages put many fields in one <Row> that wraps onto several lines and spaced
+   them with percentage spacer divs, <br />s and margin-top on only some
+   columns, so wrapped lines touched, collided or drifted. Here every row gets
+   the same 16px column gutter (so all pages share the same left and right
+   field edge), the same 20px gap between wrapped lines and between rows, and
+   the per-column margins are dropped. */
+.mainContainer :global(.ant-row) {
+  margin-left: -8px !important;
+  margin-right: -8px !important;
+  row-gap: 20px;
+}
+
+.mainContainer :global(.ant-row > .ant-col) {
+  padding-left: 8px !important;
+  padding-right: 8px !important;
+  margin-top: 0 !important;
+  margin-bottom: 0 !important;
+}
+
+.mainContainer :global(.ant-row + .ant-row) {
+  margin-top: 20px;
+}
+
+/* empty spacer divs placed straight in a Row (e.g. <div style={{marginTop:
+   "8%"}} />) became flex items whose percentage margin opened uneven gaps;
+   the row gap above does their job */
+.mainContainer :global(.ant-row > div:not(.ant-col):empty) {
+  display: none;
+}
+
+/* field labels above a field: their own line, a fixed 4px above the field */
+.mainContainer :global(.ant-col > label) {
+  display: block;
+  margin-bottom: 4px;
+}
+
+.mainContainer :global(.ant-col > label + br) {
+  display: none;
+}
+
+/* a field that already has a label above it doesn't also need the small
+   floating label chip on its border */
+.mainContainer :global(.ant-col:has(> label)) [class*="floatingLabel"] {
+  display: none;
+}
+
+/* Yes/No radio groups stay on the fields' left edge */
+.mainContainer :global(.ant-col:has(> .ant-radio-group)),
+.mainContainer :global(.ant-col:has(> label + br + .ant-radio-group)) {
+  text-align: left !important;
+}
+
+/* sections (Paper section) always have a gap, even where a page has no spacer div */
+.mainContainer :global(.form-section + .form-section) {
+  margin-top: 20px;
 }

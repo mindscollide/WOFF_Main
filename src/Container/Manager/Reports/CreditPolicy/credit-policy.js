@@ -181,7 +181,7 @@ const CreditPolicy = () => {
   return (
     <form onSubmit={(e) => handleSubmit(e, submitType)}>
       <>
-        <Paper padding="2">
+        <Paper page>
           <Row gutter={8}>
             <Col lg={18} md={18} sm={24}>
               <Title level={3}>Credit Policy</Title>

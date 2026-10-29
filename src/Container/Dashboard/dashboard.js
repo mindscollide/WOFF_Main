@@ -8,6 +8,7 @@ import { useSelector, useDispatch } from "react-redux";
 import { SomeThingWentWrongRemove } from "../../store/actions/ui-actions";
 import { useNavigate } from "react-router";
 import Helper from "../../Common/Functions/history_logout";
+import { APP_NAME } from "../../Common/app-name";
 const Dashboard = () => {
   const reports = useSelector((state) => state.reports);
   const wofApprovals = useSelector((state) => state.wofApprovals);
@@ -89,13 +90,13 @@ const Dashboard = () => {
   const [AppContent, setAppContent] = useState(UserSelection(token, role));
   return (
     <>
-      <Layout>
+      <Layout style={Style.Shell}>
         <Header
-          title={"WOFF Data Centralization & MIS Capturing"}
+          title={APP_NAME}
           UserDetails={UserDetails}
           Notification={AppContent.Notification}
         />
-        <Content style={Style.MainContainer}>
+        <Content>
           <Layout>
             <Sidebar Links={AppContent.SidebarData} ui={ui} />
             <Main
@@ -115,10 +116,12 @@ const Dashboard = () => {
   );
 };
 const Style = {
-  MainContainer: {
-    position: "relative",
-    marginTop: "30px",
-    paddingLeft: `230px`,
+  // Header, Sidebar, Main and Footer are all fixed-positioned (see their own
+  // CSS), so this just pins the shell to exactly one viewport: the page never
+  // scrolls, only the main card does.
+  Shell: {
+    height: "100vh",
+    overflow: "hidden",
   },
 };
 export default Dashboard;

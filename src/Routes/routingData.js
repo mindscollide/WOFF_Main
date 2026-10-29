@@ -1,4 +1,5 @@
 // all routing related data like rendering components and their paths sits here in this file
+import { APP_NAME } from "../Common/app-name";
 import {
   SecurityAdminAuditTrail,
   AddWriteOff,
@@ -92,21 +93,21 @@ const UserSelection = (token,role)=>{
   let MainMenu = ''
   let Notification = ''
   if(token && role===2){
-    Title = "WOFF Data Centralization & MIS Capturing"
+    Title = APP_NAME
     UserRoleId =role
     SidebarData = SystemAdminLinks
     MainMenu = SystemAdminRouteData
     Notification = true;
   }
   if(token && role===3){
-    Title = "WOFF Data Centralization & MIS Capturing"
+    Title = APP_NAME
     UserRoleId = role
     SidebarData = ManagerLinks
     MainMenu = ManagerRouteData
     Notification = true;
   }
   if(token && role===4){
-    Title = "WOFF Data Centralization & MIS Capturing"
+    Title = APP_NAME
     UserRoleId = role
     SidebarData = DataEntryUserLinks
     MainMenu = DataEntryUserRouteData

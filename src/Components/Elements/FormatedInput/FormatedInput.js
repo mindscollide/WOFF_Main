@@ -33,7 +33,7 @@ export const FormattedInputs = ({
         {Label ? (
           <span className={styles.floatingLabel}>
             {Label}
-            {required ? <span style={{ color: "red" }}> *</span> : null}
+            {required ? <span style={{ color: "#FC4343" }}> *</span> : null}
           </span>
         ) : null}
         {/* react-number-format v5's NumericFormat (NumberFormat in v4); customInput renders antd's Input as the

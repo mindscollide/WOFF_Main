@@ -43,7 +43,7 @@ const CustomizedTextField = ({
       {label ? (
         <span className={styles.floatingLabel}>
           {label}
-          {required ? <span style={{ color: "red" }}> *</span> : null}
+          {required ? <span style={{ color: "#FC4343" }}> *</span> : null}
         </span>
       ) : null}
       <InputComponent
@@ -72,7 +72,7 @@ const CustomizedTextField = ({
         required={required ? true : false}
       />
       {error && helper ? (
-        <div style={{ color: "red", fontSize: "0.75rem" }}>{helper}</div>
+        <div style={{ color: "#FC4343", fontSize: "0.75rem" }}>{helper}</div>
       ) : null}
     </div>
   );

@@ -546,7 +546,7 @@ const PendingApprovals = () => {
           <Button
             text="Reset"
             icon={<Restore />}
-            applyClass="btnSecondarySolid1"
+            applyClass="btnSecondarySolidResetFull"
             size="small"
             click={() => globalSearch(2)}
           />

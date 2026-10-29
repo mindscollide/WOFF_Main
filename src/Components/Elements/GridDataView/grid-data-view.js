@@ -24,7 +24,7 @@ const GridDataView = () => {
                 level={5}
                 style={{
                   fontWeight: "bold",
-                  color: "#025f5c",
+                  color: "#035F5C",
                   fontSize: "16px",
                 }}
               >

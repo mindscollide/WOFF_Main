@@ -1,32 +1,8 @@
 /* Utility classes generated from former inline styles.
    One declaration per class; compose them on an element as needed. */
 
-.u-background-color-04bbb4 {
-  background-color: #04bbb4;
-}
-
-.u-background-color-e7f5f4 {
-  background-color: #e7f5f4;
-}
-
-.u-color-025f5c {
-  color: #025f5c;
-}
-
-.u-color-21706d {
-  color: #21706d;
-}
-
-.u-color-b27706 {
-  color: #b27706;
-}
-
 .u-color-blue {
   color: blue;
-}
-
-.u-color-ce0000 {
-  color: #ce0000;
 }
 
 .u-color-fff {
@@ -34,7 +10,7 @@
 }
 
 .u-color-red {
-  color: red;
+  color: #FC4343;
 }
 
 .u-cursor-pointer {

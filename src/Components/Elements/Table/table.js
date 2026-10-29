@@ -1,8 +1,7 @@
-import React, { useEffect, useState } from "react";
-import { Table ,Input, Button, Space} from "antd";
+import React from "react";
+import { Table } from "antd";
 import "./table.css";
-import Highlighter from 'react-highlight-words';
-import { SearchOutlined } from '@ant-design/icons';
+
 const CustomTable = ({
   columns,
   rows,
@@ -10,15 +9,18 @@ const CustomTable = ({
   scroll,
   rowSelection,
   id,
+  className,
 }) => {
-console.log("rows",rows)
   return (
     <Table
-      rowClassName="rowColor"
+      className={className}
+      // striped rows (see table.css); no `bordered` — tables have no grid lines
+      rowClassName={(record, index) =>
+        index % 2 === 0 ? "rowColor" : "rowColor rowColorAlt"
+      }
       rowSelection={rowSelection}
       columns={columns}
       dataSource={rows}
-      bordered
       pagination={pagination}
       scroll={scroll}
     />
@@ -26,34 +28,3 @@ console.log("rows",rows)
 };
 
 export default CustomTable;
-
-//   render() {
-//     const columns = [
-//       {
-//         title: 'Name',
-//         dataIndex: 'name',
-//         key: 'name',
-//         width: '30%',
-//         ...this.getColumnSearchProps('name'),
-//       },
-//       {
-//         title: 'Age',
-//         dataIndex: 'age',
-//         key: 'age',
-//         width: '20%',
-//         ...this.getColumnSearchProps('age'),
-//       },
-//       {
-//         title: 'Address',
-//         dataIndex: 'address',
-//         key: 'address',
-//         ...this.getColumnSearchProps('address'),
-//         sorter: (a, b) => a.address.length - b.address.length,
-//         sortDirections: ['descend', 'ascend'],
-//       },
-//     ];
-//     return <Table columns={columns} dataSource={data} />;
-//   }
-// }
-
-// ReactDOM.render(<App />, mountNode);

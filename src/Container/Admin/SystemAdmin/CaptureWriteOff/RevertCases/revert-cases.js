@@ -453,7 +453,7 @@ const RevertCases = () => {
     <>
       <form onSubmit={(e) => handleSubmit(e, submitType)}>
         <>
-          <Paper padding="2">
+          <Paper page>
             <Row gutter={8}>
               {/* Row 01 */}
               <Col lg={18} md={18} sm={24}>

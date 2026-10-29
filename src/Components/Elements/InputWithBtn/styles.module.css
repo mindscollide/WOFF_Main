@@ -1,25 +1,32 @@
-.uploadButton {
-  border: 1 solid black !important;
-  border-radius: 0 !important;
-  background-color: #025f5c !important;
-  box-shadow: none !important;
-  height: 40px !important;
+/* Input + attached button: one pill-shaped control. The field is rounded on
+   the left, the button is fully rounded and overlaps the field's rounded right
+   end. Every button variant here is solid Primary (#035F5C / white). */
+.attachedBar :global(.ant-btn) {
+  border-radius: 8px !important;
+  margin-left: -8px !important;
+  position: relative;
+  z-index: 1;
 }
 
-.search {
-  background: #dfe8e8 !important;
-  color: #078480 !important;
-  border: 1 solid black !important;
-  border-radius: 0 !important;
-  box-shadow: none !important;
-  height: 40px !important;
+/* a disabled button must not be see-through where it overlaps the field */
+.attachedBar :global(.ant-btn:disabled) {
+  opacity: 1 !important;
 }
 
+.uploadButton,
+.search,
 .next {
-  border: 1 solid 078480 !important;
-  border-radius: 0 !important;
-  background-color: #078480 !important;
+  background-color: #035F5C !important;
+  border: 1px solid #035F5C !important;
+  color: #FFFFFF !important;
   box-shadow: none !important;
   height: 40px !important;
-  width: 20% !important;
+}
+
+/* Sign Up password arrow: same 56px rounded block as the LDAP ID icon */
+.next {
+  width: 56px !important;
+  min-width: 56px;
+  padding: 0 !important;
+  font-size: 18px;
 }

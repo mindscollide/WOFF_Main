@@ -1,26 +1,153 @@
+/* Each top-level menu is its own rounded card */
 .menuMainItem {
-  padding-top: 10px;
-  padding-bottom: 10px !important;
-  border-bottom: 1px solid #3b7674;
+  border: 1px solid #035F5C;
+  border-radius: 10px;
+  overflow: hidden;
+  margin-bottom: 12px;
+  background-color: #FFFFFF;
 }
 
 .noLinkStyles {
   text-decoration: none !important;
   color: inherit !important;
-  
 }
 
+/* Fixed below the 50px header, the full height of the viewport. The footer
+   only spans the content column (footer.module.css: left 230px), so the
+   sidebar reserves no space for it. 230px matches main.module.css's left. */
 .sider {
   position: fixed !important;
   left: 0 !important;
-  height: 92vh !important;
-  top: 68px !important;
+  top: 50px !important;
+  height: calc(100vh - 50px) !important;
   width: 230px !important;
+  min-width: 230px !important;
+  max-width: 230px !important;
+  flex: 0 0 230px !important;
   display: block !important;
-  overflow: auto !important;
+  overflow-y: auto !important;
+  overflow-x: hidden !important;
+  background-color: #E8F3F3 !important;
+  /* scrollbar: the global slim, show-on-hover style in App.less */
 }
-.ant-menu-item.ant-menu-title-content {
-  white-space: nowrap !important;
-  overflow: initial !important;
-  text-overflow: initial !important;
+
+.menuSidebarStyle {
+  border: none !important;
+  border-inline-end: none !important;
+  padding: 16px 10px;
+  background-color: #E8F3F3 !important;
+}
+
+/* ---------- Parent menu title (the card's header row) ---------- */
+/* antd sets an inline padding-left on titles and items, so overrides need !important */
+.menuSidebarStyle :global(.ant-menu-submenu > .ant-menu-submenu-title) {
+  position: relative;
+  margin: 0 !important;
+  width: 100% !important;
+  height: auto !important;
+  min-height: 46px;
+  line-height: 20px !important;
+  padding: 12px 30px 12px 12px !important;
+  border-radius: 0 !important;
+  font-size: 14px;
+  color: #000000 !important;
+}
+
+/* hide antd's built-in arrow; the chevron is drawn on the title itself */
+.menuSidebarStyle :global(.ant-menu-submenu-arrow),
+.menuSidebarStyle :global(.ant-menu-submenu-arrow)::before {
+  display: none !important;
+}
+
+/* chevron: points right when closed */
+.menuSidebarStyle :global(.ant-menu-submenu > .ant-menu-submenu-title)::after {
+  content: "";
+  position: absolute;
+  right: 13px;
+  top: 50%;
+  width: 8px;
+  height: 8px;
+  border-top: 2px solid currentColor;
+  border-right: 2px solid currentColor;
+  transform: translateY(-50%) rotate(45deg);
+  transition: transform 0.25s ease;
+}
+
+/* ...and points up when open */
+.menuSidebarStyle :global(.ant-menu-submenu-open > .ant-menu-submenu-title)::after {
+  transform: translateY(-25%) rotate(-45deg);
+}
+
+/* ---------- Sub-menu panel inside the card ---------- */
+.menuSidebarStyle :global(.ant-menu-sub.ant-menu-inline) {
+  background-color: #FFFFFF !important;
+  padding: 8px !important;
+}
+
+.menuSidebarStyle :global(.ant-menu-sub .ant-menu-item) {
+  position: relative;
+  margin: 0 !important;
+  width: 100% !important;
+  height: auto !important;
+  min-height: 40px;
+  line-height: 20px !important;
+  padding: 10px 12px !important;
+  border-radius: 6px;
+  overflow: visible !important;
+}
+
+/* thin divider between sub-items */
+.menuSidebarStyle :global(.ant-menu-sub .ant-menu-item + .ant-menu-item) {
+  margin-top: 9px !important;
+}
+
+.menuSidebarStyle :global(.ant-menu-sub .ant-menu-item + .ant-menu-item)::before {
+  content: "";
+  position: absolute;
+  left: 6px;
+  right: 6px;
+  top: -5px;
+  height: 1px;
+  background-color: #9DD4D3;
+}
+
+/* ---------- Colors ---------- */
+.menuSidebarStyle :global(.ant-menu-sub .ant-menu-item),
+.menuSidebarStyle :global(.ant-menu-sub .ant-menu-item a) {
+  color: #000000 !important;
+}
+
+/* An open (but not current) menu's title is highlighted */
+.menuSidebarStyle :global(.ant-menu-submenu-open > .ant-menu-submenu-title) {
+  color: #035F5C !important;
+}
+
+/* Hover (not on the selected page or its parent, which keep their own colors) */
+.menuSidebarStyle :global(.ant-menu-submenu:not(.ant-menu-submenu-selected) > .ant-menu-submenu-title:hover),
+.menuSidebarStyle :global(.ant-menu-sub .ant-menu-item:not(.ant-menu-item-selected):hover),
+.menuSidebarStyle :global(.ant-menu-sub .ant-menu-item:not(.ant-menu-item-selected):hover a) {
+  color: #035F5C !important;
+}
+
+.menuSidebarStyle :global(.ant-menu-submenu:not(.ant-menu-submenu-selected) > .ant-menu-submenu-title:hover),
+.menuSidebarStyle :global(.ant-menu-sub .ant-menu-item:not(.ant-menu-item-selected):hover) {
+  background-color: #E8F3F3 !important;
+}
+
+/* The current page: a Secondary pill with black text */
+.menuSidebarStyle :global(.ant-menu-sub .ant-menu-item-selected) {
+  background-color: #9DD4D3 !important;
+}
+
+.menuSidebarStyle :global(.ant-menu-sub .ant-menu-item-selected),
+.menuSidebarStyle :global(.ant-menu-sub .ant-menu-item-selected a) {
+  color: #000000 !important;
+}
+
+/* Parent menu of the current page: Primary with white text
+   (declared last so it wins over the open/hover colors above) */
+.menuSidebarStyle :global(.ant-menu-submenu-selected > .ant-menu-submenu-title),
+.menuSidebarStyle :global(.ant-menu-submenu-selected > .ant-menu-submenu-title:hover) {
+  background-color: #035F5C !important;
+  color: #FFFFFF !important;
 }

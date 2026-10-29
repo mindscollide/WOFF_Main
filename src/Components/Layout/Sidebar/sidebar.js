@@ -19,10 +19,21 @@ const Sidebar = ({ Links, ui }) => {
   const [selectedKey, setSelectedKey] = useState(
     () => localStorage.getItem("child") || "1"
   );
+  const [openKeys, setOpenKeys] = useState(() => [
+    localStorage.getItem("parent") || "sub1",
+  ]);
   const selectKey = (parent, child) => {
     localStorage.setItem("parent", parent);
     localStorage.setItem("child", child);
     setSelectedKey(child);
+    if (parent) setOpenKeys([parent]);
+  };
+
+  // Accordion behaviour: opening a parent closes whichever other parent was
+  // open, so only one top-level menu is ever expanded at a time.
+  const onOpenChange = (keys) => {
+    const latestOpenKey = keys.find((key) => openKeys.indexOf(key) === -1);
+    setOpenKeys(latestOpenKey ? [latestOpenKey] : keys);
   };
 
   // this use effect is for refreshing
@@ -70,13 +81,14 @@ const Sidebar = ({ Links, ui }) => {
   }));
 
   return (
-    <Sider width={250} className={styles.sider}>
+    <Sider width={230} className={styles.sider}>
       <Menu
         mode="inline"
         selectedKeys={[ui.activeTab === true ? "15" : selectedKey]}
-        defaultOpenKeys={[localStorage.getItem("parent") || "sub1"]}
+        openKeys={openKeys}
+        onOpenChange={onOpenChange}
         onSelect={onSelect}
-        style={{ height: "100%", border: "none" }}
+        className={styles.menuSidebarStyle}
         items={menuItems}
       />
     </Sider>

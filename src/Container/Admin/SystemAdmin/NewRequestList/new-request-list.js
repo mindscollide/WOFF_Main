@@ -97,7 +97,7 @@ const NewRequestList = () => {
                   //   <Paper padding="1" index={ind}>
                   //     <Grid container spacing={1}>
                   //       <Grid item lg={3} md={3} sm={6} xs={6}>
-                  //         <p className="m-0" style={{ color: "#b27706" }}>
+                  //         <p className="m-0" style={{ color: "#035F5C" }}>
                   //           First Name
                   //         </p>
                   //       </Grid>
@@ -105,7 +105,7 @@ const NewRequestList = () => {
                   //         <span className="mr-1">{item.firstName}</span>
                   //       </Grid>
                   //       <Grid item lg={3} md={3} sm={6} xs={6}>
-                  //         <p className="m-0" style={{ color: "#b27706" }}>
+                  //         <p className="m-0" style={{ color: "#035F5C" }}>
                   //           Last Name
                   //         </p>
                   //       </Grid>
@@ -115,7 +115,7 @@ const NewRequestList = () => {
                   //     </Grid>
                   //     <Grid container spacing={1}>
                   //       <Grid item lg={3} md={3} sm={6} xs={6}>
-                  //         <p className="m-0" style={{ color: "#b27706" }}>
+                  //         <p className="m-0" style={{ color: "#035F5C" }}>
                   //           Employee Number
                   //         </p>
                   //       </Grid>
@@ -123,7 +123,7 @@ const NewRequestList = () => {
                   //         <span className="mr-1">{item.personalNumber}</span>
                   //       </Grid>
                   //       <Grid item lg={3} md={3} sm={6} xs={6}>
-                  //         <p className="m-0" style={{ color: "#b27706" }}>
+                  //         <p className="m-0" style={{ color: "#035F5C" }}>
                   //           User Name
                   //         </p>
                   //       </Grid>
@@ -133,7 +133,7 @@ const NewRequestList = () => {
                   //     </Grid>
                   //     <Grid container spacing={1}>
                   //       <Grid item lg={3} md={3} sm={6} xs={6}>
-                  //         <p className="m-0" style={{ color: "#b27706" }}>
+                  //         <p className="m-0" style={{ color: "#035F5C" }}>
                   //           Email
                   //         </p>
                   //       </Grid>
@@ -141,7 +141,7 @@ const NewRequestList = () => {
                   //         <span className="mr-1">{item.email}</span>
                   //       </Grid>
                   //       <Grid item lg={3} md={3} sm={6} xs={6}>
-                  //         <p className="m-0" style={{ color: "#b27706" }}>
+                  //         <p className="m-0" style={{ color: "#035F5C" }}>
                   //           Role
                   //         </p>
                   //       </Grid>
@@ -151,7 +151,7 @@ const NewRequestList = () => {
                   //     </Grid>
                   //     <Grid container spacing={1}>
                   //       <Grid item lg={3} md={3} sm={2} xs={2}>
-                  //         <p className="m-0" style={{ color: "#b27706" }}>
+                  //         <p className="m-0" style={{ color: "#035F5C" }}>
 
                   //           Type your Comments<span style={{ color: "#ce0000" }}>*</span>
                   //         </p>

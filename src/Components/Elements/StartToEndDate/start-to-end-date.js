@@ -43,7 +43,9 @@ const StartToEndDate = ({
         }
         format={dateFormat}
         size={size}
-        style={{ width: `${width}`, marginLeft: label ? 0 : "5px" }}
+        // callers pass e.g. "100%!important", which is not a valid inline style
+        // value (the browser drops it); keep just the width, default full width
+        style={{ width: width ? String(width).replace("!important", "").trim() : "100%" }}
         required={required}
       />
     </div>

@@ -1,12 +1,21 @@
 .footer {
-    border-top: 1px solid #ccc;
-    padding: 10px 0;
-    margin-top: 20px;
-  }
-  .footer > .innerContent {
-    padding-left: 20px;
-    padding-right: 20px;
-    display: flex;
-    width: 100%;
-    justify-content: space-between;
-  }
+  /* Fixed to the bottom of the content column (starting after the 230px
+     sidebar); the main card stops 46px above the bottom to clear it. */
+  position: fixed;
+  left: 230px;
+  right: 0;
+  bottom: 0;
+  height: 40px;
+  display: flex;
+  align-items: center;
+  background-color: #E8F3F3;
+  color: #000000;
+  z-index: 100;
+}
+.footer > .innerContent {
+  padding-left: 20px;
+  padding-right: 20px;
+  display: flex;
+  width: 100%;
+  justify-content: space-between;
+}

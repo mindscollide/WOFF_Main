@@ -1,17 +1,8 @@
-.loginBody {
-  width: 450px;
-  padding: 18px;
-  border-radius: 12px;
-  background: rgba(0, 0, 0, 0.2);
-  margin-top: 10%;
-}
-
 .error {
-  color: #dc3545;
   font-size: 11px;
   width: 100%;
-  background: #ce0000;
-  color: #ffff;
+  background: #FC4343;
+  color: #FFFFFF;
   padding: 2px;
   text-align: center !important;
   margin-top: 10px;
@@ -20,64 +11,71 @@
 .fade {
   transition: opacity 0.15s linear;
 }
-.lable{
-  color: white !important;
+
+/* field labels above the step-2 inputs; required ones get a red asterisk */
+.lable,
+.lableNotRequired {
+  display: block;
+  margin-bottom: 4px;
+  color: #000000 !important;
   font-weight: 600 !important;
 }
-.lable::after{
+
+.lable::after {
   content: "*";
-  color: #ce0000;
+  color: #FC4343;
 }
-/* ============================================= */
 
-@keyframes ldio-qsg7zs0xcag {
-  0% {
-    top: 84px;
-    left: 84px;
-    width: 0;
-    height: 0;
-    opacity: 1;
-  }
-  100% {
-    top: 12px;
-    left: 12px;
-    width: 144px;
-    height: 144px;
-    opacity: 0;
-  }
+/* ---------- Sign Up form on the split-screen layout ---------- */
+.signupForm {
+  text-align: left;
 }
-/* .ldio-qsg7zs0xcag div {
-  position: absolute;
-  border-width: 16px;
-  border-style: solid;
-  opacity: 1;
-  border-radius: 50%;
-  animation: ldio-qsg7zs0xcag 1s cubic-bezier(0, 0.2, 0.8, 1) infinite;
+
+.formTitle {
+  margin: 0 0 6px;
+  color: #035F5C;
+  font-size: 28px;
+  font-weight: 700;
+  text-align: center;
 }
-.ldio-qsg7zs0xcag div:nth-child(1) {
-  border-color: #0a0a0a;
-  animation-delay: 0s;
+
+.formSubtitle {
+  margin: 0 0 24px;
+  color: #6D6D6D;
+  font-size: 13px;
+  text-align: center;
 }
-.ldio-qsg7zs0xcag div:nth-child(2) {
-  border-color: #28292f;
-  animation-delay: -0.5s;
+
+/* LDAP ID: text on the left, a rounded dark-teal icon block overlapping the
+   right end of the field (same shape as the password field + arrow button) */
+.ldapField {
+  display: flex;
+  align-items: stretch;
+  margin-bottom: 20px;
 }
-.loadingio-spinner-ripple-0utew0dqsh4 {
-  width:30px;
-  height: 30px;
-  display: inline-block;
-  overflow: hidden;
-  background: inherit;
+
+.ldapField :global(.ant-input) {
+  flex: 1;
+  min-width: 0;
+  height: 40px;
 }
-.ldio-qsg7zs0xcag {
-  width: 30px;
-  height: 30px;
+
+.ldapIcon {
   position: relative;
-  transform: translateZ(0) scale(1);
-  backface-visibility: hidden;
-  transform-origin: 0 0; 
+  z-index: 1;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  min-width: 56px;
+  height: 40px;
+  margin-left: -8px;
+  border-radius: 8px;
+  background: #035F5C;
+  color: #FFFFFF;
+  font-size: 18px;
 }
-.ldio-qsg7zs0xcag div {
-  box-sizing: content-box;
-} */
 
+.goBack {
+  margin-top: 30px;
+  text-align: center;
+}

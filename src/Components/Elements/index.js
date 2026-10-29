@@ -25,6 +25,7 @@ import Loader from './Loader/Loader'
 import {Notification,Message} from './Notifications'
 import {FormattedInputs} from './FormatedInput/FormatedInput'
 import MaxWidthContainer from './MaxWidthContainer/max-width-container'
+import AuthLayout from './AuthLayout/AuthLayout'
 export {
     ADate,
     ADayMonthCount,
@@ -53,6 +54,7 @@ export {
     Message,
     ConsolidateBox,
     FormattedInputs,
-    MaxWidthContainer
+    MaxWidthContainer,
+    AuthLayout
 }
 

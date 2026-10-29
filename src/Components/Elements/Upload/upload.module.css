@@ -3,8 +3,9 @@
   display: none !important;
 }
 .uploadButton{
-  border: 1 solid black !important;
-  border-radius: 0 !important;
-  background-color: #025f5c !important;
+  border: 1px solid #035F5C !important;
+  border-radius: 8px !important;
+  background-color: #035F5C !important;
+  color: #FFFFFF !important;
   box-shadow: none !important;
 }

@@ -259,7 +259,7 @@ const CompleteReports = () => {
   return (
     <form onSubmit={(e) => handleSubmit(e, submitType)}>
       <>
-        <Paper padding="2">
+        <Paper page>
           <Row gutter={8}>
             {/* Row 01 */}
             <Col lg={18} md={18} sm={24}>
@@ -269,14 +269,13 @@ const CompleteReports = () => {
             {/* Row 2 */}
             <Row gutter={8}>
               <Col lg={8} md={8} sm={24}>
-                <label>
-                  <b>Date Of WriteOff</b>
-                </label>
-                <br />
+
+
                 <div style={{
                   display: "flex"
                 }}>
                   <StartToEndDate
+                    label="Date Of WriteOff"
                     change={datehandler}
                     width="100%!important"
                     size="large"
@@ -290,21 +289,18 @@ const CompleteReports = () => {
                         ? DateDisplayFormat(form.DateTO)
                         : ""
                     }
-                    DateRange={true}
-                  />
+                    DateRange={true} />
                 </div>
               </Col>
               <Col lg={8} md={8} sm={24}>
-                <label>
-                  <b>FRA Total</b>
-                </label>
-                <br />
+
+
                 <div style={{
                   display: "flex"
                 }}>
                   <FormattedInputs
                     placeholder="From"
-                    label={null}
+                    Label="FRA Total From"
                     size="small"
                     minLength={15}
                     fullWidth
@@ -314,7 +310,7 @@ const CompleteReports = () => {
                   />
                   <FormattedInputs
                     placeholder="To"
-                    label={null}
+                    Label="FRA Total To"
                     minLength={15}
                     fullWidth
                     size="small"
@@ -325,10 +321,8 @@ const CompleteReports = () => {
                 </div>
               </Col>
               <Col lg={8} md={8} sm={24}>
-                <label>
-                  <b>MISYS Customer Code</b>
-                </label>
-                <br />
+
+
                 <TextField
                   name="MiSysCustomerCode"
                   value={form.MiSysCustomerCode}
@@ -344,66 +338,57 @@ const CompleteReports = () => {
                   //     : false
                   // }
                   fullWidth
-                  // minLength={6}
-                  label={null}
+                  label="MISYS Customer Code"
                   size="small"
                 />
               </Col>
               <div style={{ marginTop: "8%" }} />
               <Col lg={6} md={6} sm={24}>
-                <label>
-                  <b>Borrower NPL Code</b>
-                </label>
-                <br />
+
+
                 <TextField
                   name="BorrowserNPLCode"
                   value={form.BorrowserNPLCode}
                   change={fieldsHandler}
-                  label={null}
+                  label="Borrower NPL Code"
                   size="small"
                   fullWidth
                 />
               </Col>
               <Col lg={6} md={6} sm={24}>
-                <label>
-                  <b>CNIC Number</b>
-                </label>
-                <br />
+
+
                 <TextField
                   name="CNICNumber"
                   value={form.CNICNumber}
                   change={CNIChandler}
                   fullWidth
-                  label={null}
+                  label="CNIC Number"
                   size="small"
                   textLength={length}
                   minLength={length}
                 />
               </Col>
               <Col lg={6} md={6} sm={24}>
-                <label>
-                  <b>Name of Borrower</b>
-                </label>
-                <br />
+
+
                 <TextField
                   name="NameOfSponsor"
                   value={form.NameOfSponsor}
                   change={fieldsHandler}
                   fullWidth
-                  label={null}
+                  label="Name of Borrower"
                   size="small"
                 />
               </Col>
               <Col lg={6} md={6} sm={24}>
-                <label>
-                  <b>Classification of Advance</b>
-                </label>
-                <br />
+
+
                 <SelectBox
                   name="AdvanceClassificationID"
                   value={advanceClassificationIDValue}
                   change={fieldsHandler}
-                  label={"Select Classification of Advance"}
+                  label="Classification of Advance"
                   propertyName={"title"}
                   option={setupForms.ClassificationOfAdvances}
                 />
@@ -412,46 +397,40 @@ const CompleteReports = () => {
             {/* Row 03 */}
             <Row gutter={8}>
               <Col lg={6} md={6} sm={24}>
-                <label>
-                  <b>Business Segment</b>
-                </label>
-                <br />
+
+
                 <SelectBox
                   option={setupForms.ManagementUnits}
                   name="ManagementUnitID"
                   value={managementUnitIDValue}
                   change={fieldsHandler}
-                  label={"Select Business Segment"}
+                  label="Business Segment"
                   propertyName={"title"}
                 />
               </Col>
               <Col lg={6} md={6} sm={24}>
-                <label>
-                  <b>Reason of Write Off</b>
-                </label>
-                <br />
+
+
                 <SelectBox
                   propertyName={"title"}
                   option={setupForms.WOFReasons}
                   name="WriteOffReason"
                   value={writeOffReasonValue}
                   change={fieldsHandler}
-                  label={"Select Write Off Reason"}
+                  label="Reason of Write Off"
                 />
               </Col>
               <Col lg={6} md={6} sm={24}>
-                <label>
-                  <b>WOF Code</b>
-                </label>
-                <br />
+
+
                 <TextField
+                  label="WOF Code"
                   name="WOFCode"
                   value={form.WOFCode}
                   change={fieldsHandler}
                   // label={"WOFCode"}
                   size="small"
-                  fullWidth
-                />
+                  fullWidth />
               </Col>
               <Col lg={6} md={6} sm={24} align="left">
                 <label>
@@ -474,7 +453,6 @@ const CompleteReports = () => {
               </Col>
               {/* <Grid item lg={5} md={5} sm={12}></Grid> */}
               <Col lg={4} md={4} sm={24}>
-                <div style={{ marginTop: "14%" }} />
                 <Button
                   applyClass="btnMiniPrimary"
                   text="Search"
@@ -484,7 +462,6 @@ const CompleteReports = () => {
                 />
               </Col>
               <Col lg={20} md={20} sm={24} align="right">
-                <div style={{ marginTop: "2%" }} />
                 <Space>
                   <Button
                     type="submit"
@@ -514,7 +491,6 @@ const CompleteReports = () => {
           open={open.open}
           message={open.message}
         />
-        ;
       </>
     </form>
   );

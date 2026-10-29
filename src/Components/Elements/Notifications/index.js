@@ -1,5 +1,6 @@
-import React, { useEffect } from "react";
+import { useEffect } from "react";
 import { notification } from "antd";
+import { BellFilled, CloseOutlined } from "@ant-design/icons";
 
 const Message = {
   success: "success",
@@ -9,15 +10,14 @@ const Message = {
 };
 
 // Kept as a controlled component with the exact same {setOpen, open, message}
-// API every caller already uses (~100+ call sites) — antd's notification is
-// an imperative singleton (notification.open({...}) called from anywhere),
-// a different programming model from MUI's Snackbar+Alert, so this wrapper
-// triggers it internally instead of changing every call site.
+// API every caller already uses — antd's notification is an imperative
+// singleton, so this wrapper triggers it internally instead of changing
+// every call site.
 const Notification = ({ setOpen, open, message }) => {
   const handleClose = () => {
-    // Preserved exactly as the MUI version had it — some callers key their
-    // own state on "open", others on "flag"; this always writes "flag",
-    // a pre-existing inconsistency this migration isn't meant to fix.
+    // Preserved exactly as before — some callers key their own state on
+    // "open", others on "flag"; this always writes "flag", a pre-existing
+    // inconsistency this wrapper isn't meant to fix.
     setOpen({
       flag: false,
       message: "",
@@ -26,22 +26,25 @@ const Notification = ({ setOpen, open, message }) => {
 
   useEffect(() => {
     if (open && message !== "") {
+      // longer messages stay up longer so the whole text can be read
+      const text = typeof message === "string" ? message : "";
+      const duration = Math.min(8, Math.max(3.5, text.length / 14));
       notification.open({
-        // antd v6 renamed the notice's `message` field to `title`
         title: message,
         placement: "topRight",
-        duration: 2,
-        // The original MUI Alert always rendered with a hardcoded teal
-        // "success" background regardless of its severity="error" prop
-        // (a pre-existing bug — the classes.BackGroundSucces override always
-        // won) — preserved exactly rather than "corrected" to show red.
-        // className (not just style) is needed because antd's own
-        // .ant-notification-notice-title rule sets an explicit text color
-        // that would otherwise win over an inherited one from style={}.
+        duration,
+        // antd's own time-left bar along the bottom (coloured in App.less);
+        // it pauses, like the auto-close timer, while the pointer is over it
+        showProgress: true,
+        pauseOnHover: true,
+        icon: (
+          <span className="app-notification-icon">
+            <BellFilled />
+          </span>
+        ),
+        closeIcon: <CloseOutlined />,
+        // a raised dark-teal card that flips in (see App.less)
         className: "app-teal-notification",
-        style: {
-          backgroundColor: "#078480",
-        },
         onClose: handleClose,
       });
     }

@@ -1,5 +1,6 @@
 body {
-  background-color: #f6f6f6 !important;
+  background-color: #E8F3F3 !important;
+  color: #000000;
   margin: 0;
   font-family: 'Open Sans', sans-serif;
 }
@@ -9,27 +10,8 @@ code {
     monospace;
 }
 
-/* to make disabled input boxes look different (was .MuiInputBase-input.Mui-disabled) */
-.ant-input[disabled],
-.ant-input-disabled {
-  background-color: #f3f3f3 !important;
-  font-size: 0.9rem !important;
-  color: black !important;
-}
-
-.mainContainer {
-  position: relative;
-  padding-left: 15px;
-  padding-right: 20px;
-  min-height: 85vh;
-  margin-top: 60px;
-}
 .crosstick{
-  color: red;
-}
-.ant-menu-submenu-title > .ant-menu-title-content:hover {
-
-  /* display: none!important; */
+  color: #FC4343;
 }
 
 input::-webkit-outer-spin-button,

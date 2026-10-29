@@ -27,7 +27,7 @@ const InputWithBtn = ({
   classpas,
 }) => {
   return (
-    <div className="u-display-flex">
+    <div className={`u-display-flex ${styles.attachedBar}`}>
       {/* flex:1 so the input fills all space the Button doesn't need */}
       <div style={{ flex: 1 }}>
         <TextField

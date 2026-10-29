@@ -79,7 +79,7 @@ const AuditTrial = () => {
         <>
           <b>{text.date}</b>
           <br />
-          <span style={{ color: "#838383", fontSize: ".875em" }}>
+          <span style={{ color: "#6D6D6D", fontSize: ".875em" }}>
             {text.time}
           </span>
         </>
@@ -262,7 +262,7 @@ const AuditTrial = () => {
               width: "12.5%"
             }}>
               <Button
-                applyClass="btnSecondarySolid"
+                applyClass="btnSecondarySolidReset"
                 text="Reset"
                 icon={<i className="icon-reset icon-size-one"></i>}
               />

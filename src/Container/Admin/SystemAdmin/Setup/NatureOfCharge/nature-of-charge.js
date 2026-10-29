@@ -232,7 +232,7 @@ const NatureOfCharge = () => {
           <Button
             text="Reset"
             icon={<Restore />}
-            applyClass="btnDarkSolid"
+            applyClass="btnSecondarySolidResetFull"
             size="small"
             click={() => {
               setnatureofCharge({

@@ -64,7 +64,7 @@ const SelectBox = memo(
         {label ? (
           <span className={styles.floatingLabel}>
             {label}
-            {required ? <span style={{ color: "red" }}> *</span> : null}
+            {required ? <span style={{ color: "#FC4343" }}> *</span> : null}
           </span>
         ) : null}
         <Select

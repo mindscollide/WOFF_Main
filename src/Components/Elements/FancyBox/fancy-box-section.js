@@ -62,7 +62,7 @@ console.log("SectionDetails fancy",SectionDetails)
     }
   }, [state ? state : ""]);
   return (
-    <Row gutter={16} style={{ backgroundColor: "#e7f5f4", padding: "1%" }}>
+    <Row gutter={16} style={{ backgroundColor: "#E8F3F3" }}>
       <Notification
         setOpen={setstate}
         open={State.open}
@@ -78,7 +78,6 @@ console.log("SectionDetails fancy",SectionDetails)
               {hide?null:
               <Row gutter={16}>
               <Col lg={12} md={12} sm={24} xs={24}>
-                <div style={{ marginTop: 22 }} />
                 <DatePicker
                   change={AccountDetailsHandler}
                   name="lrDate"
@@ -98,7 +97,7 @@ console.log("SectionDetails fancy",SectionDetails)
                   change={calculatorBoxhandler}
                   name="lrAmount"
                   size="small"
-                  label="Sanction/Last Renewal Amount"
+                  Label="Sanction/Last Renewal Amount"
                   fullWidth
                   numLength={15}
                   value={SectionDetails.lrAmount===0?null:SectionDetails.lrAmount}

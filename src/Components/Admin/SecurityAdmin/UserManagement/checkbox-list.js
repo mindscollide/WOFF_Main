@@ -4,7 +4,7 @@ function onChange(checkedValues) {
 }
 const Styles={
  parentCheckBox:{
-  color: "#025f5c",
+  color: "#035F5C",
   fontWeight: "600",
  },
  childCheckbox:{

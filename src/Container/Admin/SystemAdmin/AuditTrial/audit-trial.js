@@ -202,7 +202,7 @@ const ApprovalFlow = () => {
         <Button
           text="Reset"
           icon={<Restore />}
-          applyClass="btnDarkSolid"
+          applyClass="btnSecondarySolidResetFull"
           size="small"
         />
         </Col>
@@ -231,13 +231,13 @@ const ApprovalFlow = () => {
                 width: "calc(100% + 16px)"
               }}>
               <Col style={{ marginTop: "1%",}} lg={12} md={12} sm={24}>
-              <Text style={{ width: "25%" ,color:"#025f5c"}}>Action By</Text>
+              <Text style={{ width: "25%" ,color:"#035F5C"}}>Action By</Text>
                 </Col>
                 <Col style={{ marginTop: "1%" }} lg={12} md={12} sm={24}>
-              <Text style={{ width: "25%",color:"#025f5c" }}>Action On</Text>
+              <Text style={{ width: "25%",color:"#035F5C" }}>Action On</Text>
                 </Col>
                 <Col style={{ marginTop: "1%" }} lg={12} md={12} sm={24}>
-              <Text style={{ width: "25%",color:"#025f5c" }}>Description</Text>
+              <Text style={{ width: "25%",color:"#035F5C" }}>Description</Text>
                 </Col>
              
                 <Col style={{ marginTop: "1%" }} lg={24} md={24} sm={24}>

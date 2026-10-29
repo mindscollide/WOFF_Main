@@ -1,9 +1,14 @@
 import React, { useRef, useState, useEffect } from "react";
 import styles from "./style.module.css";
-import { Input, Typography, Row, Col } from "antd";
-import { UserOutlined } from "@ant-design/icons";
-import { Button, Loader, Notification, MaxWidthContainer } from "../../../Components/Elements";
-import { useNavigate, Link } from "react-router";
+import { Input } from "antd";
+import {
+  UserOutlined,
+  LockOutlined,
+  EyeOutlined,
+  EyeInvisibleOutlined,
+} from "@ant-design/icons";
+import { Loader, Notification, AuthLayout } from "../../../Components/Elements";
+import { useNavigate } from "react-router";
 import { useDispatch, useSelector } from "react-redux";
 import { signIn } from "../../../store/actions/auth-actions";
 import Helper from "../../../Common/Functions/history_logout";
@@ -13,7 +18,6 @@ const Login = () => {
   const ui = useSelector((state) => state.ui);
   const UserIDInput = useRef(null);
   const dispatch = useDispatch();
-  const { Title } = Typography;
   const navigate = useNavigate();
   Helper.navigate = navigate;
   const [credentials, setCredentials] = useState({
@@ -25,7 +29,7 @@ const Login = () => {
     open: false,
     message: "",
   });
-  // const [showText, seShowText] = useState({ fkps: "" });
+  const [showPassword, setShowPassword] = useState(false);
   const setCredentialHandler = (e) => {
     if (e.target.name === "Password") {
       let numChars = e.target.value;
@@ -43,6 +47,9 @@ const Login = () => {
     }
   };
   const validateHandler = (e) => {
+    // always stay on the page: an empty submit used to reload it before the
+    // "enter all credentials" notification could show
+    e.preventDefault();
     if (credentials.UserName === "" || credentials.Password === "") {
       setOpen({
         ...open,
@@ -50,7 +57,6 @@ const Login = () => {
         message: "Please Enter All Credentials",
       });
     } else {
-      e.preventDefault();
       dispatch(signIn(credentials, navigate));
     }
   };
@@ -123,111 +129,57 @@ const Login = () => {
     }
   }, [auth.SessionExpeireResponseMessage]);
   return (
-    <MaxWidthContainer>
-      <React.StrictMode>
-        <form
-          autoComplete="off"
-          onSubmit={(e) => validateHandler(e)}
-        >
-          <div
-            style={{
-              display: "flex",
-              alignItems: "center",
-              height: "100vh"
-            }}>
-            <Row gutter={40} style={{
-              width: "calc(100% + 40px)"
-            }}>
-              <Col lg={12} md={12} sm={24}></Col>
-              <Col lg={12} md={12} sm={24} align="right">
-                <div className={styles.loginBody}>
-                  <Title
-                    level={3}
-                    style={{
-                      color: "white",
-                      textAlign: "center",
-                      marginTop: 10,
-                    }}
-                  >
-                    Write Off Data Capturing Portal
-                  </Title>
-                  <div style={{ marginTop: "6%" }} />
-                  <Title
-                    level={5}
-                    style={{ color: "white", textAlign: "left" }}
-                  >
-                    User ID
-                  </Title>
+    <>
+      <AuthLayout mode="login">
+        <form onSubmit={(e) => validateHandler(e)} className={styles.form}>
+          <h1 className={styles.formTitle}>Sign in to WOFF</h1>
+          <p className={styles.formSubtitle}>Use your LDAP User ID and password</p>
 
-                  <Input
-                    name="UserName"
-                    size="large"
-                    placeholder="User ID"
-                    prefix={<UserOutlined />}
-                    onChange={setCredentialHandler}
-                    value={credentials.UserName}
-                    ref={UserIDInput}
-                    autoComplete="off"
-                  />
-                  <div style={{ marginTop: "5%" }} />
-                  <Title
-                    level={5}
-                    style={{ color: "white", textAlign: "left" }}
-                  >
-                    Password
-                  </Title>
-                  <Input
-                    name="Password"
-                    size="large"
-                    placeholder="password"
-                    onChange={setCredentialHandler}
-                    // value={credentials.fakePassword}
-                    autoComplete="off"
-                    style={{
-                      fontFamily: "text-security-disc",
-                      WebkitTextSecurity: "disc",
-                      inputSecurity: "none",
-                    }}
-                    type="text"
-                  />
+          <Input
+            name="UserName"
+            size="large"
+            placeholder="User ID"
+            prefix={<UserOutlined />}
+            onChange={setCredentialHandler}
+            value={credentials.UserName}
+            ref={UserIDInput}
+            autoComplete="off"
+            className={styles.field}
+          />
+          <Input
+            name="Password"
+            size="large"
+            placeholder="Password"
+            prefix={<LockOutlined />}
+            suffix={
+              <span
+                className={styles.eye}
+                onMouseDown={(e) => e.preventDefault()}
+                onClick={() => setShowPassword((shown) => !shown)}
+              >
+                {showPassword ? <EyeOutlined /> : <EyeInvisibleOutlined />}
+              </span>
+            }
+            onChange={setCredentialHandler}
+            autoComplete="off"
+            className={`${styles.field} ${showPassword ? "" : styles.passwordInputField}`}
+            type="text"
+          />
 
-                  {!auth.isLoggedIn && auth.ResponseMessage !== "" ? (
-                    <div align="center">
-                      <div className={styles.error + " " + styles.fade}>
-                        {auth.ResponseMessage}
-                      </div>
-                    </div>
-                  ) : null}
+          {!auth.isLoggedIn && auth.ResponseMessage !== "" ? (
+            <div className={styles.error + " " + styles.fade}>
+              {auth.ResponseMessage}
+            </div>
+          ) : null}
 
-                  <div style={{ marginTop: "10%" }} />
-                  <div
-                    align="center"
-                    style={{
-                      display: "flex",
-                      justifyContent: "space-evenly"
-                    }}>
-                    <Button
-                      applyClass="btnBorderStyled"
-                      text="Login"
-                      endIcon={<i className="icon-login icon-size-one"></i>}
-                      type="submit"
-                    />
-                    <Link to="/Signup">
-                      <Button
-                        applyClass="btnBorderStyledRedSignup"
-                        text="SIGN UP"
-                      />
-                    </Link>
-                  </div>
-                </div>
-              </Col>
-            </Row>
-          </div>
+          <button type="submit" className={styles.primaryButton}>
+            SIGN IN
+          </button>
         </form>
-      </React.StrictMode>
+      </AuthLayout>
       <Notification setOpen={setOpen} open={open.open} message={open.message} />
       {auth.Loading ? <Loader /> : null}
-    </MaxWidthContainer>
+    </>
   );
 };
 

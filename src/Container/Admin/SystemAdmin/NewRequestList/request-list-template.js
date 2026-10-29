@@ -68,7 +68,7 @@ const RequestListTemplate = ({ data }) => {
       <Paper padding="1" index={index}>
         <Row gutter={8}>
           <Col lg={6} md={6} sm={12} xs={12}>
-            <p className="m-0" style={{ color: "#b27706" }}>
+            <p className="m-0" style={{ color: "#035F5C" }}>
               First Name
             </p>
           </Col>
@@ -76,7 +76,7 @@ const RequestListTemplate = ({ data }) => {
             <span className="mr-1">{item.firstName}</span>
           </Col>
           <Col lg={6} md={6} sm={12} xs={12}>
-            <p className="m-0" style={{ color: "#b27706" }}>
+            <p className="m-0" style={{ color: "#035F5C" }}>
               Last Name
             </p>
           </Col>
@@ -86,7 +86,7 @@ const RequestListTemplate = ({ data }) => {
         </Row>
         <Row gutter={8}>
           {/* <Grid item lg={3} md={3} sm={6} xs={6}>
-            <p className="m-0" style={{ color: "#b27706" }}>
+            <p className="m-0" style={{ color: "#035F5C" }}>
               Employee Number
             </p>
           </Grid>
@@ -94,7 +94,7 @@ const RequestListTemplate = ({ data }) => {
             <span className="mr-1">{item.personalNumber}</span>
           </Grid> */}
           <Col lg={6} md={6} sm={12} xs={12}>
-            <p className="m-0" style={{ color: "#b27706" }}>
+            <p className="m-0" style={{ color: "#035F5C" }}>
               Email
             </p>
           </Col>
@@ -102,7 +102,7 @@ const RequestListTemplate = ({ data }) => {
             <span className="mr-1">{item.email}</span>
           </Col>
           <Col lg={6} md={6} sm={12} xs={12}>
-            <p className="m-0" style={{ color: "#b27706" }}>
+            <p className="m-0" style={{ color: "#035F5C" }}>
               User Name
             </p>
           </Col>
@@ -112,7 +112,7 @@ const RequestListTemplate = ({ data }) => {
         </Row>
         <Row gutter={8}>
           <Col lg={6} md={6} sm={12} xs={12}>
-            <p className="m-0" style={{ color: "#b27706" }}>
+            <p className="m-0" style={{ color: "#035F5C" }}>
               Role
             </p>
           </Col>
@@ -130,8 +130,8 @@ const RequestListTemplate = ({ data }) => {
         </Row>
         <Row gutter={8}>
           <Col lg={6} md={6} sm={4} xs={4}>
-            <p className="m-0" style={{ color: "#b27706" }}>
-              Type your Comments<span style={{ color: "#ce0000" }}>*</span>
+            <p className="m-0" style={{ color: "#035F5C" }}>
+              Type your Comments<span style={{ color: "#FC4343" }}>*</span>
             </p>
           </Col>
           <Col lg={18} md={18} sm={20} xs={20}>

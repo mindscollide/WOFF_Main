@@ -4,8 +4,8 @@
   }
   .backTopMain > div {
     position: relative;
-    background: #dbe0e0;
-    color: #027975;
+    background: #035F5C;
+    color: #FFFFFF;
     display: block;
     padding: 5px 15px;
     font-size: 13px;
@@ -22,7 +22,7 @@
     width: 0;
     height: 0;
     border-top: 16px solid transparent;
-    border-right: 10px solid #dbe0e0;
+    border-right: 10px solid #035F5C;
     border-bottom: 16px solid transparent;
     position: absolute;
     top: 0px;
@@ -30,5 +30,5 @@
     
   }
   .colorLight {
-      color: #838383;
+      color: #6D6D6D;
     }

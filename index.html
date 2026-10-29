@@ -3,26 +3,19 @@
   <head>
     <meta charset="utf-8" />
     <link rel="icon" href="/favicon.ico" />
+    <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png" />
+    <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png" />
+    <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png" />
+    <link rel="mask-icon" href="/safari-pinned-tab.svg" color="#035F5C" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
-    <meta name="theme-color" content="#000000" />
-    <meta name="description" content="WOFF Data Centralization & MIS Capturing" />
-    <link rel="apple-touch-icon" href="/logo192.png" />
+    <meta name="theme-color" content="#035F5C" />
+    <meta name="msapplication-TileColor" content="#035F5C" />
+    <meta name="description" content="WOFF Data Centralization & Write-off Capturing" />
 
     <link rel="manifest" href="/manifest.json" />
     <link href="/assets/font-icons/font-icon.css" rel="stylesheet" />
-    <!-- <link rel="stylesheet" href="./assets/main.css">
-    <link rel="stylesheet" href="./assets/main-2.css">
-    <link rel="stylesheet" href="./assets/bootstrap.min.css"> -->
-    <style>
-      .login-page {
-        background: url(/assets/images/HblTowerNew.jpg) no-repeat #ffffff top
-          center;
-        background-size: cover;
-        background-attachment: fixed;
-      }
-    </style>
 
-    <title>WOF</title>
+    <title>WOFF Data Centralization &amp; Write-off Capturing</title>
   </head>
   <body>
     <noscript>You need to enable JavaScript to run this app.</noscript>
@@ -32,12 +25,14 @@
       window.addEventListener("beforeunload", (event) => {
         window.localStorage.isMySessionActive = "true";
       });
-      window.onunload = function (e) {
+      // "unload" is blocked by Chrome's permissions policy here, so the open-tab
+      // counter is decremented on "pagehide" instead (the only handler for it).
+      window.addEventListener("pagehide", function () {
         const newTabCount = localStorage.getItem("tabsOpen");
         if (newTabCount !== null) {
           localStorage.setItem("tabsOpen", newTabCount - 1);
         }
-      };
+      });
     </script>
   </body>
 </html>

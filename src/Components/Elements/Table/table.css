@@ -3,6 +3,11 @@
   pointer-events: none;
 }
 
+/* striped rows: White / Surface (#E8F3F3) */
 .rowColor {
-  background-color: white !important;
+  background-color: #FFFFFF !important;
+}
+
+.rowColor.rowColorAlt {
+  background-color: #E8F3F3 !important;
 }

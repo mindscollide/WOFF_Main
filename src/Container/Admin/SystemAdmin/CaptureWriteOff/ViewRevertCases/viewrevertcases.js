@@ -450,7 +450,7 @@ const ViewRevertCases = () => {
           <Button
             text="Reset"
             icon={<Restore />}
-            applyClass="btnDarkSolid"
+            applyClass="btnSecondarySolidResetFull"
             size="small"
             click={() => globalSearch(2)}
           />
